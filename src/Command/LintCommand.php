@@ -43,6 +43,8 @@ class LintCommand extends Command
                 $table->addRow([
                     $diagnostic->position->lineNo,
                     $diagnostic->position->colNo,
+                    $diagnostic->severity,
+                    $diagnostic->message
                 ]);
             }
             $table->render();
