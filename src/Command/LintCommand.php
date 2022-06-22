@@ -46,7 +46,7 @@ class LintCommand extends Command
                 ]);
             }
             $table->render();
-            $output->writeln("");
+            $output->writeln('');
         }
 
         return 0;

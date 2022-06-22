@@ -4,7 +4,6 @@ namespace DTL\BehatLint\Model;
 
 use ArrayIterator;
 use IteratorAggregate;
-use PhpParser\Node\Expr\ArrayItem;
 use Traversable;
 
 /**
@@ -17,8 +16,7 @@ class FeatureDiagnostics implements IteratorAggregate
          * @var array<FeatureDiagnostic>
          */
         private array $featureDiagnostics
-    )
-    {
+    ) {
     }
 
     public function getIterator(): Traversable

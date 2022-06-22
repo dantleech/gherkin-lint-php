@@ -2,8 +2,6 @@
 
 namespace DTL\BehatLint\Model;
 
-use FilesystemIterator;
-use GlobIterator;
 use RuntimeException;
 use SplFileInfo;
 use Symfony\Component\Filesystem\Path;
@@ -41,13 +39,13 @@ class FeatureFinder
         $finder->in($path)->name('*.feature');
 
         foreach ($finder as $info) {
-        if (!$info instanceof SplFileInfo) {
-            continue;
-        }
-        $files[] = new FeatureFile(
-            $info->getPathname(),
-            Path::makeRelative($info->getPathname(), $this->cwd)
-        );
+            if (!$info instanceof SplFileInfo) {
+                continue;
+            }
+            $files[] = new FeatureFile(
+                $info->getPathname(),
+                Path::makeRelative($info->getPathname(), $this->cwd)
+            );
         }
 
         return $files;
