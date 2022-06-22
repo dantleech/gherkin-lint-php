@@ -1,7 +1,7 @@
 #!/usr/bin/env php
 <?php
 
-use Dantleech\BehatLint\BehatLintContainer;
+use DTL\BehatLint\BehatLintContainer;
 
 require __DIR__ . '/../vendor/autoload.php';
 

@@ -26,7 +26,7 @@ class LintCommand extends Command
         $this->addArgument(self::ARG_PATH, InputArgument::REQUIRED, 'Path to feature files');
     }
 
-    protected function execute(InputInterface $input, OutputInterface $output): void
+    protected function execute(InputInterface $input, OutputInterface $output): int
     {
         $path = (string)$input->getArgument(self::ARG_PATH);
         $files = $this->finder->find($path);
@@ -37,16 +37,18 @@ class LintCommand extends Command
         ]);
 
         foreach ($files as $fileInfo) {
-            $diagnostics = $this->linter->lint(file_get_contents($fileInfo->getPath()));
+            $diagnostics = $this->linter->lint(file_get_contents($fileInfo->path));
+            $output->writeln($fileInfo->relativePath);
             foreach ($diagnostics as $diagnostic) {
                 $table->addRow([
-                    $diagnostic->position()->lineNo(),
-                    $diagnostic->position()->col(),
+                    $diagnostic->position->lineNo,
+                    $diagnostic->position->colNo,
                 ]);
             }
+            $table->render();
+            $output->writeln("");
         }
 
-
-
+        return 0;
     }
 }
