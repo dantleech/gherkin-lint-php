@@ -2,16 +2,18 @@
 
 namespace DTL\BehatLint\Model;
 
+use Cucumber\Gherkin\GherkinParser;
+
 class Linter
 {
-    public function lint(string $path): FeatureDiagnostics
+    public function __construct(private GherkinParser $parser)
     {
-        return new FeatureDiagnostics([
-            new FeatureDiagnostic(
-                new Position(10, 10),
-                FeatureDiagnosticSeverity::WARNING,
-                'Sorry'
-            )
-        ]);
+    }
+
+    public function lint(string $uri, string $contents): FeatureDiagnostics
+    {
+        $node = $this->parser->parseString($uri, $contents);
+
+        return new FeatureDiagnostics([]);
     }
 }

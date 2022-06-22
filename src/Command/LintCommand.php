@@ -37,7 +37,7 @@ class LintCommand extends Command
         ]);
 
         foreach ($files as $fileInfo) {
-            $diagnostics = $this->linter->lint(file_get_contents($fileInfo->path));
+            $diagnostics = $this->linter->lint($fileInfo->path, file_get_contents($fileInfo->path));
             $output->writeln($fileInfo->relativePath);
             foreach ($diagnostics as $diagnostic) {
                 $table->addRow([

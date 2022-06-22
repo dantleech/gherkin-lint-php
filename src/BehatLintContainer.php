@@ -2,6 +2,7 @@
 
 namespace DTL\BehatLint;
 
+use Cucumber\Gherkin\GherkinParser;
 use DTL\BehatLint\Command\LintCommand;
 use DTL\BehatLint\Model\FeatureFinder;
 use DTL\BehatLint\Model\Linter;
@@ -29,6 +30,6 @@ final class BehatLintContainer
 
     private function createLinter(): Linter
     {
-        return new Linter();
+        return new Linter(new GherkinParser());
     }
 }
