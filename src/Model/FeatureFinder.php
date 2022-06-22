@@ -3,9 +3,9 @@
 namespace DTL\BehatLint\Model;
 
 use RuntimeException;
-use SplFileInfo;
 use Symfony\Component\Filesystem\Path;
 use Symfony\Component\Finder\Finder;
+use Symfony\Component\Finder\SplFileInfo;
 
 class FeatureFinder
 {
@@ -37,18 +37,19 @@ class FeatureFinder
         }
         $finder = new Finder();
         $finder->in($path)->name('*.feature');
+        $features = [];
 
         foreach ($finder as $info) {
             if (!$info instanceof SplFileInfo) {
                 continue;
             }
-            $files[] = new FeatureFile(
+            $features[] = new FeatureFile(
                 $info->getPathname(),
                 Path::makeRelative($info->getPathname(), $this->cwd)
             );
         }
 
-        return $files;
+        return $features;
     }
 
     private function makeAbsolute(string $path): string

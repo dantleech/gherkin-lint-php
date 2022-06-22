@@ -14,6 +14,8 @@ class LintTest extends TestCase
             'lint',
             'tests/Command/features',
         ], __DIR__ . '/../..');
-        $process->mustRun();
+        $exitCode = $process->run();
+        self::assertEquals(0, $exitCode);
     }
+
 }
