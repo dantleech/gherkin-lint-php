@@ -1,0 +1,34 @@
+{
+    "name": "dantleech/behat-lint",
+    "description": "Behat linter and fixer",
+    "type": "project",
+    "require": {
+        "php": "^8.0",
+        "phpunit/phpunit": "9.5.x-dev",
+        "vimeo/psalm": "5.x-dev",
+        "symfony/console": "6.0.x-dev",
+        "symfony/finder": "6.0.x-dev",
+        "symfony/filesystem": "6.0.x-dev"
+    },
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "DTL\\BehatLint\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "DTL\\BehatLint\\Tests\\": "tests/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Daniel Leech",
+            "email": "dan.t.leech@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require-dev": {
+        "symfony/var-dumper": "6.0.x-dev"
+    }
+}
