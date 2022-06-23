@@ -4,6 +4,7 @@ namespace DTL\GherkinLint\Tests\Unit\Model;
 
 use Closure;
 use Cucumber\Gherkin\GherkinParser;
+use DTL\GherkinLint\Model\AstTraverser;
 use DTL\GherkinLint\Model\FeatureDiagnostics;
 use DTL\GherkinLint\Model\Linter;
 use Generator;
@@ -16,7 +17,10 @@ class LinterTest extends TestCase
      */
     public function testLint(string $content): void
     {
-        $diagnostics = (new Linter(new GherkinParser()))->lint('/path', $content);
+        $diagnostics = (new Linter(
+            new GherkinParser(),
+            new AstTraverser([])
+        ))->lint('/path', $content);
         self::assertInstanceOf(FeatureDiagnostics::class, $diagnostics);
     }
 
