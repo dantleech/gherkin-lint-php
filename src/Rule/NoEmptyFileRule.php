@@ -3,6 +3,7 @@
 namespace DTL\GherkinLint\Rule;
 
 use Cucumber\Messages\Envelope;
+use Cucumber\Messages\GherkinDocument;
 use DTL\GherkinLint\Model\FeatureDiagnostic;
 use DTL\GherkinLint\Model\FeatureDiagnosticSeverity;
 use DTL\GherkinLint\Model\Range;
@@ -20,16 +21,16 @@ class NoEmptyFileRule implements Rule
         );
     }
 
-    public function analyse(Envelope $feature): Generator
+    public function analyse(GherkinDocument $feature): Generator
     {
-        if (!empty($feature->source?->data)) {
+        if ($feature->feature) {
             return;
         }
 
         yield new FeatureDiagnostic(
             Range::fromInts(0, 0, 0, 0),
             FeatureDiagnosticSeverity::WARNING,
-            'Feature file is not allowed be empty'
+            'Feature file is not allowed to be empty'
         );
     }
 }

@@ -19,7 +19,7 @@ class LinterTest extends TestCase
     public function testLint(string $content): void
     {
         $diagnostics = iterator_to_array((new Linter(
-            new GherkinParser(),
+            new GherkinParser(includeSource: false),
             [
                 new TestRule([
                     new FeatureDiagnostic(Range::fromInts(1, 1, 2, 2), FeatureDiagnosticSeverity::WARNING, 'Foo'),

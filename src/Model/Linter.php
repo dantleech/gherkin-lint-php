@@ -25,8 +25,16 @@ class Linter
 
         foreach ($envelopes as $envelope) {
             foreach ($this->rules as $rule) {
-                yield from $rule->analyse($envelope);
+                $document = $envelope->gherkinDocument;
+                if (null === $document) {
+                    continue;
+                }
+
+                yield from $rule->analyse($document);
             }
+
+            // why multiple envelopes?
+            break;
         }
     }
 }

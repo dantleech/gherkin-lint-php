@@ -3,6 +3,7 @@
 namespace DTL\GherkinLint\Rule;
 
 use Cucumber\Messages\Envelope;
+use Cucumber\Messages\GherkinDocument;
 use DTL\GherkinLint\Model\FeatureDiagnostic;
 use DTL\GherkinLint\Model\Rule;
 use DTL\GherkinLint\Model\RuleDescription;
@@ -20,7 +21,7 @@ class TestRule implements Rule
     /**
      * @return Generator<FeatureDiagnostic>
      */
-    public function analyse(Envelope $feature): Generator
+    public function analyse(GherkinDocument $feature): Generator
     {
         yield from $this->diagnostics;
     }
