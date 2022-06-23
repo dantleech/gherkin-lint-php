@@ -1,9 +1,9 @@
 <?php
 
-namespace DTL\BehatLint\Command;
+namespace DTL\GherkinLint\Command;
 
-use DTL\BehatLint\Model\FeatureFinder;
-use DTL\BehatLint\Model\Linter;
+use DTL\GherkinLint\Model\FeatureFinder;
+use DTL\GherkinLint\Model\Linter;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Helper\Table;
 use Symfony\Component\Console\Input\InputArgument;

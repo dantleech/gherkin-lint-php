@@ -1,11 +1,11 @@
 #!/usr/bin/env php
 <?php
 
-use DTL\BehatLint\BehatLintContainer;
+use DTL\GherkinLint\GherkinLintContainer;
 
 require __DIR__ . '/../vendor/autoload.php';
 
-$container = new BehatLintContainer();
+$container = new GherkinLintContainer();
 $container->application()->run();
 
 

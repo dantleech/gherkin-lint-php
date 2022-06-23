@@ -1,6 +1,6 @@
 <?php
 
-namespace DTL\BehatLint\Tests\Command;
+namespace DTL\GherkinLint\Tests\Command;
 
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\Process\Process;

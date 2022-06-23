@@ -1,14 +1,14 @@
 <?php
 
-namespace DTL\BehatLint;
+namespace DTL\GherkinLint;
 
 use Cucumber\Gherkin\GherkinParser;
-use DTL\BehatLint\Command\LintCommand;
-use DTL\BehatLint\Model\FeatureFinder;
-use DTL\BehatLint\Model\Linter;
+use DTL\GherkinLint\Command\LintCommand;
+use DTL\GherkinLint\Model\FeatureFinder;
+use DTL\GherkinLint\Model\Linter;
 use Symfony\Component\Console\Application;
 
-final class BehatLintContainer
+final class GherkinLintContainer
 {
     public function application(): Application
     {

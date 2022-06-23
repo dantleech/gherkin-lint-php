@@ -1,11 +1,11 @@
 <?php
 
-namespace DTL\BehatLint\Tests\Unit\Model;
+namespace DTL\GherkinLint\Tests\Unit\Model;
 
 use Closure;
 use Cucumber\Gherkin\GherkinParser;
-use DTL\BehatLint\Model\FeatureDiagnostics;
-use DTL\BehatLint\Model\Linter;
+use DTL\GherkinLint\Model\FeatureDiagnostics;
+use DTL\GherkinLint\Model\Linter;
 use Generator;
 use PHPUnit\Framework\TestCase;
 

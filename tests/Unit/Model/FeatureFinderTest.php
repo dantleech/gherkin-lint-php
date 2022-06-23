@@ -1,9 +1,9 @@
 <?php
 
-namespace DTL\BehatLint\Tests\Unit\Model;
+namespace DTL\GherkinLint\Tests\Unit\Model;
 
-use DTL\BehatLint\Model\FeatureFile;
-use DTL\BehatLint\Model\FeatureFinder;
+use DTL\GherkinLint\Model\FeatureFile;
+use DTL\GherkinLint\Model\FeatureFinder;
 use Generator;
 use PHPUnit\Framework\TestCase;
 use RuntimeException;
