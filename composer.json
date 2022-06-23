@@ -36,7 +36,7 @@
     },
     "scripts": {
         "integrate": [
-            "vendor/bin/php-cs-fixer",
+            "vendor/bin/php-cs-fixer fix",
             "vendor/bin/psalm",
             "vendor/bin/phpunit"
         ]

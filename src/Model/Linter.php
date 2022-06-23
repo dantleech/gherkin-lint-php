@@ -13,8 +13,7 @@ class Linter
          * @var Rule[]
          */
         private array $rules
-    )
-    {
+    ) {
     }
 
     /**

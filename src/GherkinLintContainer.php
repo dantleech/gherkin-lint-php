@@ -4,7 +4,6 @@ namespace DTL\GherkinLint;
 
 use Cucumber\Gherkin\GherkinParser;
 use DTL\GherkinLint\Command\LintCommand;
-use DTL\GherkinLint\Model\AstTraverser;
 use DTL\GherkinLint\Model\FeatureFinder;
 use DTL\GherkinLint\Model\Linter;
 use Symfony\Component\Console\Application;
@@ -31,6 +30,6 @@ final class GherkinLintContainer
 
     private function createLinter(): Linter
     {
-        return new Linter(new GherkinParser(), new AstTraverser([]));
+        return new Linter(new GherkinParser(), []);
     }
 }

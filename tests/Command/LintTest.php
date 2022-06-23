@@ -17,5 +17,4 @@ class LintTest extends TestCase
         $exitCode = $process->run();
         self::assertEquals(0, $exitCode);
     }
-
 }

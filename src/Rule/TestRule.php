@@ -2,17 +2,13 @@
 
 namespace DTL\GherkinLint\Rule;
 
+use Cucumber\Messages\Envelope;
 use DTL\GherkinLint\Model\FeatureDiagnostic;
 use DTL\GherkinLint\Model\Rule;
 use Generator;
 
 class TestRule implements Rule
 {
-    /**
-     * @var object[]
-     */
-    private array $visited = [];
-
     /**
      * @param FeatureDiagnostic[] $diagnostics
      */
@@ -23,10 +19,8 @@ class TestRule implements Rule
     /**
      * @return Generator<FeatureDiagnostic>
      */
-    public function visit(object $node): Generator
+    public function analyse(Envelope $feature): Generator
     {
-        $this->visited[] = $node;
-
         yield from $this->diagnostics;
     }
 }

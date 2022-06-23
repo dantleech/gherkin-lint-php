@@ -41,8 +41,8 @@ class LintCommand extends Command
             $output->writeln($fileInfo->relativePath);
             foreach ($diagnostics as $diagnostic) {
                 $table->addRow([
-                    $diagnostic->position->lineNo,
-                    $diagnostic->position->colNo,
+                    $diagnostic->range->start->lineNo,
+                    $diagnostic->range->end->colNo,
                     $diagnostic->severity,
                     $diagnostic->message
                 ]);
