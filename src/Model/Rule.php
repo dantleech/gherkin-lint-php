@@ -2,6 +2,7 @@
 
 namespace DTL\GherkinLint\Model;
 
+use Cucumber\Messages\Envelope;
 use Generator;
 
 interface Rule
@@ -9,5 +10,5 @@ interface Rule
     /**
      * @return Generator<FeatureDiagnostic>
      */
-    public function visit(object $node): Generator;
+    public function analyse(Envelope $feature): Generator;
 }

@@ -3,21 +3,31 @@
 namespace DTL\GherkinLint\Model;
 
 use Cucumber\Gherkin\GherkinParser;
+use Generator;
 
 class Linter
 {
-    public function __construct(private GherkinParser $parser, private AstTraverser $traverser)
+    public function __construct(
+        private GherkinParser $parser,
+        /**
+         * @var Rule[]
+         */
+        private array $rules
+    )
     {
     }
 
-    public function lint(string $uri, string $contents): FeatureDiagnostics
+    /**
+     * @return Generator<FeatureDiagnostic>
+     */
+    public function lint(string $uri, string $contents): Generator
     {
-        return new FeatureDiagnostics(
-            iterator_to_array(
-                $this->traverser->traverse(
-                    $this->parser->parseString($uri, $contents)
-                )
-            )
-        );
+        $envelopes = iterator_to_array($this->parser->parseString($uri, $contents));
+
+        foreach ($envelopes as $envelope) {
+            foreach ($this->rules as $rule) {
+                yield from $rule->analyse($envelope);
+            }
+        }
     }
 }
