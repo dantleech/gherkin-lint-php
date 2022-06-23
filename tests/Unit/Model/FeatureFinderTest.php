@@ -22,12 +22,15 @@ class FeatureFinderTest extends TestCase
      */
     public function testFindFeatures(string $path, array $expectedPaths): void
     {
+        $expectedPaths = sort($expectedPaths);
+        $actualPaths = array_map(
+            fn (FeatureFile $file) => $file->relativePath,
+            $this->createFinder(__DIR__)->find($path)
+        );
+        $actualPaths = sort($actualPaths);
         self::assertEquals(
             $expectedPaths,
-            array_map(
-                fn (FeatureFile $file) => $file->relativePath,
-                $this->createFinder(__DIR__)->find($path)
-            ),
+            $actualPaths,
         );
     }
 
