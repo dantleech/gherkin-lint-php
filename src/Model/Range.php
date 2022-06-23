@@ -2,6 +2,8 @@
 
 namespace DTL\GherkinLint\Model;
 
+use Cucumber\Messages\Location;
+
 class Range
 {
     public function __construct(
@@ -15,6 +17,16 @@ class Range
         return new self(
             Position::fromInts($startLine, $startCol),
             Position::fromInts($endLine, $endCol)
+        );
+    }
+
+    public static function fromLocationAndName(Location $location, string $name): self
+    {
+        return self::fromInts(
+            $location->line,
+            $location->column ?? 1,
+            $location->line,
+            mb_strlen($name)
         );
     }
 }

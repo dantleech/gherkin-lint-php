@@ -40,4 +40,15 @@ class FeatureDiagnostics implements IteratorAggregate, Countable
     {
         return count($this->featureDiagnostics);
     }
+
+    public function at(int $index): FeatureDiagnostic
+    {
+        if (!isset($this->featureDiagnostics[$index])) {
+            throw new RuntimeException(
+                'There is no diagnostic at index %d',
+                $index
+            );
+        }
+        return $this->featureDiagnostics[$index];
+    }
 }
