@@ -32,13 +32,13 @@ class LintCommand extends Command
         $path = (string)$input->getArgument(self::ARG_PATH);
         $files = $this->finder->find($path);
 
-        $table = new Table($output);
-        $table->setHeaders([
-            'line', 'col', 'severity', 'message',
-        ]);
         $errorCount = 0;
 
         foreach ($files as $fileInfo) {
+            $table = new Table($output);
+            $table->setHeaders([
+                'line', 'col', 'severity', 'message',
+            ]);
             $diagnostics = iterator_to_array(
                 $this->linter->lint(
                     $fileInfo->path,
