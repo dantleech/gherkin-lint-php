@@ -9,4 +9,9 @@ class Position
         public int $colNo
     ) {
     }
+
+    public static function fromInts(int $startLine, int $startCol): self
+    {
+        return new self($startLine, $startCol);
+    }
 }

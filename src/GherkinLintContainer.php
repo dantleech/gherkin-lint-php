@@ -31,6 +31,6 @@ final class GherkinLintContainer
 
     private function createLinter(): Linter
     {
-        return new Linter(new GherkinParser(), new AstTraverser([)]);
+        return new Linter(new GherkinParser(), new AstTraverser([]));
     }
 }
