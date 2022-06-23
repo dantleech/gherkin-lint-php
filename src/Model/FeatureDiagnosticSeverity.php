@@ -2,7 +2,8 @@
 
 namespace DTL\GherkinLint\Model;
 
-final class FeatureDiagnosticSeverity
+enum FeatureDiagnosticSeverity: string
 {
-    public const WARNING = 'warning';
+    case ERROR = 'error';
+    case WARNING = 'warning';
 }

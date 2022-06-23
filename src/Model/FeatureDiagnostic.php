@@ -6,7 +6,7 @@ class FeatureDiagnostic
 {
     public function __construct(
         public Range $range,
-        public string $severity,
+        public FeatureDiagnosticSeverity $severity,
         public string $message
     ) {
     }
