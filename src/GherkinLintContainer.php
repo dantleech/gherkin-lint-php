@@ -6,6 +6,9 @@ use Cucumber\Gherkin\GherkinParser;
 use DTL\GherkinLint\Command\LintCommand;
 use DTL\GherkinLint\Model\FeatureFinder;
 use DTL\GherkinLint\Model\Linter;
+use DTL\GherkinLint\Model\Rule;
+use DTL\GherkinLint\Rule\NoDuplicateTags;
+use DTL\GherkinLint\Rule\NoEmptyFileRule;
 use Symfony\Component\Console\Application;
 
 final class GherkinLintContainer
@@ -30,6 +33,22 @@ final class GherkinLintContainer
 
     private function createLinter(): Linter
     {
-        return new Linter(new GherkinParser(), []);
+        return new Linter(
+            new GherkinParser(
+                includeSource: false,
+            ),
+            $this->createRules()
+        );
+    }
+
+    /**
+     * @return list<Rule>
+     */
+    private function createRules(): array
+    {
+        return [
+            new NoDuplicateTags(),
+            new NoEmptyFileRule(),
+        ];
     }
 }

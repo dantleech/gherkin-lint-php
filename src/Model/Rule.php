@@ -2,16 +2,15 @@
 
 namespace DTL\GherkinLint\Model;
 
-use Cucumber\Messages\Envelope;
 use Cucumber\Messages\GherkinDocument;
 use Generator;
 
 interface Rule
 {
     /**
-     * @return Generator<int,FeatureDiagnostic,mixed,void>
+     * @return Generator<mixed,FeatureDiagnostic,mixed,void>
      */
-    public function analyse(GherkinDocument $feature): Generator;
+    public function analyse(GherkinDocument $document): Generator;
 
     public function describe(): RuleDescription;
 }

@@ -33,5 +33,4 @@ abstract class RuleTestCase extends TestCase
             [$this->createRule()]
         ))->lint('/path', $contents))));
     }
-
 }

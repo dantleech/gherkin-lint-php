@@ -18,7 +18,7 @@ class NoEmptyFileRuleTest extends RuleTestCase
     {
         yield 'empty file' => [
             '',
-            function (FeatureDiagnostics $diagnostics) {
+            function (FeatureDiagnostics $diagnostics): void {
                 self::assertCount(1, $diagnostics);
                 self::assertEquals(
                     'Feature file is not allowed to be empty',
@@ -29,7 +29,7 @@ class NoEmptyFileRuleTest extends RuleTestCase
 
         yield 'non-empty file' => [
             'Feature: Foobar',
-            function (FeatureDiagnostics $diagnostics) {
+            function (FeatureDiagnostics $diagnostics): void {
                 self::assertCount(0, $diagnostics);
             }
         ];

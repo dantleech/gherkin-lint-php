@@ -18,21 +18,21 @@ class NoDuplicateTagsTest extends RuleTestCase
     {
         yield 'feature with no duplicate tags' => [
             <<<'EOT'
-@foo @bar
-Feature: Foobar
-EOT
-            , 
-            function (FeatureDiagnostics $diagnostics) {
+                @foo @bar
+                Feature: Foobar
+                EOT
+            ,
+            function (FeatureDiagnostics $diagnostics): void {
                 self::assertCount(0, $diagnostics);
             }
         ];
         yield 'feature with duplicate tags' => [
             <<<'EOT'
-@foo @foo
-Feature: Foobar
-EOT
-            , 
-            function (FeatureDiagnostics $diagnostics) {
+                @foo @foo
+                Feature: Foobar
+                EOT
+            ,
+            function (FeatureDiagnostics $diagnostics): void {
                 self::assertCount(1, $diagnostics);
                 self::assertEquals(1, $diagnostics->first()->range->start->lineNo);
                 self::assertEquals(6, $diagnostics->first()->range->start->colNo);
@@ -43,11 +43,11 @@ EOT
         ];
         yield 'feature with many duplicate tags' => [
             <<<'EOT'
-@foo @foo @baz @baz @foo
-Feature: Foobar
-EOT
-            , 
-            function (FeatureDiagnostics $diagnostics) {
+                @foo @foo @baz @baz @foo
+                Feature: Foobar
+                EOT
+            ,
+            function (FeatureDiagnostics $diagnostics): void {
                 self::assertCount(3, $diagnostics);
                 self::assertEquals('Tag "@foo" is a duplicate', $diagnostics->at(0)->message);
                 self::assertEquals('Tag "@baz" is a duplicate', $diagnostics->at(1)->message);

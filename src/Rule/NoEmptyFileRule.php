@@ -2,7 +2,6 @@
 
 namespace DTL\GherkinLint\Rule;
 
-use Cucumber\Messages\Envelope;
 use Cucumber\Messages\GherkinDocument;
 use DTL\GherkinLint\Model\FeatureDiagnostic;
 use DTL\GherkinLint\Model\FeatureDiagnosticSeverity;
@@ -21,9 +20,9 @@ class NoEmptyFileRule implements Rule
         );
     }
 
-    public function analyse(GherkinDocument $feature): Generator
+    public function analyse(GherkinDocument $document): Generator
     {
-        if ($feature->feature) {
+        if ($document->feature) {
             return;
         }
 

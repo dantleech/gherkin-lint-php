@@ -2,7 +2,6 @@
 
 namespace DTL\GherkinLint\Rule;
 
-use Cucumber\Messages\Envelope;
 use Cucumber\Messages\GherkinDocument;
 use Cucumber\Messages\Tag;
 use DTL\GherkinLint\Model\FeatureDiagnostic;
@@ -11,13 +10,12 @@ use DTL\GherkinLint\Model\Range;
 use DTL\GherkinLint\Model\Rule;
 use DTL\GherkinLint\Model\RuleDescription;
 use Generator;
-use LanguageServerProtocol\DiagnosticTag;
 
 class NoDuplicateTags implements Rule
 {
     public function analyse(GherkinDocument $document): Generator
     {
-        yield from $this->checkTags($document?->feature?->tags);
+        yield from $this->checkTags($document->feature?->tags);
     }
 
     public function describe(): RuleDescription
