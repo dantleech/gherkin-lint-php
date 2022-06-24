@@ -2,12 +2,11 @@
 
 namespace DTL\GherkinLint\Report;
 
-use DTL\GherkinLint\Model\FeatureDiagnostics;
 use DTL\GherkinLint\Model\LintReport;
 use Symfony\Component\Console\Helper\Table;
 use Symfony\Component\Console\Output\OutputInterface;
 
-class TableReport
+final class TableReportRenderer
 {
     public function __construct(private OutputInterface $output)
     {

@@ -3,7 +3,6 @@
 namespace DTL\GherkinLint\Model;
 
 use Cucumber\Gherkin\GherkinParser;
-use Cucumber\Messages\Envelope;
 use Cucumber\Messages\GherkinDocument;
 use Generator;
 

@@ -6,9 +6,8 @@ use DTL\GherkinLint\Model\FeatureDiagnostics;
 use DTL\GherkinLint\Model\FeatureFinder;
 use DTL\GherkinLint\Model\LintReport;
 use DTL\GherkinLint\Model\Linter;
-use DTL\GherkinLint\Report\TableReport;
+use DTL\GherkinLint\Report\TableReportRenderer;
 use Symfony\Component\Console\Command\Command;
-use Symfony\Component\Console\Helper\Table;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
@@ -20,9 +19,8 @@ class LintCommand extends Command
     public function __construct(
         private FeatureFinder $finder,
         private Linter $linter,
-        private TableReport $report
-    )
-    {
+        private TableReportRenderer $reportRenderer
+    ) {
         parent::__construct();
     }
 
@@ -51,7 +49,7 @@ class LintCommand extends Command
 
         $report = new LintReport($featureDiagnosticsList, $elapsedTime);
 
-        $this->report->render($report);
+        $this->reportRenderer->render($report);
 
         return $report->hasErrors() ? 1 : 0;
     }

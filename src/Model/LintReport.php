@@ -4,7 +4,6 @@ namespace DTL\GherkinLint\Model;
 
 use ArrayIterator;
 use Countable;
-use DTL\GherkinLint\Model\FeatureDiagnostics;
 use IteratorAggregate;
 use Traversable;
 
@@ -19,8 +18,7 @@ class LintReport implements IteratorAggregate, Countable
          */
         private array $featureDiagnosticsList,
         public readonly float $elapsedTime,
-    )
-    {
+    ) {
     }
 
     public function getIterator(): Traversable
