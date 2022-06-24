@@ -13,7 +13,7 @@ class FeatureFinderTest extends TestCase
     public function testThrowExceptionIfPathNotExisting(): void
     {
         $this->expectException(RuntimeException::class);
-        $this->createFinder(__DIR__)->find(__DIR__ . '/not-existing');
+        iterator_to_array($this->createFinder(__DIR__)->find(__DIR__ . '/not-existing'));
     }
 
     /**
@@ -25,7 +25,7 @@ class FeatureFinderTest extends TestCase
         $expectedPaths = sort($expectedPaths);
         $actualPaths = array_map(
             fn (FeatureFile $file) => $file->relativePath,
-            $this->createFinder(__DIR__)->find($path)
+            iterator_to_array($this->createFinder(__DIR__)->find($path))
         );
         $actualPaths = sort($actualPaths);
         self::assertEquals(

@@ -14,6 +14,7 @@ use Traversable;
 class FeatureDiagnostics implements IteratorAggregate, Countable
 {
     public function __construct(
+        public readonly FeatureFile $file,
         /**
          * @var array<FeatureDiagnostic>
          */

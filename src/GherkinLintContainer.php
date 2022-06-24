@@ -7,12 +7,21 @@ use DTL\GherkinLint\Command\LintCommand;
 use DTL\GherkinLint\Model\FeatureFinder;
 use DTL\GherkinLint\Model\Linter;
 use DTL\GherkinLint\Model\Rule;
+use DTL\GherkinLint\Report\TableReportRenderer;
 use DTL\GherkinLint\Rule\NoDuplicateTags;
 use DTL\GherkinLint\Rule\NoEmptyFileRule;
 use Symfony\Component\Console\Application;
+use Symfony\Component\Console\Output\OutputInterface;
 
 final class GherkinLintContainer
 {
+    private OutputInterface $output;
+
+    public function __construct(OutputInterface $output)
+    {
+        $this->output = $output;
+    }
+
     public function application(): Application
     {
         $app = new Application('behatlint');
@@ -20,6 +29,7 @@ final class GherkinLintContainer
             new LintCommand(
                 $this->createFinder((string)getcwd()),
                 $this->createLinter(),
+                $this->createReportRenderer(),
             ),
         ]);
 
@@ -50,5 +60,10 @@ final class GherkinLintContainer
             new NoDuplicateTags(),
             new NoEmptyFileRule(),
         ];
+    }
+
+    private function createReportRenderer(): TableReportRenderer
+    {
+        return new TableReportRenderer($this->output);
     }
 }
