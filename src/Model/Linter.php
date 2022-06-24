@@ -3,6 +3,8 @@
 namespace DTL\GherkinLint\Model;
 
 use Cucumber\Gherkin\GherkinParser;
+use Cucumber\Messages\Envelope;
+use Cucumber\Messages\GherkinDocument;
 use Generator;
 
 class Linter
@@ -21,20 +23,24 @@ class Linter
      */
     public function lint(string $uri, string $contents): Generator
     {
-        $envelopes = iterator_to_array($this->parser->parseString($uri, $contents));
-
-        foreach ($envelopes as $envelope) {
+        foreach ($this->gherkinDocuments($uri, $contents) as $document) {
             foreach ($this->rules as $rule) {
-                $document = $envelope->gherkinDocument;
-                if (null === $document) {
-                    continue;
-                }
-
                 yield from $rule->analyse($document);
             }
+        }
+    }
 
-            // why multiple envelopes?
-            break;
+    /**
+     * @return Generator<GherkinDocument>
+     */
+    private function gherkinDocuments(string $uri, string $contents): Generator
+    {
+        foreach ($this->parser->parseString($uri, $contents) as $envelope) {
+            if (!$envelope->gherkinDocument) {
+                continue;
+            }
+
+            yield $envelope->gherkinDocument;
         }
     }
 }
