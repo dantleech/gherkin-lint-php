@@ -1,9 +1,9 @@
 <?php
 
-namespace DTL\BehatLint\Tests\Unit\Model;
+namespace DTL\GherkinLint\Tests\Unit\Model;
 
-use DTL\BehatLint\Model\FeatureFile;
-use DTL\BehatLint\Model\FeatureFinder;
+use DTL\GherkinLint\Model\FeatureFile;
+use DTL\GherkinLint\Model\FeatureFinder;
 use Generator;
 use PHPUnit\Framework\TestCase;
 use RuntimeException;
@@ -22,12 +22,15 @@ class FeatureFinderTest extends TestCase
      */
     public function testFindFeatures(string $path, array $expectedPaths): void
     {
+        $expectedPaths = sort($expectedPaths);
+        $actualPaths = array_map(
+            fn (FeatureFile $file) => $file->relativePath,
+            $this->createFinder(__DIR__)->find($path)
+        );
+        $actualPaths = sort($actualPaths);
         self::assertEquals(
             $expectedPaths,
-            array_map(
-                fn (FeatureFile $file) => $file->relativePath,
-                $this->createFinder(__DIR__)->find($path)
-            ),
+            $actualPaths,
         );
     }
 

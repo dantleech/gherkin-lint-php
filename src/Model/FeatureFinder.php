@@ -1,6 +1,6 @@
 <?php
 
-namespace DTL\BehatLint\Model;
+namespace DTL\GherkinLint\Model;
 
 use RuntimeException;
 use Symfony\Component\Filesystem\Path;

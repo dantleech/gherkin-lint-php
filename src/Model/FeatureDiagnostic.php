@@ -1,12 +1,12 @@
 <?php
 
-namespace DTL\BehatLint\Model;
+namespace DTL\GherkinLint\Model;
 
 class FeatureDiagnostic
 {
     public function __construct(
-        public Position $position,
-        public string $severity,
+        public Range $range,
+        public FeatureDiagnosticSeverity $severity,
         public string $message
     ) {
     }

@@ -1,9 +1,9 @@
 <?php
 
-namespace DTL\BehatLint\Command;
+namespace DTL\GherkinLint\Command;
 
-use DTL\BehatLint\Model\FeatureFinder;
-use DTL\BehatLint\Model\Linter;
+use DTL\GherkinLint\Model\FeatureFinder;
+use DTL\GherkinLint\Model\Linter;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Helper\Table;
 use Symfony\Component\Console\Input\InputArgument;
@@ -28,28 +28,65 @@ class LintCommand extends Command
 
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
+        $start = microtime(true);
         $path = (string)$input->getArgument(self::ARG_PATH);
         $files = $this->finder->find($path);
 
-        $table = new Table($output);
-        $table->setHeaders([
-            'line', 'col', 'severity', 'message',
-        ]);
+        $errorCount = 0;
 
         foreach ($files as $fileInfo) {
-            $diagnostics = $this->linter->lint($fileInfo->path, file_get_contents($fileInfo->path));
+            $table = new Table($output);
+            $table->setHeaders([
+                'line', 'col', 'severity', 'message',
+            ]);
+            $diagnostics = iterator_to_array(
+                $this->linter->lint(
+                    $fileInfo->path,
+                    file_get_contents($fileInfo->path)
+                )
+            );
+
+            if (count($diagnostics) === 0) {
+                continue;
+            }
+
+            $errorCount += count($diagnostics);
+
             $output->writeln($fileInfo->relativePath);
+
             foreach ($diagnostics as $diagnostic) {
                 $table->addRow([
-                    $diagnostic->position->lineNo,
-                    $diagnostic->position->colNo,
-                    $diagnostic->severity,
+                    $diagnostic->range->start->lineNo,
+                    $diagnostic->range->end->colNo,
+                    $diagnostic->severity->toString(),
                     $diagnostic->message
                 ]);
             }
+
             $table->render();
             $output->writeln('');
         }
+
+        $elapsedTime = number_format(microtime(true) - $start, 2);
+
+        if ($errorCount) {
+            $output->writeln(
+                sprintf(
+                    '<error>%s problems found in %s seconds</>',
+                    $errorCount,
+                    $elapsedTime,
+                )
+            );
+
+            return 1;
+        }
+
+        $output->writeln(
+            sprintf(
+                'No problems found in %s seconds</>',
+                $elapsedTime,
+            )
+        );
 
         return 0;
     }

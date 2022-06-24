@@ -1,6 +1,6 @@
 <?php
 
-namespace DTL\BehatLint\Model;
+namespace DTL\GherkinLint\Model;
 
 final class FeatureFile
 {

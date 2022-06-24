@@ -1,11 +1,13 @@
 <?php
 
-namespace DTL\BehatLint\Tests\Unit\Model;
+namespace DTL\GherkinLint\Tests\Unit\Model;
 
-use Closure;
 use Cucumber\Gherkin\GherkinParser;
-use DTL\BehatLint\Model\FeatureDiagnostics;
-use DTL\BehatLint\Model\Linter;
+use DTL\GherkinLint\Model\FeatureDiagnostic;
+use DTL\GherkinLint\Model\FeatureDiagnosticSeverity;
+use DTL\GherkinLint\Model\Linter;
+use DTL\GherkinLint\Model\Range;
+use DTL\GherkinLint\Rule\TestRule;
 use Generator;
 use PHPUnit\Framework\TestCase;
 
@@ -16,8 +18,16 @@ class LinterTest extends TestCase
      */
     public function testLint(string $content): void
     {
-        $diagnostics = (new Linter(new GherkinParser()))->lint('/path', $content);
-        self::assertInstanceOf(FeatureDiagnostics::class, $diagnostics);
+        $diagnostics = iterator_to_array((new Linter(
+            new GherkinParser(includeSource: false),
+            [
+                new TestRule([
+                    new FeatureDiagnostic(Range::fromInts(1, 1, 2, 2), FeatureDiagnosticSeverity::WARNING, 'Foo'),
+                ])
+            ]
+        ))->lint('/path', $content));
+
+        self::assertCount(1, $diagnostics);
     }
 
     /**
@@ -27,13 +37,13 @@ class LinterTest extends TestCase
     {
         yield [
             <<<'EOT'
-                Feature: Foobar
+                    Feature: Foobar
 
-                    Scenario: Foobar
-                        Given this happened
-                        When I do this
-                        Then that should happen
-            EOT
+                        Scenario: Foobar
+                            Given this happened
+                            When I do this
+                            Then that should happen
+                EOT
         ];
     }
 }

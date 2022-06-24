@@ -1,6 +1,6 @@
 {
     "name": "dantleech/behat-lint",
-    "description": "Behat linter and fixer",
+    "description": "Gherkin linter and fixer",
     "type": "project",
     "require": {
         "php": "^8.1",
@@ -14,12 +14,12 @@
     "license": "MIT",
     "autoload": {
         "psr-4": {
-            "DTL\\BehatLint\\": "src/"
+            "DTL\\GherkinLint\\": "src/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "DTL\\BehatLint\\Tests\\": "tests/"
+            "DTL\\GherkinLint\\Tests\\": "tests/"
         }
     },
     "authors": [
@@ -36,7 +36,7 @@
     },
     "scripts": {
         "integrate": [
-            "vendor/bin/php-cs-fixer",
+            "vendor/bin/php-cs-fixer fix",
             "vendor/bin/psalm",
             "vendor/bin/phpunit"
         ]
