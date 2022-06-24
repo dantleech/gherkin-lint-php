@@ -2,11 +2,15 @@
 <?php
 
 use DTL\GherkinLint\GherkinLintContainer;
+use Symfony\Component\Console\Input\ArgvInput;
+use Symfony\Component\Console\Output\ConsoleOutput;
 
 require __DIR__ . '/../vendor/autoload.php';
 
-$container = new GherkinLintContainer();
-$container->application()->run();
+$input = new ArgvInput();
+$output = new ConsoleOutput();
+$container = new GherkinLintContainer($output);
+$container->application()->run($input, $output);
 
 
 

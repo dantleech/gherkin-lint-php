@@ -3,6 +3,7 @@
 namespace DTL\GherkinLint\Model;
 
 use ArrayIterator;
+use Countable;
 use DTL\GherkinLint\Model\FeatureDiagnostics;
 use IteratorAggregate;
 use Traversable;
@@ -10,13 +11,14 @@ use Traversable;
 /**
  * @implements IteratorAggregate<FeatureDiagnostics>
  */
-class LintReport implements IteratorAggregate
+class LintReport implements IteratorAggregate, Countable
 {
     public function __construct(
         /**
          * @var FeatureDiagnostics[]
          */
-        private array $featureDiagnosticsList
+        private array $featureDiagnosticsList,
+        public readonly float $elapsedTime,
     )
     {
     }
@@ -24,5 +26,31 @@ class LintReport implements IteratorAggregate
     public function getIterator(): Traversable
     {
         return new ArrayIterator($this->featureDiagnosticsList);
+    }
+
+    public function errorCount(): int
+    {
+        $count = 0;
+        foreach ($this->featureDiagnosticsList as $featureDiagnostics) {
+            $count += count($featureDiagnostics);
+        }
+
+        return $count;
+    }
+
+    public function hasErrors(): bool
+    {
+        foreach ($this->featureDiagnosticsList as $featureDiagnostics) {
+            if (count($featureDiagnostics)) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    public function count(): int
+    {
+        return count($this->featureDiagnosticsList);
     }
 }

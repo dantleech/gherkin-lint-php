@@ -2,8 +2,11 @@
 
 namespace DTL\GherkinLint\Command;
 
+use DTL\GherkinLint\Model\FeatureDiagnostics;
 use DTL\GherkinLint\Model\FeatureFinder;
+use DTL\GherkinLint\Model\LintReport;
 use DTL\GherkinLint\Model\Linter;
+use DTL\GherkinLint\Report\TableReport;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Helper\Table;
 use Symfony\Component\Console\Input\InputArgument;
@@ -14,7 +17,11 @@ class LintCommand extends Command
 {
     const ARG_PATH = 'path';
 
-    public function __construct(private FeatureFinder $finder, private Linter $linter)
+    public function __construct(
+        private FeatureFinder $finder,
+        private Linter $linter,
+        private TableReport $report
+    )
     {
         parent::__construct();
     }
@@ -28,66 +35,24 @@ class LintCommand extends Command
 
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
-        $start = microtime(true);
         $path = (string)$input->getArgument(self::ARG_PATH);
-        $files = $this->finder->find($path);
 
-        $errorCount = 0;
+        $start = microtime(true);
 
-        foreach ($files as $fileInfo) {
-            $table = new Table($output);
-            $table->setHeaders([
-                'line', 'col', 'severity', 'message',
-            ]);
-            $diagnostics = iterator_to_array(
-                $this->linter->lint(
-                    $fileInfo->path,
-                    file_get_contents($fileInfo->path)
-                )
+        $featureDiagnosticsList = [];
+        foreach ($this->finder->find($path) as $featureFile) {
+            $featureDiagnosticsList[] = new FeatureDiagnostics(
+                $featureFile,
+                iterator_to_array($this->linter->lint($featureFile->path, $featureFile->contents()))
             );
-
-            if (count($diagnostics) === 0) {
-                continue;
-            }
-
-            $errorCount += count($diagnostics);
-
-            $output->writeln($fileInfo->relativePath);
-
-            foreach ($diagnostics as $diagnostic) {
-                $table->addRow([
-                    $diagnostic->range->start->lineNo,
-                    $diagnostic->range->end->colNo,
-                    $diagnostic->severity->toString(),
-                    $diagnostic->message
-                ]);
-            }
-
-            $table->render();
-            $output->writeln('');
         }
 
-        $elapsedTime = number_format(microtime(true) - $start, 2);
+        $elapsedTime = microtime(true) - $start;
 
-        if ($errorCount) {
-            $output->writeln(
-                sprintf(
-                    '<error>%s problems found in %s seconds</>',
-                    $errorCount,
-                    $elapsedTime,
-                )
-            );
+        $report = new LintReport($featureDiagnosticsList, $elapsedTime);
 
-            return 1;
-        }
+        $this->report->render($report);
 
-        $output->writeln(
-            sprintf(
-                'No problems found in %s seconds</>',
-                $elapsedTime,
-            )
-        );
-
-        return 0;
+        return $report->hasErrors() ? 1 : 0;
     }
 }

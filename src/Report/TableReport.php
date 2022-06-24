@@ -16,6 +16,9 @@ class TableReport
     public function render(LintReport $report): void
     {
         foreach ($report as $featureDiagnostics) {
+            if (!count($featureDiagnostics)) {
+                continue;
+            }
             $this->output->writeln($featureDiagnostics->file->relativePath);
             $table = new Table($this->output);
             $table->setHeaders([
@@ -34,5 +37,30 @@ class TableReport
             $table->render();
             $this->output->writeln('');
         }
+
+        $this->summarise($report->errorCount(), count($report), $report->elapsedTime);
+    }
+
+    private function summarise(int $errorCount, int $nbFeatureFiles, float $elapsedTime): void
+    {
+        if ($errorCount) {
+            $this->output->writeln(
+                sprintf(
+                    '<error>%s problems found in %d feature files (took %s seconds)</>',
+                    $errorCount,
+                    $nbFeatureFiles,
+                    number_format($elapsedTime, 4)
+                )
+            );
+            return;
+        }
+
+        $this->output->writeln(
+            sprintf(
+                'No problems found in %d feature files (took %s seconds)</>',
+                $nbFeatureFiles,
+                $elapsedTime
+            )
+        );
     }
 }
