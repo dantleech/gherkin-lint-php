@@ -7,6 +7,7 @@ use DTL\GherkinLint\Model\FeatureFinder;
 use DTL\GherkinLint\Model\LintReport;
 use DTL\GherkinLint\Model\Linter;
 use DTL\GherkinLint\Report\TableReportRenderer;
+use DTL\GherkinLint\Report\TableReport;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;

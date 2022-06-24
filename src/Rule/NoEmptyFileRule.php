@@ -7,6 +7,7 @@ use DTL\GherkinLint\Model\FeatureDiagnostic;
 use DTL\GherkinLint\Model\FeatureDiagnosticSeverity;
 use DTL\GherkinLint\Model\Range;
 use DTL\GherkinLint\Model\Rule;
+use DTL\GherkinLint\Model\RuleConfig;
 use DTL\GherkinLint\Model\RuleDescription;
 use Generator;
 
@@ -20,7 +21,7 @@ class NoEmptyFileRule implements Rule
         );
     }
 
-    public function analyse(GherkinDocument $document): Generator
+    public function analyse(GherkinDocument $document, RuleConfig $config): Generator
     {
         if ($document->feature) {
             return;

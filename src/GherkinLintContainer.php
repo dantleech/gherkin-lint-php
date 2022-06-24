@@ -4,10 +4,16 @@ namespace DTL\GherkinLint;
 
 use Cucumber\Gherkin\GherkinParser;
 use DTL\GherkinLint\Command\LintCommand;
+use DTL\GherkinLint\Model\Config;
+use DTL\GherkinLint\Model\ConfigMapper;
 use DTL\GherkinLint\Model\FeatureFinder;
 use DTL\GherkinLint\Model\Linter;
 use DTL\GherkinLint\Model\Rule;
+use DTL\GherkinLint\Model\RuleCollection;
+use DTL\GherkinLint\Model\RuleConfigFactory;
+use DTL\GherkinLint\Report\TableReport;
 use DTL\GherkinLint\Report\TableReportRenderer;
+use DTL\GherkinLint\Rule\AllowedTagsRule;
 use DTL\GherkinLint\Rule\NoDuplicateTags;
 use DTL\GherkinLint\Rule\NoEmptyFileRule;
 use Symfony\Component\Console\Application;
@@ -15,11 +21,8 @@ use Symfony\Component\Console\Output\OutputInterface;
 
 final class GherkinLintContainer
 {
-    private OutputInterface $output;
-
-    public function __construct(OutputInterface $output)
+    public function __construct(private OutputInterface $output, private Config $config)
     {
-        $this->output = $output;
     }
 
     public function application(): Application
@@ -47,19 +50,31 @@ final class GherkinLintContainer
             new GherkinParser(
                 includeSource: false,
             ),
-            $this->createRules()
+            $this->createRules()->rules(),
+            $this->createConfigFactory(),
         );
     }
 
     /**
      * @return list<Rule>
      */
-    private function createRules(): array
+    private function createRules(): RuleCollection
     {
-        return [
+        return new RuleCollection([
             new NoDuplicateTags(),
             new NoEmptyFileRule(),
-        ];
+            new AllowedTagsRule(),
+        ], $this->config->enabledRules());
+    }
+
+    private function createReport(): TableReport
+    {
+        return new TableReport($this->output);
+    }
+
+    private function createConfigFactory(): RuleConfigFactory
+    {
+        return new RuleConfigFactory(ConfigMapper::create(), $this->config->rules);
     }
 
     private function createReportRenderer(): TableReportRenderer

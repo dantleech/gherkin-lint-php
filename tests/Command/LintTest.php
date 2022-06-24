@@ -15,7 +15,10 @@ class LintTest extends TestCase
             'tests/Command/features',
         ], __DIR__ . '/../..');
         $exitCode = $process->run();
-        self::assertEquals(1, $exitCode);
-        self::assertStringContainsString('1 problem', $process->getOutput());
+        if ($exitCode != 1) {
+            self::fail($process->getErrorOutput());
+            return;
+        }
+        $this->addToAssertionCount(1);
     }
 }

@@ -3,6 +3,8 @@
 namespace DTL\GherkinLint\Tests\Unit\Model;
 
 use Cucumber\Gherkin\GherkinParser;
+use DTL\GherkinLint\Model\RuleConfigFactory;
+use DTL\GherkinLint\Model\ConfigMapper;
 use DTL\GherkinLint\Model\FeatureDiagnostic;
 use DTL\GherkinLint\Model\FeatureDiagnosticSeverity;
 use DTL\GherkinLint\Model\Linter;
@@ -18,14 +20,17 @@ class LinterTest extends TestCase
      */
     public function testLint(string $content): void
     {
-        $diagnostics = iterator_to_array((new Linter(
-            new GherkinParser(includeSource: false),
-            [
-                new TestRule([
-                    new FeatureDiagnostic(Range::fromInts(1, 1, 2, 2), FeatureDiagnosticSeverity::WARNING, 'Foo'),
-                ])
-            ]
-        ))->lint('/path', $content));
+        $diagnostics = iterator_to_array((
+            new Linter(
+                new GherkinParser(includeSource: false),
+                [
+                    new TestRule([
+                        new FeatureDiagnostic(Range::fromInts(1, 1, 2, 2), FeatureDiagnosticSeverity::WARNING, 'Foo'),
+                    ])
+                ],
+                new RuleConfigFactory(ConfigMapper::create(), []),
+            )
+        )->lint('/path', $content));
 
         self::assertCount(1, $diagnostics);
     }

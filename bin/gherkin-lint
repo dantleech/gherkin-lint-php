@@ -2,6 +2,8 @@
 <?php
 
 use DTL\GherkinLint\GherkinLintContainer;
+use DTL\GherkinLint\Model\ConfigLoader;
+use DTL\GherkinLint\Model\ConfigMapper;
 use Symfony\Component\Console\Input\ArgvInput;
 use Symfony\Component\Console\Output\ConsoleOutput;
 
@@ -9,7 +11,11 @@ require __DIR__ . '/../vendor/autoload.php';
 
 $input = new ArgvInput();
 $output = new ConsoleOutput();
-$container = new GherkinLintContainer($output);
+$config = ConfigLoader::create(
+    $output->getErrorOutput(),
+    getcwd()
+)->load('gherkinlint.json');
+$container = new GherkinLintContainer($output, $config);
 $container->application()->run($input, $output);
 
 
