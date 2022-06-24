@@ -5,6 +5,7 @@ namespace DTL\GherkinLint\Tests\Unit\Rule;
 use Closure;
 use Cucumber\Gherkin\GherkinParser;
 use DTL\GherkinLint\Model\FeatureDiagnostics;
+use DTL\GherkinLint\Model\FeatureFile;
 use DTL\GherkinLint\Model\Linter;
 use DTL\GherkinLint\Model\Rule;
 use Generator;
@@ -24,7 +25,7 @@ abstract class RuleTestCase extends TestCase
      */
     public function testRule(string $contents, Closure $assertion): void
     {
-        $assertion(new FeatureDiagnostics(iterator_to_array((new Linter(
+        $assertion(new FeatureDiagnostics(new FeatureFile('/foo', '/bar'), iterator_to_array((new Linter(
             new GherkinParser(
                 includePickles: false,
                 includeSource: false,
