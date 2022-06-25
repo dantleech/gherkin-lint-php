@@ -11,6 +11,8 @@
         "indentation": {
             "width": 4
         },
-        "keyword-order": {}
+        "keyword-order": {
+            "tolerateThenBeforeWhen": true
+        }
     }
 }
