@@ -51,7 +51,7 @@ class FileNameRule implements Rule
     public function describe(): RuleDescription
     {
         return new RuleDescription(
-            'file-name',
+            'filename',
             'Filenames must conform to the specified stype',
             FileNameConfig::class,
         );

@@ -23,7 +23,7 @@ class FileNameRuleTest extends RuleTestCase
                 self::assertEquals('Filename "/home/daniel/foo/foo.feature" should be "PascalCase"', $diagnostics->first()->message);
             },
             [
-                'file-name' => [
+                'filename' => [
                     'style' => 'PascalCase',
                 ]
             ]
@@ -34,7 +34,7 @@ class FileNameRuleTest extends RuleTestCase
                 self::assertCount(0, $diagnostics);
             },
             [
-                'file-name' => [
+                'filename' => [
                     'style' => 'PascalCase',
                 ]
             ]
@@ -45,7 +45,7 @@ class FileNameRuleTest extends RuleTestCase
                 self::assertCount(0, $diagnostics);
             },
             [
-                'file-name' => [
+                'filename' => [
                     'style' => 'PascalCase',
                 ]
             ]
@@ -56,7 +56,7 @@ class FileNameRuleTest extends RuleTestCase
                 self::assertCount(0, $diagnostics);
             },
             [
-                'file-name' => [
+                'filename' => [
                     'style' => 'PascalCase',
                 ]
             ]
@@ -67,7 +67,7 @@ class FileNameRuleTest extends RuleTestCase
                 self::assertCount(1, $diagnostics);
             },
             [
-                'file-name' => [
+                'filename' => [
                     'style' => 'PascalCase',
                 ]
             ]
@@ -78,7 +78,7 @@ class FileNameRuleTest extends RuleTestCase
                 self::assertCount(0, $diagnostics);
             },
             [
-                'file-name' => [
+                'filename' => [
                     'style' => 'PascalCase',
                 ]
             ]
@@ -89,7 +89,7 @@ class FileNameRuleTest extends RuleTestCase
                 self::assertCount(1, $diagnostics);
             },
             [
-                'file-name' => [
+                'filename' => [
                     'style' => 'camelCase',
                 ]
             ]
@@ -100,7 +100,7 @@ class FileNameRuleTest extends RuleTestCase
                 self::assertCount(0, $diagnostics);
             },
             [
-                'file-name' => [
+                'filename' => [
                     'style' => 'camelCase',
                 ]
             ]
@@ -111,7 +111,7 @@ class FileNameRuleTest extends RuleTestCase
                 self::assertCount(0, $diagnostics);
             },
             [
-                'file-name' => [
+                'filename' => [
                     'style' => 'camelCase',
                 ]
             ]
@@ -122,7 +122,7 @@ class FileNameRuleTest extends RuleTestCase
                 self::assertCount(0, $diagnostics);
             },
             [
-                'file-name' => [
+                'filename' => [
                     'style' => 'camelCase',
                 ]
             ]
@@ -133,7 +133,7 @@ class FileNameRuleTest extends RuleTestCase
                 self::assertCount(1, $diagnostics);
             },
             [
-                'file-name' => [
+                'filename' => [
                     'style' => 'snake_case',
                 ]
             ]
@@ -144,7 +144,7 @@ class FileNameRuleTest extends RuleTestCase
                 self::assertCount(0, $diagnostics);
             },
             [
-                'file-name' => [
+                'filename' => [
                     'style' => 'snake_case',
                 ]
             ]
@@ -155,7 +155,7 @@ class FileNameRuleTest extends RuleTestCase
                 self::assertCount(0, $diagnostics);
             },
             [
-                'file-name' => [
+                'filename' => [
                     'style' => 'snake_case',
                 ]
             ]
@@ -166,7 +166,7 @@ class FileNameRuleTest extends RuleTestCase
                 self::assertCount(1, $diagnostics);
             },
             [
-                'file-name' => [
+                'filename' => [
                     'style' => 'kebab-case',
                 ]
             ]
@@ -177,7 +177,7 @@ class FileNameRuleTest extends RuleTestCase
                 self::assertCount(0, $diagnostics);
             },
             [
-                'file-name' => [
+                'filename' => [
                     'style' => 'kebab-case',
                 ]
             ]
@@ -188,7 +188,7 @@ class FileNameRuleTest extends RuleTestCase
                 self::assertCount(0, $diagnostics);
             },
             [
-                'file-name' => [
+                'filename' => [
                     'style' => 'kebab-case',
                 ]
             ]

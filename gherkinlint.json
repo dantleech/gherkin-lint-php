@@ -4,6 +4,12 @@
         "no-empty-file": {},
         "allowedTags": {
             "allow": null
+        },
+        "filename": {
+            "style": "snake_case"
+        },
+        "indentation": {
+            "level": 4
         }
     }
 }
