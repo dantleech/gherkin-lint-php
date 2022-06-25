@@ -11,8 +11,7 @@ final class ConfigLoader
         private OutputInterface $output,
         private ConfigMapper $configMapper,
         private string $cwd
-    )
-    {
+    ) {
     }
 
     public static function create(OutputInterface $output, string $cwd): self

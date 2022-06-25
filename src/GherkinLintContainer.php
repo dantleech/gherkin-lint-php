@@ -8,7 +8,6 @@ use DTL\GherkinLint\Model\Config;
 use DTL\GherkinLint\Model\ConfigMapper;
 use DTL\GherkinLint\Model\FeatureFinder;
 use DTL\GherkinLint\Model\Linter;
-use DTL\GherkinLint\Model\Rule;
 use DTL\GherkinLint\Model\RuleCollection;
 use DTL\GherkinLint\Model\RuleConfigFactory;
 use DTL\GherkinLint\Report\TableReport;
@@ -55,9 +54,6 @@ final class GherkinLintContainer
         );
     }
 
-    /**
-     * @return list<Rule>
-     */
     private function createRules(): RuleCollection
     {
         return new RuleCollection([

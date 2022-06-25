@@ -11,15 +11,14 @@ class RuleCollection
      */
     private array $rules;
 
-    /** 
-     * @param Rule[] $rules 
+    /**
+     * @param Rule[] $rules
      * @param string[] $enabledRules
      */
     public function __construct(
         array $rules,
         private array $enabledRules,
-    )
-    {
+    ) {
         $this->rules = array_combine(
             array_map(
                 fn (Rule $rule): string => $rule->describe()->name,
@@ -47,11 +46,11 @@ class RuleCollection
         if (!isset($this->rules[$rule])) {
             throw new RuntimeException(sprintf(
                 'Rule "%s" is not known, known rules: "%s"',
-                $rule, implode('", "', array_keys($this->rules))
+                $rule,
+                implode('", "', array_keys($this->rules))
             ));
         }
 
         return $this->rules[$rule];
     }
-
 }
