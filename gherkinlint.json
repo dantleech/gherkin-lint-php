@@ -9,7 +9,7 @@
             "style": "snake_case"
         },
         "indentation": {
-            "level": 4
+            "width": 4
         }
     }
 }

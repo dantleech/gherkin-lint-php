@@ -7,7 +7,8 @@ use DTL\GherkinLint\Model\RuleConfig;
 class IndentationConfig implements RuleConfig
 {
     public function __construct(
-        public int $level = 4,
+        // number of spaces (or tabs) to use per indentation level
+        public int $width = 4,
         public int $feature = 0,
         public int $rule = 1,
         public int $backgroud = 1,

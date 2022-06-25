@@ -66,7 +66,7 @@ class IndentationRule implements Rule
      */
     private function check(Location $location, string $name, IndentationConfig $config, int $expectedLevel): Generator
     {
-        $expectedLevel = $expectedLevel * $config->level;
+        $expectedLevel = $expectedLevel * $config->width;
 
         $column = $location->column;
 
