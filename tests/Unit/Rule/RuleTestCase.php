@@ -39,6 +39,6 @@ abstract class RuleTestCase extends TestCase
                 ],
                 new RuleConfigFactory(ConfigMapper::create(), $config),
             )
-        )->lint('/path', $contents))));
+        )->lint($path, $contents))));
     }
 }
