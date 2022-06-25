@@ -41,6 +41,9 @@ By default no rules are enabled, create a configuration file called
         },
         "indentation": {
             "width": 4
+        },
+        "keyword-order": {
+            "tolerateThenBeforeWhen": true
         }
     }
 }

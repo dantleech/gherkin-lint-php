@@ -10,6 +10,9 @@
         },
         "indentation": {
             "width": 4
+        },
+        "keyword-order": {
+            "tolerateThenBeforeWhen": true
         }
     }
 }
