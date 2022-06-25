@@ -10,7 +10,7 @@ class LintTest extends TestCase
     public function testLintFile(): void
     {
         $process = new Process([
-            'bin/gherkin-lint',
+            'bin/gherkinlint',
             'lint',
             'tests/Command/features',
         ], __DIR__ . '/../..');
