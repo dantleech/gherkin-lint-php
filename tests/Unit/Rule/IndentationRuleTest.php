@@ -166,6 +166,127 @@ class IndentationRuleTest extends RuleTestCase
                 Feature: Foo
                     Scenario: Foobar
                         Given Foobar
+                            | foo | bar |
+                EOT
+            ,
+            function (FeatureDiagnostics $diagnostics): void {
+                self::assertCount(0, $diagnostics);
+            },
+        ];
+
+        yield 'Table row uneven' => [
+            'foo.feature',
+            <<<'EOT'
+                Feature: Foo
+                    Scenario: Foobar
+                        Given Foobar
+                            | foo | bar |
+                             | foo | bar |
+                EOT
+            ,
+            function (FeatureDiagnostics $diagnostics): void {
+                self::assertCount(1, $diagnostics);
+            },
+        ];
+
+        yield 'Literal block at wrong level' => [
+            'foo.feature',
+            <<<'EOT'
+                Feature: Foo
+                    Scenario: Foobar
+                        Given foobar I have:
+                          """
+                          FOO
+                          """
+
+                EOT
+            ,
+            function (FeatureDiagnostics $diagnostics): void {
+                self::assertCount(1, $diagnostics);
+
+            },
+        ];
+
+        yield 'Literal block at correct level' => [
+            'foo.feature',
+            <<<'EOT'
+                Feature: Foo
+                    Scenario: Foobar
+                        Given foobar I have:
+                        """
+                        FOO
+                        """
+
+                EOT
+            ,
+            function (FeatureDiagnostics $diagnostics): void {
+                self::assertCount(0, $diagnostics);
+            },
+        ];
+
+        yield 'Examples at wrong level' => [
+            'foo.feature',
+            <<<'EOT'
+                Feature: Foo
+                    Scenario: Foobar
+                        Given foobar I have <asd>
+                         Examples:
+                            | asd | asd |
+                            | 12  | 123 |
+                EOT
+            ,
+            function (FeatureDiagnostics $diagnostics): void {
+                self::assertCount(1, $diagnostics);
+
+            },
+        ];
+
+        yield 'Examples block at correct level' => [
+            'foo.feature',
+            <<<'EOT'
+                Feature: Foo
+                    Scenario: Foobar
+                        Given foobar I have <asd>
+                        Examples:
+                            | asd | asd |
+                            | 12  | 123 |
+                        """
+
+                EOT
+            ,
+            function (FeatureDiagnostics $diagnostics): void {
+                self::assertCount(0, $diagnostics);
+            },
+        ];
+
+        yield 'Examples table at wrong level' => [
+            'foo.feature',
+            <<<'EOT'
+                Feature: Foo
+                    Scenario: Foobar
+                        Given foobar I have <asd>
+                        Examples:
+                             | asd | asd |
+                             | 12  | 123 |
+                EOT
+            ,
+            function (FeatureDiagnostics $diagnostics): void {
+                self::assertCount(1, $diagnostics);
+
+            },
+        ];
+
+        yield 'Examples table block at correct level' => [
+            'foo.feature',
+            <<<'EOT'
+                Feature: Foo
+                    Scenario: Foobar
+                        Given foobar I have <asd>
+                        Examples:
+                            | asd | asd |
+                            | 12  | 123 |
+                        """
+
                 EOT
             ,
             function (FeatureDiagnostics $diagnostics): void {

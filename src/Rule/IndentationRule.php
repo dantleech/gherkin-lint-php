@@ -2,6 +2,7 @@
 
 namespace DTL\GherkinLint\Rule;
 
+use Cucumber\Messages\Examples;
 use Cucumber\Messages\Feature;
 use Cucumber\Messages\FeatureChild;
 use Cucumber\Messages\GherkinDocument;
@@ -9,6 +10,7 @@ use Cucumber\Messages\Location;
 use Cucumber\Messages\Rule as CucumberRule;
 use Cucumber\Messages\Scenario;
 use Cucumber\Messages\Step;
+use Cucumber\Messages\TableRow;
 use DTL\GherkinLint\Model\FeatureDiagnostic;
 use DTL\GherkinLint\Model\FeatureDiagnosticSeverity;
 use DTL\GherkinLint\Model\Range;
@@ -61,6 +63,9 @@ class IndentationRule implements Rule
         );
     }
 
+    /**
+     * @return Generator<FeatureDiagnostic>
+     */
     private function check(Location $location, string $name, IndentationConfig $config, int $expectedLevel): Generator
     {
 
@@ -90,14 +95,52 @@ class IndentationRule implements Rule
         foreach ($scenario->steps as $step) {
             yield from $this->stepDiagnostics($step, $config);
         }
+
+        foreach ($scenario->examples as $example) {
+            yield from $this->exampleDiagnostics($example, $config);
+        }
     }
 
+    /**
+     * @return Generator<FeatureDiagnostic>
+     */
     private function stepDiagnostics(Step $step, IndentationConfig $config): Generator
     {
         yield from $this->check($step->location, $step->keyword, $config, $config->step);
 
         if ($step->dataTable) {
-            yield from $this->check($step->dataTable->location, 'Table', $config, $config->step);
+            foreach ($step->dataTable->rows as $row) {
+                yield from $this->tableRowDiagnostics($row, $config, $config->table);
+            }
         }
+        if ($step->docString) {
+            yield from $this->check($step->docString->location, $step->docString->delimiter, $config, $config->literalBlock);
+        }
+    }
+
+    /**
+     * @return Generator<FeatureDiagnostic>
+     */
+    private function exampleDiagnostics(Examples $example, IndentationConfig $config): Generator
+    {
+        yield from $this->check($example->location, $example->keyword, $config, $config->step);
+
+        yield from $this->tableRowDiagnostics($example->tableHeader, $config, $config->examplesTable);
+    }
+
+    /**
+     * @return Generator<FeatureDiagnostic>
+     */
+    private function tableRowDiagnostics(?TableRow $tableRow, IndentationConfig $config, int $level): Generator
+    {
+        if (null === $tableRow) {
+            return;
+        }
+        yield from $this->check(
+            $tableRow->location,
+            'table row',
+            $config,
+            $level
+        );
     }
 }
