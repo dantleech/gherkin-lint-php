@@ -13,6 +13,8 @@ use DTL\GherkinLint\Model\RuleConfigFactory;
 use DTL\GherkinLint\Report\TableReport;
 use DTL\GherkinLint\Report\TableReportRenderer;
 use DTL\GherkinLint\Rule\AllowedTagsRule;
+use DTL\GherkinLint\Rule\FileNameRule;
+use DTL\GherkinLint\Rule\IndentationRule;
 use DTL\GherkinLint\Rule\NoDuplicateTags;
 use DTL\GherkinLint\Rule\NoEmptyFileRule;
 use Symfony\Component\Console\Application;
@@ -60,6 +62,8 @@ final class GherkinLintContainer
             new NoDuplicateTags(),
             new NoEmptyFileRule(),
             new AllowedTagsRule(),
+            new FileNameRule(),
+            new IndentationRule(),
         ], $this->config->enabledRules());
     }
 

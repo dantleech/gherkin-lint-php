@@ -17,6 +17,7 @@ class AllowedTagsRuleTest extends RuleTestCase
     public function provideTests(): Generator
     {
         yield 'allowed feature tags' => [
+            'foo.feature',
             <<<'EOT'
                 @foo @foo
                 Feature: Foobar
@@ -33,6 +34,7 @@ class AllowedTagsRuleTest extends RuleTestCase
         ];
 
         yield 'disallowed feature tags' => [
+            'foo.feature',
             <<<'EOT'
                 @foo @foo @bar
                 Feature: Foobar
@@ -52,6 +54,7 @@ class AllowedTagsRuleTest extends RuleTestCase
         ];
 
         yield 'disallowed on scenario feature tags' => [
+            'foo.feature',
             <<<'EOT'
                 Feature: Foobar
                     @foo @foo @bar

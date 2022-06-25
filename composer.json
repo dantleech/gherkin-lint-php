@@ -10,7 +10,8 @@
         "symfony/finder": "^6.0",
         "symfony/filesystem": "^6.0",
         "cucumber/gherkin": "^24.0",
-        "cuyz/valinor": "^0.11.0"
+        "cuyz/valinor": "^0.11.0",
+        "symfony/string": "^6.1"
     },
     "license": "MIT",
     "autoload": {

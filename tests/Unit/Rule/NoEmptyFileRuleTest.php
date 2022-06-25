@@ -17,6 +17,7 @@ class NoEmptyFileRuleTest extends RuleTestCase
     public function provideTests(): Generator
     {
         yield 'empty file' => [
+            'foo.feature',
             '',
             function (FeatureDiagnostics $diagnostics): void {
                 self::assertCount(1, $diagnostics);
@@ -28,6 +29,7 @@ class NoEmptyFileRuleTest extends RuleTestCase
         ];
 
         yield 'non-empty file' => [
+            'foo.feature',
             'Feature: Foobar',
             function (FeatureDiagnostics $diagnostics): void {
                 self::assertCount(0, $diagnostics);

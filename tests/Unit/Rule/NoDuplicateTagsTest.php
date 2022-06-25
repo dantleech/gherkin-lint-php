@@ -17,6 +17,7 @@ class NoDuplicateTagsTest extends RuleTestCase
     public function provideTests(): Generator
     {
         yield 'feature with no duplicate tags' => [
+            'foo.feature',
             <<<'EOT'
                 @foo @bar
                 Feature: Foobar
@@ -28,6 +29,7 @@ class NoDuplicateTagsTest extends RuleTestCase
         ];
 
         yield 'feature with duplicate tags' => [
+            'foo.feature',
             <<<'EOT'
                 @foo @foo
                 Feature: Foobar
@@ -44,6 +46,7 @@ class NoDuplicateTagsTest extends RuleTestCase
         ];
 
         yield 'scneario with duplicate tags' => [
+            'foo.feature',
             <<<'EOT'
                 Feature: Foobar
                     @foo @foo
@@ -60,6 +63,7 @@ class NoDuplicateTagsTest extends RuleTestCase
         ];
 
         yield 'feature with many duplicate tags' => [
+            'foo.feature',
             <<<'EOT'
                 @foo @foo @baz @baz @foo
                 Feature: Foobar
