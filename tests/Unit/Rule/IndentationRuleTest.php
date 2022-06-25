@@ -41,7 +41,6 @@ class IndentationRuleTest extends RuleTestCase
             function (FeatureDiagnostics $diagnostics): void {
                 self::assertCount(1, $diagnostics);
                 self::assertEquals('Expected indentation level on "Feature" to be 0 but got 1', $diagnostics->first()->message);
-
             },
         ];
 
@@ -55,7 +54,6 @@ class IndentationRuleTest extends RuleTestCase
             function (FeatureDiagnostics $diagnostics): void {
                 self::assertCount(1, $diagnostics);
                 self::assertEquals('Expected indentation level on "Rule" to be 4 but got 1', $diagnostics->first()->message);
-
             },
         ];
         yield 'Rule at correct level' => [
@@ -79,7 +77,6 @@ class IndentationRuleTest extends RuleTestCase
             ,
             function (FeatureDiagnostics $diagnostics): void {
                 self::assertCount(1, $diagnostics);
-
             },
         ];
         yield 'Background at correct level' => [
@@ -103,7 +100,6 @@ class IndentationRuleTest extends RuleTestCase
             ,
             function (FeatureDiagnostics $diagnostics): void {
                 self::assertCount(1, $diagnostics);
-
             },
         ];
         yield 'Scenario at correct level' => [
@@ -128,7 +124,6 @@ class IndentationRuleTest extends RuleTestCase
             ,
             function (FeatureDiagnostics $diagnostics): void {
                 self::assertCount(1, $diagnostics);
-
             },
         ];
         yield 'Step at correct level' => [
@@ -156,7 +151,6 @@ class IndentationRuleTest extends RuleTestCase
             ,
             function (FeatureDiagnostics $diagnostics): void {
                 self::assertCount(1, $diagnostics);
-
             },
         ];
 
@@ -203,7 +197,6 @@ class IndentationRuleTest extends RuleTestCase
             ,
             function (FeatureDiagnostics $diagnostics): void {
                 self::assertCount(1, $diagnostics);
-
             },
         ];
 
@@ -237,7 +230,6 @@ class IndentationRuleTest extends RuleTestCase
             ,
             function (FeatureDiagnostics $diagnostics): void {
                 self::assertCount(1, $diagnostics);
-
             },
         ];
 
@@ -272,7 +264,6 @@ class IndentationRuleTest extends RuleTestCase
             ,
             function (FeatureDiagnostics $diagnostics): void {
                 self::assertCount(1, $diagnostics);
-
             },
         ];
 

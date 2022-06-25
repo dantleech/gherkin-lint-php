@@ -3,11 +3,9 @@
 namespace DTL\GherkinLint\Rule;
 
 use Cucumber\Messages\Examples;
-use Cucumber\Messages\Feature;
 use Cucumber\Messages\FeatureChild;
 use Cucumber\Messages\GherkinDocument;
 use Cucumber\Messages\Location;
-use Cucumber\Messages\Rule as CucumberRule;
 use Cucumber\Messages\Scenario;
 use Cucumber\Messages\Step;
 use Cucumber\Messages\TableRow;
@@ -68,7 +66,6 @@ class IndentationRule implements Rule
      */
     private function check(Location $location, string $name, IndentationConfig $config, int $expectedLevel): Generator
     {
-
         $expectedLevel = $expectedLevel * $config->level;
 
         $column = $location->column;
