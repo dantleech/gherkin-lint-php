@@ -1,7 +1,10 @@
 {
-    "name": "dantleech/behat-lint",
-    "description": "Gherkin linter and fixer",
+    "name": "dantleech/gherkin-lint",
+    "description": "Gherkin linter",
     "type": "project",
+    "bin": [
+        "bin/gherkinlint"
+    ],
     "require": {
         "php": "^8.1",
         "phpunit/phpunit": "^9.5",

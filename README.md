@@ -46,3 +46,7 @@ By default no rules are enabled, create a configuration file called
 }
 ```
 
+Contributing
+------------
+
+Make a pull request!
