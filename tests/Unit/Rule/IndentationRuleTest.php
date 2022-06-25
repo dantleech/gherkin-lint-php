@@ -159,6 +159,7 @@ class IndentationRuleTest extends RuleTestCase
 
             },
         ];
+
         yield 'Table at correct level' => [
             'foo.feature',
             <<<'EOT'

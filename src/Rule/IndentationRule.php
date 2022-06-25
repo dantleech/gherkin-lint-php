@@ -7,6 +7,8 @@ use Cucumber\Messages\FeatureChild;
 use Cucumber\Messages\GherkinDocument;
 use Cucumber\Messages\Location;
 use Cucumber\Messages\Rule as CucumberRule;
+use Cucumber\Messages\Scenario;
+use Cucumber\Messages\Step;
 use DTL\GherkinLint\Model\FeatureDiagnostic;
 use DTL\GherkinLint\Model\FeatureDiagnosticSeverity;
 use DTL\GherkinLint\Model\Range;
@@ -45,11 +47,7 @@ class IndentationRule implements Rule
                 yield from $this->check($child->background->location, $child->background->keyword, $config, $config->backgroud);
             }
             if ($child->scenario) {
-                yield from $this->check($child->scenario->location, $child->scenario->keyword, $config, $config->backgroud);
-
-                foreach ($child->scenario->steps as $step) {
-                    yield from $this->check($step->location, $step->keyword, $config, $config->step);
-                }
+                yield from $this->scnearioDiagnostics($child->scenario, $config);
             }
         }
     }
@@ -83,5 +81,23 @@ class IndentationRule implements Rule
             FeatureDiagnosticSeverity::WARNING,
             sprintf('Expected indentation level on "%s" to be %d but got %d', $name, $expectedLevel, $column - 1)
         );
+    }
+
+    private function scnearioDiagnostics(Scenario $scenario, IndentationConfig $config): Generator
+    {
+        yield from $this->check($scenario->location, $scenario->keyword, $config, $config->backgroud);
+        
+        foreach ($scenario->steps as $step) {
+            yield from $this->stepDiagnostics($step, $config);
+        }
+    }
+
+    private function stepDiagnostics(Step $step, IndentationConfig $config): Generator
+    {
+        yield from $this->check($step->location, $step->keyword, $config, $config->step);
+
+        if ($step->dataTable) {
+            yield from $this->check($step->dataTable->location, 'Table', $config, $config->step);
+        }
     }
 }
