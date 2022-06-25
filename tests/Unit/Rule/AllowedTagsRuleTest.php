@@ -27,7 +27,7 @@ class AllowedTagsRuleTest extends RuleTestCase
                 self::assertCount(0, $diagnostics);
             },
             [
-                'allowedTags' => [
+                'allowed-tags' => [
                     'allow' => ['@foo'],
                 ],
             ]
@@ -47,7 +47,7 @@ class AllowedTagsRuleTest extends RuleTestCase
                 self::assertEquals('Tag "@bar" is not allowed', $diagnostics->first()->message);
             },
             [
-                'allowedTags' => [
+                'allowed-tags' => [
                     'allow' => ['@foo'],
                 ],
             ]
@@ -67,7 +67,7 @@ class AllowedTagsRuleTest extends RuleTestCase
                 self::assertEquals('Tag "@bar" is not allowed', $diagnostics->first()->message);
             },
             [
-                'allowedTags' => [
+                'allowed-tags' => [
                     'allow' => ['@foo'],
                 ],
             ]

@@ -40,7 +40,8 @@
         "integrate": [
             "vendor/bin/php-cs-fixer fix",
             "vendor/bin/psalm",
-            "vendor/bin/phpunit"
+            "vendor/bin/phpunit",
+            "bin/gherkin-lint lint tests/Example"
         ]
     }
 }

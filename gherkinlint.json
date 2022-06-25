@@ -2,7 +2,7 @@
     "rules": {
         "no-duplicate-tags": {},
         "no-empty-file": {},
-        "allowedTags": {
+        "allowed-tags": {
             "allow": null
         },
         "filename": {

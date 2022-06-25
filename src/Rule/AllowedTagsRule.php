@@ -44,7 +44,7 @@ class AllowedTagsRule implements Rule
     public function describe(): RuleDescription
     {
         return new RuleDescription(
-            'allowedTags',
+            'allowed-tags',
             'Only permit specified tags',
             AllowedTagsConfig::class,
         );
