@@ -16,7 +16,7 @@ class FileNameRuleTest extends RuleTestCase
 
     public function provideTests(): Generator
     {
-        yield 'not pascal' => [
+        yield 'pascal fail' => [
             '/home/daniel/foo/foo.feature', '',
             function (FeatureDiagnostics $diagnostics): void {
                 self::assertCount(1, $diagnostics);
@@ -61,7 +61,7 @@ class FileNameRuleTest extends RuleTestCase
                 ]
             ]
         ];
-        yield 'pascal 4' => [
+        yield 'pascal 4 fail' => [
             'FooBar_123.feature', '',
             function (FeatureDiagnostics $diagnostics): void {
                 self::assertCount(1, $diagnostics);
@@ -69,6 +69,127 @@ class FileNameRuleTest extends RuleTestCase
             [
                 'file-name' => [
                     'style' => 'PascalCase',
+                ]
+            ]
+        ];
+        yield 'pascal 7' => [
+            'FooBarBarBoo.feature', '',
+            function (FeatureDiagnostics $diagnostics): void {
+                self::assertCount(0, $diagnostics);
+            },
+            [
+                'file-name' => [
+                    'style' => 'PascalCase',
+                ]
+            ]
+        ];
+        yield 'camel case fail' => [
+            'FooBar_123.feature', '',
+            function (FeatureDiagnostics $diagnostics): void {
+                self::assertCount(1, $diagnostics);
+            },
+            [
+                'file-name' => [
+                    'style' => 'camelCase',
+                ]
+            ]
+        ];
+        yield 'camel case 1' => [
+            'foo.feature', '',
+            function (FeatureDiagnostics $diagnostics): void {
+                self::assertCount(0, $diagnostics);
+            },
+            [
+                'file-name' => [
+                    'style' => 'camelCase',
+                ]
+            ]
+        ];
+        yield 'camel case 2' => [
+            'fooBar.feature', '',
+            function (FeatureDiagnostics $diagnostics): void {
+                self::assertCount(0, $diagnostics);
+            },
+            [
+                'file-name' => [
+                    'style' => 'camelCase',
+                ]
+            ]
+        ];
+        yield 'camel case 3' => [
+            'fooBarBaz.feature', '',
+            function (FeatureDiagnostics $diagnostics): void {
+                self::assertCount(0, $diagnostics);
+            },
+            [
+                'file-name' => [
+                    'style' => 'camelCase',
+                ]
+            ]
+        ];
+        yield 'snake case fail' => [
+            'fooBarBaz.feature', '',
+            function (FeatureDiagnostics $diagnostics): void {
+                self::assertCount(1, $diagnostics);
+            },
+            [
+                'file-name' => [
+                    'style' => 'snake_case',
+                ]
+            ]
+        ];
+        yield 'snake case 1' => [
+            'foo_bar_baz.feature', '',
+            function (FeatureDiagnostics $diagnostics): void {
+                self::assertCount(0, $diagnostics);
+            },
+            [
+                'file-name' => [
+                    'style' => 'snake_case',
+                ]
+            ]
+        ];
+        yield 'snake case 2' => [
+            'foo.feature', '',
+            function (FeatureDiagnostics $diagnostics): void {
+                self::assertCount(0, $diagnostics);
+            },
+            [
+                'file-name' => [
+                    'style' => 'snake_case',
+                ]
+            ]
+        ];
+        yield 'kebab case fail' => [
+            'fooFoo.feature', '',
+            function (FeatureDiagnostics $diagnostics): void {
+                self::assertCount(1, $diagnostics);
+            },
+            [
+                'file-name' => [
+                    'style' => 'kebab-case',
+                ]
+            ]
+        ];
+        yield 'kebab case 1' => [
+            'foo-boo.feature', '',
+            function (FeatureDiagnostics $diagnostics): void {
+                self::assertCount(0, $diagnostics);
+            },
+            [
+                'file-name' => [
+                    'style' => 'kebab-case',
+                ]
+            ]
+        ];
+        yield 'kebab case 2' => [
+            'foo.feature', '',
+            function (FeatureDiagnostics $diagnostics): void {
+                self::assertCount(0, $diagnostics);
+            },
+            [
+                'file-name' => [
+                    'style' => 'kebab-case',
                 ]
             ]
         ];

@@ -12,11 +12,10 @@ use DTL\GherkinLint\Model\RuleDescription;
 use Generator;
 use RuntimeException;
 use Symfony\Component\Filesystem\Path;
+use Symfony\Component\String\UnicodeString;
 
 class FileNameRule implements Rule
 {
-    private const PASCAL_CASE = '{^[A-Z0-9][a-z0-9]+([A-Z0-9][a-z0-9]*)*$}';
-
     public function analyse(GherkinDocument $document, RuleConfig $config): Generator
     {
         assert($config instanceof FileNameConfig);
@@ -25,16 +24,19 @@ class FileNameRule implements Rule
         if (null === $path) {
             return;
         }
-        $path = Path::getFilenameWithoutExtension($path);
+        $path = new UnicodeString(Path::getFilenameWithoutExtension($path));
 
-        $valid = match ($config->style) {
-            FileNameConfig::PASCAL_CASE => $this->match(self::PASCAL_CASE, $path),
+        $converted = match ($config->style) {
+            FileNameConfig::PASCAL_CASE => ucfirst($path->camel()->__toString()),
+            FileNameConfig::CAMEL_CASE => $path->camel()->__toString(),
+            FileNameConfig::SNAKE_CASE => $path->snake()->__toString(),
+            FileNameConfig::KEBAB_CASE => $path->snake()->replace('_', '-')->__toString(),
             default => throw new RuntimeException(sprintf(
                 'Invalid filename style "%s"', $config->style
             )),
         };
 
-        if ($valid) {
+        if ($converted === $path->__toString()) {
             return;
         }
 
