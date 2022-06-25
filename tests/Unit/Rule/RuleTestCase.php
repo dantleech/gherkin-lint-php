@@ -25,7 +25,7 @@ abstract class RuleTestCase extends TestCase
     /**
      * @dataProvider provideTests
      */
-    public function testRule(string $contents, Closure $assertion, array $config = []): void
+    public function testRule(string $path, string $contents, Closure $assertion, array $config = []): void
     {
         $assertion(new FeatureDiagnostics(new FeatureFile('/foo', '/bar'), iterator_to_array((
             new Linter(
