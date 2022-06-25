@@ -16,5 +16,6 @@ class FileNameConfig implements RuleConfig
          * @var 'PascalCase'|'camelCase'|'snake_case'|'kebab-case'
          */
         public string $style,
-    ){}
+    ) {
+    }
 }

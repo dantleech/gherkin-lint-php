@@ -20,11 +20,11 @@ class FileNameRule implements Rule
     {
         assert($config instanceof FileNameConfig);
 
-        $path = $document->uri;
-        if (null === $path) {
+        $fullPath = $document->uri;
+        if (null === $fullPath) {
             return;
         }
-        $path = new UnicodeString(Path::getFilenameWithoutExtension($path));
+        $path = new UnicodeString(Path::getFilenameWithoutExtension($fullPath));
 
         $converted = match ($config->style) {
             FileNameConfig::PASCAL_CASE => ucfirst($path->camel()->__toString()),
@@ -32,7 +32,8 @@ class FileNameRule implements Rule
             FileNameConfig::SNAKE_CASE => $path->snake()->__toString(),
             FileNameConfig::KEBAB_CASE => $path->snake()->replace('_', '-')->__toString(),
             default => throw new RuntimeException(sprintf(
-                'Invalid filename style "%s"', $config->style
+                'Invalid filename style "%s"',
+                $config->style
             )),
         };
 
@@ -41,15 +42,10 @@ class FileNameRule implements Rule
         }
 
         yield new FeatureDiagnostic(
-            Range::fromInts(1,1,1,1),
+            Range::fromInts(1, 1, 1, 1),
             FeatureDiagnosticSeverity::WARNING,
-            sprintf('Filename "%s" should be "%s"', $document->uri, $config->style)
+            sprintf('Filename "%s" should be "%s"', $fullPath, $config->style)
         );
-    }
-
-    private function match(string $pattern, string $filename): bool
-    {
-        return (bool)preg_match($pattern, $filename);
     }
 
     public function describe(): RuleDescription
@@ -59,5 +55,10 @@ class FileNameRule implements Rule
             'Filenames must conform to the specified stype',
             FileNameConfig::class,
         );
+    }
+
+    private function match(string $pattern, string $filename): bool
+    {
+        return (bool)preg_match($pattern, $filename);
     }
 }
