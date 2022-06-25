@@ -16,15 +16,9 @@ use Generator;
 
 class KeywordOrderRule implements Rule
 {
-    const ORDER = [
-        self::KW_GIVEN,
-        self::KW_WHEN,
-        self::KW_THEN
-    ];
-    const KW_GIVEN = 'Given';
-    const KW_WHEN = 'When';
-    const KW_THEN = 'Then';
-
+    private const KW_GIVEN = 'Given';
+    private const KW_WHEN = 'When';
+    private const KW_THEN = 'Then';
 
     public function analyse(GherkinDocument $document, RuleConfig $config): Generator
     {
