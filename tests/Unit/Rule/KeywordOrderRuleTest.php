@@ -100,5 +100,20 @@ class KeywordOrderRuleTest extends RuleTestCase
                 ],
             ]
         ];
+
+        yield 'no errors on invalid keyword (rule is not responsible for this)' => [
+            'foo.feature',
+            <<<'EOT'
+                Feature: Video Player
+
+                    Scenario: Pressing Play
+                        AAA I did something
+                        BBB I did something
+                EOT
+            ,
+            function (FeatureDiagnostics $diagnostics): void {
+                self::assertCount(0, $diagnostics);
+            },
+        ];
     }
 }
