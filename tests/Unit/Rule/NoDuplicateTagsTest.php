@@ -26,6 +26,7 @@ class NoDuplicateTagsTest extends RuleTestCase
                 self::assertCount(0, $diagnostics);
             }
         ];
+
         yield 'feature with duplicate tags' => [
             <<<'EOT'
                 @foo @foo
@@ -41,6 +42,23 @@ class NoDuplicateTagsTest extends RuleTestCase
                 self::assertEquals('Tag "@foo" is a duplicate', $diagnostics->first()->message);
             }
         ];
+
+        yield 'scneario with duplicate tags' => [
+            <<<'EOT'
+                Feature: Foobar
+                    @foo @foo
+                    Scenario: Foo
+                        When this then that
+                EOT
+            ,
+            function (FeatureDiagnostics $diagnostics): void {
+                self::assertCount(1, $diagnostics);
+                self::assertEquals(2, $diagnostics->first()->range->start->lineNo);
+                self::assertEquals(10, $diagnostics->first()->range->start->colNo);
+                self::assertEquals('Tag "@foo" is a duplicate', $diagnostics->first()->message);
+            }
+        ];
+
         yield 'feature with many duplicate tags' => [
             <<<'EOT'
                 @foo @foo @baz @baz @foo

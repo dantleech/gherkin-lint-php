@@ -13,7 +13,8 @@ class Linter
         /**
          * @var Rule[]
          */
-        private array $rules
+        private array $rules,
+        private RuleConfigFactory $configFactory
     ) {
     }
 
@@ -24,7 +25,7 @@ class Linter
     {
         foreach ($this->gherkinDocuments($uri, $contents) as $document) {
             foreach ($this->rules as $rule) {
-                yield from $rule->analyse($document);
+                yield from $rule->analyse($document, $this->configFactory->for($rule->describe()));
             }
         }
     }

@@ -14,54 +14,62 @@ use DTL\GherkinLint\Model\RuleConfig;
 use DTL\GherkinLint\Model\RuleDescription;
 use Generator;
 
-class NoDuplicateTags implements Rule
+class AllowedTagsRule implements Rule
 {
     public function analyse(GherkinDocument $document, RuleConfig $config): Generator
     {
-        yield from $this->checkTags($document->feature?->tags);
+        assert($config instanceof AllowedTagsConfig);
+
+        if (null === $config->allow) {
+            return;
+        }
+
+        yield from $this->checkTags(
+            $document->feature?->tags,
+            $config->allow
+        );
 
         foreach ($document->feature->children ?? [] as $child) {
             if (!$child instanceof FeatureChild) {
                 continue;
             }
-
             if (!$child->scenario instanceof Scenario) {
                 continue;
             }
 
-            yield from $this->checkTags($child->scenario->tags);
+            yield from $this->checkTags($child->scenario->tags, $config->allow);
         }
     }
 
     public function describe(): RuleDescription
     {
         return new RuleDescription(
-            'no-duplicate-tags',
-            'Disallow duplicate tags'
+            'allowedTags',
+            'Only permit specified tags',
+            AllowedTagsConfig::class,
         );
     }
 
     /**
      * @return Generator<FeatureDiagnostic>
      * @param ?list<Tag> $tags
+     * @param string[] $allowedTags
      */
-    private function checkTags(?array $tags): Generator
+    private function checkTags(?array $tags, array $allowedTags): Generator
     {
         if (null === $tags) {
             return;
         }
 
-        $seen = [];
         foreach ($tags as $tag) {
-            if (!isset($seen[$tag->name])) {
-                $seen[$tag->name] = true;
+            if (in_array($tag->name, $allowedTags)) {
                 continue;
             }
 
             yield new FeatureDiagnostic(
                 Range::fromLocationAndName($tag->location, $tag->name),
                 FeatureDiagnosticSeverity::WARNING,
-                sprintf('Tag "%s" is a duplicate', $tag->name)
+                sprintf('Tag "%s" is not allowed', $tag->name)
             );
         }
     }
