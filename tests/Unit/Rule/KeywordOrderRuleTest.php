@@ -4,7 +4,6 @@ namespace DTL\GherkinLint\Tests\Unit\Rule;
 
 use DTL\GherkinLint\Model\FeatureDiagnostics;
 use DTL\GherkinLint\Model\Rule;
-use DTL\GherkinLint\Rule\AllowedTagsRule;
 use DTL\GherkinLint\Rule\KeywordOrderRule;
 use Generator;
 
