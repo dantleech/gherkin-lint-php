@@ -79,5 +79,26 @@ class KeywordOrderRuleTest extends RuleTestCase
                 self::assertEquals('Keyword "When" cannot come after a "Then"', $diagnostics->first()->message);
             },
         ];
+
+        yield 'With tolerate Then before When' => [
+            'foo.feature',
+            <<<'EOT'
+                Feature: Video Player
+
+                    Scenario: Pressing Play
+                        Given I did something
+                        Then an exception should be thrown
+                        When I do this
+                EOT
+            ,
+            function (FeatureDiagnostics $diagnostics): void {
+                self::assertCount(0, $diagnostics);
+            },
+            [
+                'keyword-order' => [
+                    'tolerateThenBeforeWhen' => true,
+                ],
+            ]
+        ];
     }
 }

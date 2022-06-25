@@ -17,13 +17,19 @@ use Generator;
 class KeywordOrderRule implements Rule
 {
     const ORDER = [
-        'Given',
-        'When',
-        'Then'
+        self::KW_GIVEN,
+        self::KW_WHEN,
+        self::KW_THEN
     ];
+    const KW_GIVEN = 'Given';
+    const KW_WHEN = 'When';
+    const KW_THEN = 'Then';
+
 
     public function analyse(GherkinDocument $document, RuleConfig $config): Generator
     {
+        assert($config instanceof KeywordOrderConfig);
+
         if (!$document->feature) {
             return;
         }
@@ -34,7 +40,7 @@ class KeywordOrderRule implements Rule
             }
 
             if ($child->scenario) {
-                yield from $this->scenarioDiagnostics($child->scenario);
+                yield from $this->scenarioDiagnostics($config, $child->scenario);
             }
         }
     }
@@ -43,14 +49,15 @@ class KeywordOrderRule implements Rule
     {
         return new RuleDescription(
             'keyword-order',
-            'Ensure that keywords are in the correct order'
+            'Ensure that keywords are in the correct order',
+            KeywordOrderConfig::class,
         );
     }
 
     /**
      * @return Generator<FeatureDiagnostic>
      */
-    private function scenarioDiagnostics(Scenario $scenario): Generator
+    private function scenarioDiagnostics(KeywordOrderConfig $config, Scenario $scenario): Generator
     {
         $steps = $scenario->steps;
 
@@ -58,7 +65,13 @@ class KeywordOrderRule implements Rule
             return;
         }
 
-        $diagnostics = $this->diagnostics($steps, ['Given', 'When', 'Then']);
+        $diagnostics = $this->diagnostics($steps, [self::KW_GIVEN, self::KW_WHEN, self::KW_THEN]);
+
+        if ($diagnostics > 1 && $config->tolerateThenBeforeWhen) {
+            if (0 === count($this->diagnostics($steps, [self::KW_GIVEN, self::KW_THEN, self::KW_WHEN]))) {
+                return;
+            }
+        }
 
         yield from $diagnostics;
     }
@@ -75,7 +88,7 @@ class KeywordOrderRule implements Rule
         foreach ($steps as $index => $step) {
             $keyword = trim($step->keyword);
 
-            if ($index === 0 && !in_array($keyword, ['Given' ,'When'])) {
+            if ($index === 0 && !in_array($keyword, [self::KW_GIVEN ,self::KW_WHEN])) {
                 $diagnostics[] = new FeatureDiagnostic(
                     Range::fromLocationAndName($step->location, $keyword),
                     FeatureDiagnosticSeverity::WARNING,
