@@ -45,7 +45,8 @@ class RuleExampleTest extends TestCase
         self::assertEquals(
             1,
             $process->getExitCode(),
-            sprintf("Expected example to fail, but it was reported to be OK: \nOUT:\n%s \nERR:\n%s",
+            sprintf(
+                "Expected example to fail, but it was reported to be OK: \nOUT:\n%s \nERR:\n%s",
                 $process->getOutput(),
                 $process->getErrorOutput()
             )
@@ -58,7 +59,6 @@ class RuleExampleTest extends TestCase
     public function provideRules(): Generator
     {
         foreach ($this->createContainer()->createRules()->rules() as $rule) {
-
             foreach ($rule->describe()->examples as $index => $example) {
                 yield sprintf('%s #%s', $rule->describe()->name, $index) => [
                     $rule,

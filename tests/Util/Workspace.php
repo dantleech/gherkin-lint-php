@@ -33,5 +33,4 @@ class Workspace
         $fs = new Filesystem();
         $fs->remove($this->path);
     }
-
 }

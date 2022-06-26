@@ -88,7 +88,9 @@ Feature: Some feature
 ```json
 {
     "allowed-tags": {
-        "allow": []
+        "allow": [
+            "@baz"
+        ]
     }
 }
 ```

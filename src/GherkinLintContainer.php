@@ -56,6 +56,18 @@ final class GherkinLintContainer
         return $app;
     }
 
+    public function createRules(): RuleCollection
+    {
+        return new RuleCollection([
+            new NoDuplicateTags(),
+            new NoEmptyFileRule(),
+            new AllowedTagsRule(),
+            new FileNameRule(),
+            new IndentationRule(),
+            new KeywordOrderRule(),
+        ]);
+    }
+
     private function createFinder(string $cwd): FeatureFinder
     {
         return new FeatureFinder($cwd);
@@ -70,18 +82,6 @@ final class GherkinLintContainer
             $this->createRules()->rules(),
             $this->createConfigFactory(),
         );
-    }
-
-    public function createRules(): RuleCollection
-    {
-        return new RuleCollection([
-            new NoDuplicateTags(),
-            new NoEmptyFileRule(),
-            new AllowedTagsRule(),
-            new FileNameRule(),
-            new IndentationRule(),
-            new KeywordOrderRule(),
-        ]);
     }
 
     private function createReport(): TableReport

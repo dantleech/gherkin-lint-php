@@ -50,11 +50,11 @@ class AllowedTagsRule implements Rule
             AllowedTagsConfig::class,
             examples: [
                 new RuleExample(
-                    valid: true, 
+                    valid: true,
                     example: <<<'EOT'
-                    @foo @bar
-                    Feature: Some feature
-                    EOT,
+                        @foo @bar
+                        Feature: Some feature
+                        EOT,
                     config: new AllowedTagsConfig(['@foo', '@bar'])
                 ),
                 new RuleExample(
