@@ -3,6 +3,7 @@
         "no-duplicate-tags": {},
         "no-empty-file": {},
         "allowed-tags": {
+            "enabled": false,
             "allow": null
         },
         "filename": {

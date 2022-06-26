@@ -95,9 +95,7 @@ class KeywordOrderRuleTest extends RuleTestCase
                 self::assertCount(0, $diagnostics);
             },
             [
-                'keyword-order' => [
-                    'tolerateThenBeforeWhen' => true,
-                ],
+                'tolerateThenBeforeWhen' => true,
             ]
         ];
 

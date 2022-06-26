@@ -4,6 +4,7 @@ namespace DTL\GherkinLint\Tests\Unit\Rule;
 
 use Closure;
 use Cucumber\Gherkin\GherkinParser;
+use DTL\GherkinLint\Model\ConfigRule;
 use DTL\GherkinLint\Model\RuleConfigFactory;
 use DTL\GherkinLint\Model\ConfigMapper;
 use DTL\GherkinLint\Model\FeatureDiagnostics;
@@ -27,6 +28,7 @@ abstract class RuleTestCase extends TestCase
      */
     public function testRule(string $path, string $contents, Closure $assertion, array $config = []): void
     {
+        $rule = $this->createRule();
         $assertion(new FeatureDiagnostics(new FeatureFile('/foo', '/bar'), iterator_to_array((
             new Linter(
                 new GherkinParser(
@@ -34,10 +36,13 @@ abstract class RuleTestCase extends TestCase
                     includeSource: false,
                     includeGherkinDocument: true,
                 ),
-                [
-                    $this->createRule()
-                ],
-                new RuleConfigFactory(ConfigMapper::create(), $config),
+                [$rule],
+                new RuleConfigFactory(
+                    ConfigMapper::create(),
+                    [
+                        $rule->describe()->name => new ConfigRule(true, $config)
+                    ]
+                ),
             )
         )->lint($path, $contents))));
     }
