@@ -17,7 +17,7 @@ final class RuleConfigFactory
     {
         $config = $this->ruleConfig[$name] ?? null;
         if (null === $config) {
-            return false;
+            return true;
         }
 
         return $config->enabled;

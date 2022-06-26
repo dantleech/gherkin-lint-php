@@ -72,7 +72,7 @@ final class GherkinLintContainer
         );
     }
 
-    private function createRules(): RuleCollection
+    public function createRules(): RuleCollection
     {
         return new RuleCollection([
             new NoDuplicateTags(),

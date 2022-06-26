@@ -49,11 +49,14 @@ class AllowedTagsRule implements Rule
             'Only permit specified tags',
             AllowedTagsConfig::class,
             examples: [
-                new RuleExample(true, <<<'EOT'
+                new RuleExample(
+                    valid: true, 
+                    example: <<<'EOT'
                     @foo @bar
                     Feature: Some feature
-                    EOT
-                , new AllowedTagsConfig(['@foo', '@bar'])),
+                    EOT,
+                    config: new AllowedTagsConfig(['@foo', '@bar'])
+                ),
                 new RuleExample(
                     false,
                     <<<'EOT'
@@ -61,7 +64,7 @@ class AllowedTagsRule implements Rule
                         Feature: Some feature
                         EOT
                 ,
-                    config: new AllowedTagsConfig([]),
+                    config: new AllowedTagsConfig(['@baz']),
                 ),
             ]
         );
