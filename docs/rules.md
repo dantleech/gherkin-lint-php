@@ -1,12 +1,12 @@
 Rules
 =====
 
-- [no-duplicate-tags](#no-duplicate-tags) Disallow duplicate tags
-- [no-empty-file](#no-empty-file) Disallow empty files
-- [allowed-tags](#allowed-tags) Only permit specified tags
-- [filename](#filename) Filenames must conform to the specified stype
-- [indentation](#indentation) Ensure consistent indentation
-- [keyword-order](#keyword-order) Ensure that keywords are in the correct order
+- [no-duplicate-tags](#no-duplicate-tags): Disallow duplicate tags
+- [no-empty-file](#no-empty-file): Disallow empty files
+- [allowed-tags](#allowed-tags): Only permit specified tags
+- [filename](#filename): Filenames must conform to the specified stype
+- [indentation](#indentation): Ensure consistent indentation
+- [keyword-order](#keyword-order): Ensure that keywords are in the correct order
 
 no-duplicate-tags
 -----------------
