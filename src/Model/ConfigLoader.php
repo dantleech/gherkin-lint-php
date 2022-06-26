@@ -36,6 +36,13 @@ final class ConfigLoader
          */
         $config = json_decode($contents, true, 512, JSON_THROW_ON_ERROR);
 
+        $config['rules'] = $this->transformRules($config, $name);
+
+        return $this->configMapper->map(Config::class, $config);
+    }
+
+    private function transformRules(array $config, string $name): array
+    {
         $nodes = [];
         /** @psalm-suppress MixedAssignment */
         foreach ($config['rules'] ?? [] as $name => $rule) {
@@ -52,8 +59,6 @@ final class ConfigLoader
                 'config' => $rule,
             ];
         }
-        $config['rules'] = $nodes;
-
-        return $this->configMapper->map(Config::class, $config);
+        return $nodes;
     }
 }
