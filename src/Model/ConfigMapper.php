@@ -57,6 +57,8 @@ class ConfigMapper
 
     public static function create(): self
     {
-        return new self((new MapperBuilder())->flexible()->mapper());
+        return new self(
+            (new MapperBuilder())->flexible()->mapper()
+        );
     }
 }

@@ -5,7 +5,7 @@ namespace DTL\GherkinLint\Model;
 class Config
 {
     /**
-     * @var array<string,array<string,mixed>>
+     * @var array<string,ConfigRule>
      */
     public array $rules = [];
 

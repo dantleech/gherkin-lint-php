@@ -5,7 +5,7 @@ namespace DTL\GherkinLint\Model;
 final class RuleConfigFactory
 {
     /**
-     * @param array<string,mixed> $ruleConfig
+     * @param array<string,ConfigRule> $ruleConfig
      */
     public function __construct(private ConfigMapper $mapper, private array $ruleConfig)
     {
@@ -18,10 +18,10 @@ final class RuleConfigFactory
         if (null === $configClass) {
             return new NullRuleConfig();
         }
-
+        $config = $this->ruleConfig[$description->name] ?? null;
         $config = $this->mapper->map(
             $configClass,
-            $this->ruleConfig[$description->name] ?? []
+            $config->config ?? []
         );
 
         assert($config instanceof RuleConfig);

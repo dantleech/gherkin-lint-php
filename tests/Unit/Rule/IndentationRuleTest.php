@@ -26,9 +26,7 @@ class IndentationRuleTest extends RuleTestCase
                 self::assertCount(0, $diagnostics);
             },
             [
-                'indentation' => [
-                    'feature' => 0,
-                ],
+                'feature' => 0,
             ]
 
         ];

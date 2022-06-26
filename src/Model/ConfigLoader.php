@@ -36,6 +36,21 @@ final class ConfigLoader
          */
         $config = json_decode($contents, true, 512, JSON_THROW_ON_ERROR);
 
+        $nodes = [];
+        foreach ($config['rules'] ?? [] as $name => $rule) {
+            if (!is_array($rule)) {
+                continue;
+            }
+            $enabled = $rule['enabled'] ?? false;
+            unset($rule['enabled']);
+            $nodes[$name] = [
+                'enabled' => $enabled,
+                'config' => $rule,
+            ];
+
+        }
+        $config['rules'] = $nodes;
+
         return $this->configMapper->map(Config::class, $config);
     }
 }
