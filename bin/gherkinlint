@@ -15,7 +15,7 @@ $config = ConfigLoader::create(
     $output->getErrorOutput(),
     getcwd()
 )->load('gherkinlint.json');
-$container = new GherkinLintContainer($output, $config);
+$container = new GherkinLintContainer($output, $config, getenv('GHERKINLINT_DEV', true));
 $container->application()->run($input, $output);
 
 

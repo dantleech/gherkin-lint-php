@@ -9,6 +9,7 @@ use DTL\GherkinLint\Model\Range;
 use DTL\GherkinLint\Model\Rule;
 use DTL\GherkinLint\Model\RuleConfig;
 use DTL\GherkinLint\Model\RuleDescription;
+use DTL\GherkinLint\Model\RuleExample;
 use Generator;
 use RuntimeException;
 use Symfony\Component\Filesystem\Path;
@@ -54,6 +55,52 @@ class FileNameRule implements Rule
             'filename',
             'Filenames must conform to the specified stype',
             FileNameConfig::class,
+            examples: [
+                new RuleExample(
+                    valid: true,
+                    example: <<<'EOT'
+                        Feature: Some feature
+                        EOT
+                    ,
+                    config: new FileNameConfig(
+                        style: 'snake_case'
+                    ),
+                    filename: 'this_is_fine.feature',
+                ),
+                new RuleExample(
+                    valid: true,
+                    example: <<<'EOT'
+                        Feature: Some feature
+                        EOT
+                    ,
+                    config: new FileNameConfig(
+                        style: 'PascalCase'
+                    ),
+                    filename: 'ThisIsFine.feature',
+                ),
+                new RuleExample(
+                    valid: true,
+                    example: <<<'EOT'
+                        Feature: Some feature
+                        EOT
+                    ,
+                    config: new FileNameConfig(
+                        style: 'kebab-case'
+                    ),
+                    filename: 'this-is-fine.feature',
+                ),
+                new RuleExample(
+                    valid: true,
+                    example: <<<'EOT'
+                        Feature: Some feature
+                        EOT
+                    ,
+                    config: new FileNameConfig(
+                        style: 'camelCase'
+                    ),
+                    filename: 'thisIsFine.feature',
+                )
+            ]
         );
     }
 

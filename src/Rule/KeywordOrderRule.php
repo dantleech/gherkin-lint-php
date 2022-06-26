@@ -12,6 +12,7 @@ use DTL\GherkinLint\Model\Range;
 use DTL\GherkinLint\Model\Rule;
 use DTL\GherkinLint\Model\RuleConfig;
 use DTL\GherkinLint\Model\RuleDescription;
+use DTL\GherkinLint\Model\RuleExample;
 use Generator;
 
 class KeywordOrderRule implements Rule
@@ -45,6 +46,58 @@ class KeywordOrderRule implements Rule
             'keyword-order',
             'Ensure that keywords are in the correct order',
             KeywordOrderConfig::class,
+            examples: [
+                new RuleExample(
+                    valid: true,
+                    example: <<<'EOT'
+                        Feature: Foobar
+                            Scenario: This is a scenario
+                                Given this is a scenario
+                                And the indentation is incorrect
+                                When I run the linter
+                                Then things will not be good
+                        EOT,
+                ),
+                new RuleExample(
+                    valid: false,
+                    example: <<<'EOT'
+                        Feature: Foobar
+                            Scenario: This is a scenario
+                                Given this is a scenario
+                                And the indentation is incorrect
+                                When I run the linter
+                                Then things will not be good
+                                When I do something else
+                        EOT,
+                ),
+                new RuleExample(
+                    valid: false,
+                    example: <<<'EOT'
+                        Feature: Foobar
+                            Scenario: This is a scenario
+                                Then things will not be good
+                        EOT,
+                ),
+                new RuleExample(
+                    valid: false,
+                    example: <<<'EOT'
+                        Feature: Foobar
+                            Scenario: This is a scenario
+                                And things will not be good
+                        EOT,
+                ),
+                new RuleExample(
+                    valid: true,
+                    example: <<<'EOT'
+                        Feature: Foobar
+                            Scenario: This is a scenario
+                                Given something
+                                Then an exception should be thrown
+                                When I do this
+                        EOT,
+                    config: new KeywordOrderConfig(tolerateThenBeforeWhen: true),
+                ),
+            ]
         );
     }
 
