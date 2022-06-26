@@ -21,27 +21,13 @@ final class ConfigLoader
 
     public function load(string $name): Config
     {
-        $configPath = Path::join($this->cwd, $name);
-
-        if (!file_exists($configPath)) {
-            $this->output->writeln(sprintf('Config file "%s" not found, using defaults', $name));
-            return new Config();
-        }
-        $this->output->writeln(sprintf('Using config file "%s"', $name));
-
-        $contents = file_get_contents($configPath);
-
-        /**
-         * @var array<string,mixed>
-         */
-        $config = json_decode($contents, true, 512, JSON_THROW_ON_ERROR);
-
-        $config['rules'] = $this->transformRules($config, $name);
+        $config = $this->loadContents($name);
+        $config['rules'] = $this->transformRules($config);
 
         return $this->configMapper->map(Config::class, $config);
     }
 
-    private function transformRules(array $config, string $name): array
+    private function transformRules(array $config): array
     {
         $nodes = [];
         /** @psalm-suppress MixedAssignment */
@@ -52,7 +38,7 @@ final class ConfigLoader
             if (!is_array($rule)) {
                 continue;
             }
-            $enabled = $rule['enabled'] ?? false;
+            $enabled = $rule['enabled'] ?? true;
             unset($rule['enabled']);
             $nodes[$name] = [
                 'enabled' => $enabled,
@@ -60,5 +46,24 @@ final class ConfigLoader
             ];
         }
         return $nodes;
+    }
+
+    private function loadContents(string $name): array
+    {
+        $configPath = Path::join($this->cwd, $name);
+        
+        if (!file_exists($configPath)) {
+            $this->output->writeln(sprintf('Config file "%s" not found, using defaults', $name));
+            return [];
+        }
+        $this->output->writeln(sprintf('Using config file "%s"', $name));
+        
+        $contents = file_get_contents($configPath);
+        
+        /**
+         * @var array<string,mixed>
+         */
+        $config = json_decode($contents, true, 512, JSON_THROW_ON_ERROR);
+        return $config;
     }
 }

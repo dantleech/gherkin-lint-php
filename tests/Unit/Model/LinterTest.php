@@ -57,6 +57,24 @@ class LinterTest extends TestCase
                 self::assertCount(1, $diagnostics);
             }
         ];
+
+        yield 'disabled rule' => [
+            <<<'EOT'
+                Feature: Foobar
+
+                    Scenario: Foobar
+                        Given this happened
+                        When I do this
+                        Then that should happen
+                EOT
+            ,
+            [
+                'test1' =>  new ConfigRule(false, [])
+            ],
+            function (FeatureDiagnostics $diagnostics): void {
+                self::assertCount(0, $diagnostics);
+            }
+        ];
     }
 
     private function diagnostics(Rule $rule, array $config, string $content): FeatureDiagnostics

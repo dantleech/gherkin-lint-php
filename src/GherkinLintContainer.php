@@ -66,7 +66,7 @@ final class GherkinLintContainer
             new FileNameRule(),
             new IndentationRule(),
             new KeywordOrderRule(),
-        ], $this->config->enabledRules());
+        ]);
     }
 
     private function createReport(): TableReport
