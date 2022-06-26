@@ -2,9 +2,6 @@
 
 namespace DTL\GherkinLint\Tests\Command;
 
-use PHPUnit\Framework\TestCase;
-use Symfony\Component\Process\Process;
-
 class LintTest extends CommandTestCase
 {
     public function testLintFile(): void
