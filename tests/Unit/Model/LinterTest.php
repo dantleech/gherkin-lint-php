@@ -17,7 +17,6 @@ use DTL\GherkinLint\Model\Range;
 use DTL\GherkinLint\Rule\TestRule;
 use Generator;
 use PHPUnit\Framework\TestCase;
-use function Amp\ByteStream\parseLineDelimitedJson;
 
 class LinterTest extends TestCase
 {
@@ -43,36 +42,19 @@ class LinterTest extends TestCase
     {
         yield [
             <<<'EOT'
-            Feature: Foobar
+                Feature: Foobar
 
-                Scenario: Foobar
-                    Given this happened
-                    When I do this
-                    Then that should happen
-            EOT
+                    Scenario: Foobar
+                        Given this happened
+                        When I do this
+                        Then that should happen
+                EOT
             ,
             [
                 'test1' =>  new ConfigRule(true, [])
             ],
-            function (FeatureDiagnostics $diagnostics) {
+            function (FeatureDiagnostics $diagnostics): void {
                 self::assertCount(1, $diagnostics);
-            }
-        ];
-        yield 'disabled rule' => [
-            <<<'EOT'
-            Feature: Foobar
-
-                Scenario: Foobar
-                    Given this happened
-                    When I do this
-                    Then that should happen
-            EOT
-            ,
-            [
-                'test1' =>  new ConfigRule(false, [])
-            ],
-            function (FeatureDiagnostics $diagnostics) {
-                self::assertCount(0, $diagnostics);
             }
         ];
     }

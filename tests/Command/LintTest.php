@@ -15,10 +15,19 @@ class LintTest extends TestCase
             'tests/Command/features',
         ], __DIR__ . '/../..');
         $exitCode = $process->run();
-        if ($exitCode != 1) {
-            self::fail($process->getErrorOutput());
+
+        $expected = 1;
+        if ($exitCode != $expected) {
+            self::fail(sprintf(
+                'Process should have exited with code "%s" but got "%s": %s %s',
+                $expected,
+                $process->getExitCode(),
+                $process->getOutput(),
+                $process->getErrorOutput()
+            ));
             return;
         }
+
         $this->addToAssertionCount(1);
     }
 }

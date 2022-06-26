@@ -37,7 +37,11 @@ final class ConfigLoader
         $config = json_decode($contents, true, 512, JSON_THROW_ON_ERROR);
 
         $nodes = [];
+        /** @psalm-suppress MixedAssignment */
         foreach ($config['rules'] ?? [] as $name => $rule) {
+            if (!is_string($name)) {
+                continue;
+            }
             if (!is_array($rule)) {
                 continue;
             }
@@ -47,7 +51,6 @@ final class ConfigLoader
                 'enabled' => $enabled,
                 'config' => $rule,
             ];
-
         }
         $config['rules'] = $nodes;
 

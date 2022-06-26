@@ -10,8 +10,7 @@ final class RuleConfigFactory
          * @var array<string,ConfigRule>
          */
         private array $ruleConfig
-    )
-    {
+    ) {
     }
 
     public function isEnabled(string $name): bool

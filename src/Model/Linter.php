@@ -25,13 +25,9 @@ class Linter
     {
         foreach ($this->gherkinDocuments($uri, $contents) as $document) {
             foreach ($this->rules as $rule) {
-                $description = $rule->describe();
-                if (false === $this->configFactory->isEnabled($description->name)) {
-                    continue;
-                }
                 yield from $rule->analyse(
                     $document,
-                    $this->configFactory->for($description)
+                    $this->configFactory->for($rule->describe())
                 );
             }
         }
