@@ -2,8 +2,6 @@
 
 namespace DTL\GherkinLint\Model;
 
-use RuntimeException;
-
 class RuleCollection
 {
     /**
@@ -13,7 +11,6 @@ class RuleCollection
 
     /**
      * @param Rule[] $rules
-     * @param string[] $enabledRules
      */
     public function __construct(
         array $rules,

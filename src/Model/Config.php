@@ -9,8 +9,7 @@ class Config
          * @var array<string,ConfigRule>
          */
         public array $rules = []
-    )
-    {
+    ) {
     }
 
     /**
