@@ -14,7 +14,7 @@ class TestRule implements Rule
     /**
      * @param FeatureDiagnostic[] $diagnostics
      */
-    public function __construct(private array $diagnostics = [])
+    public function __construct(private string $name, private array $diagnostics = [])
     {
     }
 
@@ -25,6 +25,6 @@ class TestRule implements Rule
 
     public function describe(): RuleDescription
     {
-        return new RuleDescription('test', 'Test rule');
+        return new RuleDescription($this->name, 'Test rule');
     }
 }
