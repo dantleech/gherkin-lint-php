@@ -19,6 +19,11 @@ class RuleDocumentationBuilder
             '',
         ];
         foreach ($this->rules->rules() as $rule) {
+            $description = $rule->describe();
+            $out[] = sprintf('- [%s](#%s): %s', $description->name, $description->name, $description->description);
+        }
+        $out[] = '';
+        foreach ($this->rules->rules() as $rule) {
             $this->ruleDocumentation($rule->describe(), $out);
         }
         $out[] = '';
