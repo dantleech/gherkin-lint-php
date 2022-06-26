@@ -19,7 +19,13 @@ $ composer require --dev dantleech/gherkin-lint
 Lint your feature files:
 
 ```
-$ ./vendor/bin/gherkinlint features/
+$ ./vendor/bin/gherkinlint lint features/
+```
+
+To see the available and enabled rules run:
+
+```
+$ ./vendor/bin/gherkinlint rules
 ```
 
 Configuration
