@@ -25,12 +25,10 @@ class NoEmptyFileRule implements Rule
                     example: <<<'EOT'
                         Feature: Foobar
                         EOT,
-                    config: new KeywordOrderConfig(tolerateThenBeforeWhen: true),
                 ),
                 new RuleExample(
                     valid: false,
                     example: '   ',
-                    config: new KeywordOrderConfig(tolerateThenBeforeWhen: true),
                 ),
             ]
         );

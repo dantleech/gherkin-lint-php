@@ -34,27 +34,11 @@ Disallow empty files
 
 **Good**
 
-```json
-{
-    "no-empty-file": {
-        "tolerateThenBeforeWhen": true
-    }
-}
-```
-
 ```gherkin
 # example.feature
 Feature: Foobar
 ```
 **Bad**
-
-```json
-{
-    "no-empty-file": {
-        "tolerateThenBeforeWhen": true
-    }
-}
-```
 
 ```gherkin
 # example.feature
