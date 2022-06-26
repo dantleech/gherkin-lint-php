@@ -12,7 +12,11 @@ class RuleDescription
         /**
          * @var class-string|null
          */
-        public ?string $configClass = null
+        public ?string $configClass = null,
+        /**
+         * @var RuleExample[]
+         */
+        public array $examples = [],
     ) {
     }
 

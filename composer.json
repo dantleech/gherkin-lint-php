@@ -44,7 +44,8 @@
             "vendor/bin/php-cs-fixer fix",
             "vendor/bin/psalm",
             "vendor/bin/phpunit",
-            "bin/gherkinlint lint tests/Example"
+            "bin/gherkinlint lint tests/Example",
+            "GHERKINLINT_DEV=1 bin/gherkinlint ruledocs docs/rules.md"
         ]
     }
 }

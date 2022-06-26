@@ -12,6 +12,7 @@ use DTL\GherkinLint\Model\Range;
 use DTL\GherkinLint\Model\Rule;
 use DTL\GherkinLint\Model\RuleConfig;
 use DTL\GherkinLint\Model\RuleDescription;
+use DTL\GherkinLint\Model\RuleExample;
 use Generator;
 
 class NoDuplicateTags implements Rule
@@ -37,7 +38,23 @@ class NoDuplicateTags implements Rule
     {
         return new RuleDescription(
             'no-duplicate-tags',
-            'Disallow duplicate tags'
+            'Disallow duplicate tags',
+            examples: [
+                new RuleExample(
+                    true,
+                    <<<'EOT'
+                        @foo @bar
+                        Feature: Some feature
+                        EOT
+                ),
+                new RuleExample(
+                    false,
+                    <<<'EOT'
+                        @foo @foo
+                        Feature: Some feature
+                        EOT
+                ),
+            ]
         );
     }
 

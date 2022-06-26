@@ -12,6 +12,7 @@ use DTL\GherkinLint\Model\Range;
 use DTL\GherkinLint\Model\Rule;
 use DTL\GherkinLint\Model\RuleConfig;
 use DTL\GherkinLint\Model\RuleDescription;
+use DTL\GherkinLint\Model\RuleExample;
 use Generator;
 
 class AllowedTagsRule implements Rule
@@ -47,6 +48,25 @@ class AllowedTagsRule implements Rule
             'allowed-tags',
             'Only permit specified tags',
             AllowedTagsConfig::class,
+            examples: [
+                new RuleExample(
+                    valid: true,
+                    example: <<<'EOT'
+                        @foo @bar
+                        Feature: Some feature
+                        EOT,
+                    config: new AllowedTagsConfig(['@foo', '@bar'])
+                ),
+                new RuleExample(
+                    false,
+                    <<<'EOT'
+                        @this-is-not-allowed
+                        Feature: Some feature
+                        EOT
+                ,
+                    config: new AllowedTagsConfig(['@baz']),
+                ),
+            ]
         );
     }
 

@@ -15,6 +15,7 @@ use DTL\GherkinLint\Model\Range;
 use DTL\GherkinLint\Model\Rule;
 use DTL\GherkinLint\Model\RuleConfig;
 use DTL\GherkinLint\Model\RuleDescription;
+use DTL\GherkinLint\Model\RuleExample;
 use Generator;
 
 class IndentationRule implements Rule
@@ -58,6 +59,32 @@ class IndentationRule implements Rule
             'indentation',
             'Ensure consistent indentation',
             IndentationConfig::class,
+            examples: [
+                new RuleExample(
+                    valid: true,
+                    example: <<<'EOT'
+                        Feature: Foobar
+                            Scenario: This is a scenario
+                                Given this is a scenario
+                                And the indentation is correct
+                                When I run the linter
+                                Then it should be fine
+                        EOT,
+                    config: new IndentationConfig(width: 4),
+                ),
+                new RuleExample(
+                    valid: false,
+                    example: <<<'EOT'
+                         Feature: Foobar
+                           Scenario: This is a scenario
+                               Given this is a scenario
+                               And the indentation is incorrect
+                                When I run the linter
+                               Then things will not be good
+                        EOT,
+                    config: new IndentationConfig(width: 4),
+                )
+            ]
         );
     }
 
