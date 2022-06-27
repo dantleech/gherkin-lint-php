@@ -55,6 +55,7 @@ class ScenariosPerFileRule implements Rule
             ScenariosPerFileConfig::class,
             [
                 new RuleExample(
+                    title: 'Valid quantity of scenarios',
                     valid: true,
                     example: <<<'EOT'
                         Feature: One
@@ -65,6 +66,7 @@ class ScenariosPerFileRule implements Rule
                     config: new ScenariosPerFileConfig(min: 1, max: 3)
                 ),
                 new RuleExample(
+                    title: 'Too many scenarios',
                     valid: false,
                     example: <<<'EOT'
                         Feature: One
@@ -74,6 +76,7 @@ class ScenariosPerFileRule implements Rule
                     config: new ScenariosPerFileConfig(min: 0, max: 1)
                 ),
                 new RuleExample(
+                    title: 'Not enough scenarios',
                     valid: false,
                     example: <<<'EOT'
                         Feature: One

@@ -48,6 +48,7 @@ class KeywordOrderRule implements Rule
             KeywordOrderConfig::class,
             examples: [
                 new RuleExample(
+                    title: 'Keywords in correct order',
                     valid: true,
                     example: <<<'EOT'
                         Feature: Foobar
@@ -59,6 +60,7 @@ class KeywordOrderRule implements Rule
                         EOT,
                 ),
                 new RuleExample(
+                    title: 'Extra when is not allowed',
                     valid: false,
                     example: <<<'EOT'
                         Feature: Foobar
@@ -71,6 +73,7 @@ class KeywordOrderRule implements Rule
                         EOT,
                 ),
                 new RuleExample(
+                    title: 'Scenarios cannot start with Then',
                     valid: false,
                     example: <<<'EOT'
                         Feature: Foobar
@@ -79,6 +82,7 @@ class KeywordOrderRule implements Rule
                         EOT,
                 ),
                 new RuleExample(
+                    title: 'Scenarios cannot start with And',
                     valid: false,
                     example: <<<'EOT'
                         Feature: Foobar
@@ -87,6 +91,7 @@ class KeywordOrderRule implements Rule
                         EOT,
                 ),
                 new RuleExample(
+                    title: 'Tolerate then before when with config option',
                     valid: true,
                     example: <<<'EOT'
                         Feature: Foobar
