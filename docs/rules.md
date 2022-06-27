@@ -9,6 +9,8 @@ Rules
 - [keyword-order](#keyword-order): Ensure that keywords are in the correct order
 - [scenarios-per-file](#scenarios-per-file): Set a maximum (and/or minimum) number of scenarios allowed per file
 - [no-background-with-single-scenario](#no-background-with-single-scenario): Backgrounds are only allowed when there is more than one scenario
+- [no-duplicated-feature-names](#no-duplicated-feature-names): Dissallow duplicated feature names
+- [no-duplicated-scenario-names](#no-duplicated-scenario-names): Dissallow duplicated scenarios within feature files
 
 no-duplicate-tags
 -----------------
@@ -349,6 +351,34 @@ Feature: Foobar
 Feature: Foobar
     Background:
         Given I have stuff
+
+    Scenario: One
+```
+no-duplicated-feature-names
+---------------------------
+
+Dissallow duplicated feature names
+
+no-duplicated-scenario-names
+----------------------------
+
+Dissallow duplicated scenarios within feature files
+
+**Good**: No duplicated scenarios
+
+```gherkin
+# example.feature
+Feature: Foobar
+    Scenario: One
+
+    Scenario: Two
+```
+**Bad**: Duplicated scenarios
+
+```gherkin
+# example.feature
+Feature: Foobar
+    Scenario: One
 
     Scenario: One
 ```
