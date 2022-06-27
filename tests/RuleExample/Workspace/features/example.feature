@@ -1,4 +1,2 @@
-Feature: Foobar
-    Scenario: One
-
-    Scenario: One
+@this-is-not-allowed
+Feature: Some feature

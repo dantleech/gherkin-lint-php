@@ -1,1 +1,1 @@
-{"rules":{"no-duplicated-scenario-names":[]}}
+{"rules":{"allowed-tags":{"allow":["@baz"]}}}
