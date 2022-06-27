@@ -21,12 +21,14 @@ class NoEmptyFileRule implements Rule
             'Disallow empty files',
             examples: [
                 new RuleExample(
+                    title: 'Non-empty file',
                     valid: true,
                     example: <<<'EOT'
                         Feature: Foobar
                         EOT,
                 ),
                 new RuleExample(
+                    title: 'Empty file',
                     valid: false,
                     example: '   ',
                 ),

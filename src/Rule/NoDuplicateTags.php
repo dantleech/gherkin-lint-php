@@ -41,6 +41,7 @@ class NoDuplicateTags implements Rule
             'Disallow duplicate tags',
             examples: [
                 new RuleExample(
+                    'No duplicate tags',
                     true,
                     <<<'EOT'
                         @foo @bar
@@ -48,6 +49,7 @@ class NoDuplicateTags implements Rule
                         EOT
                 ),
                 new RuleExample(
+                    'Duplicated tags',
                     false,
                     <<<'EOT'
                         @foo @foo

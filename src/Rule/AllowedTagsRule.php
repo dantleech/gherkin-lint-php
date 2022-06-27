@@ -50,6 +50,7 @@ class AllowedTagsRule implements Rule
             AllowedTagsConfig::class,
             examples: [
                 new RuleExample(
+                    title: 'Feature has allowed tags',
                     valid: true,
                     example: <<<'EOT'
                         @foo @bar
@@ -58,6 +59,7 @@ class AllowedTagsRule implements Rule
                     config: new AllowedTagsConfig(['@foo', '@bar'])
                 ),
                 new RuleExample(
+                    'Feature has not allowed tags',
                     false,
                     <<<'EOT'
                         @this-is-not-allowed

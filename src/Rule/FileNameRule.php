@@ -57,6 +57,7 @@ class FileNameRule implements Rule
             FileNameConfig::class,
             examples: [
                 new RuleExample(
+                    title: 'Snake case',
                     valid: true,
                     example: <<<'EOT'
                         Feature: Some feature
@@ -68,6 +69,7 @@ class FileNameRule implements Rule
                     filename: 'this_is_fine.feature',
                 ),
                 new RuleExample(
+                    title: 'Pascal case',
                     valid: true,
                     example: <<<'EOT'
                         Feature: Some feature
@@ -79,6 +81,7 @@ class FileNameRule implements Rule
                     filename: 'ThisIsFine.feature',
                 ),
                 new RuleExample(
+                    title: 'Kebab Case',
                     valid: true,
                     example: <<<'EOT'
                         Feature: Some feature
@@ -90,6 +93,7 @@ class FileNameRule implements Rule
                     filename: 'this-is-fine.feature',
                 ),
                 new RuleExample(
+                    title: 'Camel case',
                     valid: true,
                     example: <<<'EOT'
                         Feature: Some feature

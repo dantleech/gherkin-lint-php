@@ -43,7 +43,7 @@ class RuleDocumentationBuilder
         $out[] = '';
 
         foreach ($description->examples as $example) {
-            $out[] = $example->valid ? '**Good**' : '**Bad**';
+            $out[] = sprintf('%s: %s', $example->valid ? '**Good**' : '**Bad**', $example->title);
             $out[] = '';
             if ($example->config) {
                 $configString = json_encode(

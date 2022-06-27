@@ -21,6 +21,7 @@ use DTL\GherkinLint\Rule\IndentationRule;
 use DTL\GherkinLint\Rule\KeywordOrderRule;
 use DTL\GherkinLint\Rule\NoDuplicateTags;
 use DTL\GherkinLint\Rule\NoEmptyFileRule;
+use DTL\GherkinLint\Rule\ScenariosPerFileRule;
 use Symfony\Component\Console\Application;
 use Symfony\Component\Console\Output\OutputInterface;
 
@@ -65,6 +66,7 @@ final class GherkinLintContainer
             new FileNameRule(),
             new IndentationRule(),
             new KeywordOrderRule(),
+            new ScenariosPerFileRule(),
         ]);
     }
 

@@ -7,20 +7,21 @@ Rules
 - [filename](#filename): Filenames must conform to the specified stype
 - [indentation](#indentation): Ensure consistent indentation
 - [keyword-order](#keyword-order): Ensure that keywords are in the correct order
+- [scenarios-per-file](#scenarios-per-file): Set a maximum (and/or minimum) number of scenarios allowed per file
 
 no-duplicate-tags
 -----------------
 
 Disallow duplicate tags
 
-**Good**
+**Good**: No duplicate tags
 
 ```gherkin
 # example.feature
 @foo @bar
 Feature: Some feature
 ```
-**Bad**
+**Bad**: Duplicated tags
 
 ```gherkin
 # example.feature
@@ -32,13 +33,13 @@ no-empty-file
 
 Disallow empty files
 
-**Good**
+**Good**: Non-empty file
 
 ```gherkin
 # example.feature
 Feature: Foobar
 ```
-**Bad**
+**Bad**: Empty file
 
 ```gherkin
 # example.feature
@@ -49,7 +50,7 @@ allowed-tags
 
 Only permit specified tags
 
-**Good**
+**Good**: Feature has allowed tags
 
 ```json
 {
@@ -67,7 +68,7 @@ Only permit specified tags
 @foo @bar
 Feature: Some feature
 ```
-**Bad**
+**Bad**: Feature has not allowed tags
 
 ```json
 {
@@ -89,7 +90,7 @@ filename
 
 Filenames must conform to the specified stype
 
-**Good**
+**Good**: Snake case
 
 ```json
 {
@@ -103,7 +104,7 @@ Filenames must conform to the specified stype
 # this_is_fine.feature
 Feature: Some feature
 ```
-**Good**
+**Good**: Pascal case
 
 ```json
 {
@@ -117,7 +118,7 @@ Feature: Some feature
 # ThisIsFine.feature
 Feature: Some feature
 ```
-**Good**
+**Good**: Kebab Case
 
 ```json
 {
@@ -131,7 +132,7 @@ Feature: Some feature
 # this-is-fine.feature
 Feature: Some feature
 ```
-**Good**
+**Good**: Camel case
 
 ```json
 {
@@ -150,7 +151,7 @@ indentation
 
 Ensure consistent indentation
 
-**Good**
+**Good**: Valid indentation
 
 ```json
 {
@@ -178,7 +179,7 @@ Feature: Foobar
         When I run the linter
         Then it should be fine
 ```
-**Bad**
+**Bad**: Invalid indentation
 
 ```json
 {
@@ -211,7 +212,7 @@ keyword-order
 
 Ensure that keywords are in the correct order
 
-**Good**
+**Good**: Keywords in correct order
 
 ```gherkin
 # example.feature
@@ -222,7 +223,7 @@ Feature: Foobar
         When I run the linter
         Then things will not be good
 ```
-**Bad**
+**Bad**: Extra when is not allowed
 
 ```gherkin
 # example.feature
@@ -234,7 +235,7 @@ Feature: Foobar
         Then things will not be good
         When I do something else
 ```
-**Bad**
+**Bad**: Scenarios cannot start with Then
 
 ```gherkin
 # example.feature
@@ -242,7 +243,7 @@ Feature: Foobar
     Scenario: This is a scenario
         Then things will not be good
 ```
-**Bad**
+**Bad**: Scenarios cannot start with And
 
 ```gherkin
 # example.feature
@@ -250,7 +251,7 @@ Feature: Foobar
     Scenario: This is a scenario
         And things will not be good
 ```
-**Good**
+**Good**: Tolerate then before when with config option
 
 ```json
 {
@@ -267,5 +268,61 @@ Feature: Foobar
         Given something
         Then an exception should be thrown
         When I do this
+```
+scenarios-per-file
+------------------
+
+Set a maximum (and/or minimum) number of scenarios allowed per file
+
+**Good**: Valid quantity of scenarios
+
+```json
+{
+    "scenarios-per-file": {
+        "min": 1,
+        "max": 3
+    }
+}
+```
+
+```gherkin
+# example.feature
+Feature: One
+    Scenario: One
+    Scenario: Two
+    Scenario: Three
+```
+**Bad**: Too many scenarios
+
+```json
+{
+    "scenarios-per-file": {
+        "min": 0,
+        "max": 1
+    }
+}
+```
+
+```gherkin
+# example.feature
+Feature: One
+    Scenario: First scenario
+    Scenario: Two
+```
+**Bad**: Not enough scenarios
+
+```json
+{
+    "scenarios-per-file": {
+        "min": 5,
+        "max": 10
+    }
+}
+```
+
+```gherkin
+# example.feature
+Feature: One
+    Scenario: One
 ```
 

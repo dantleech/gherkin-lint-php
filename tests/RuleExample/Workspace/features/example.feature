@@ -1,2 +1,3 @@
-@foo @bar
-Feature: Some feature
+Feature: One
+    Scenario: First scenario
+    Scenario: Two

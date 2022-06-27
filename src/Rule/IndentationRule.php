@@ -61,6 +61,7 @@ class IndentationRule implements Rule
             IndentationConfig::class,
             examples: [
                 new RuleExample(
+                    'Valid indentation',
                     valid: true,
                     example: <<<'EOT'
                         Feature: Foobar
@@ -73,6 +74,7 @@ class IndentationRule implements Rule
                     config: new IndentationConfig(width: 4),
                 ),
                 new RuleExample(
+                    'Invalid indentation',
                     valid: false,
                     example: <<<'EOT'
                          Feature: Foobar
