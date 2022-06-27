@@ -10,7 +10,6 @@ class RuleExample
         public string $example,
         public ?RuleConfig $config = null,
         public string $filename = 'example.feature'
-    )
-    {
+    ) {
     }
 }
