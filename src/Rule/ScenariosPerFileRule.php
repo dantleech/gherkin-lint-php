@@ -2,7 +2,6 @@
 
 namespace DTL\GherkinLint\Rule;
 
-use Cucumber\Messages\FeatureChild;
 use Cucumber\Messages\GherkinDocument;
 use DTL\GherkinLint\Model\FeatureDiagnostic;
 use DTL\GherkinLint\Model\FeatureDiagnosticSeverity;
@@ -11,6 +10,7 @@ use DTL\GherkinLint\Model\Rule;
 use DTL\GherkinLint\Model\RuleConfig;
 use DTL\GherkinLint\Model\RuleDescription;
 use DTL\GherkinLint\Model\RuleExample;
+use DTL\GherkinLint\Rule\Util\DocumentQuery;
 use Generator;
 
 class ScenariosPerFileRule implements Rule
@@ -19,16 +19,7 @@ class ScenariosPerFileRule implements Rule
     {
         assert($config instanceof ScenariosPerFileConfig);
 
-        $count = 0;
-        foreach ($document->feature?->children ?? [] as $featureChild) {
-            if (!$featureChild instanceof FeatureChild) {
-                continue;
-            }
-
-            if ($featureChild->scenario) {
-                $count++;
-            }
-        }
+        $count = DocumentQuery::countScenarios($document);
 
         if (null !== $config->max && $count > $config->max) {
             yield new FeatureDiagnostic(
