@@ -1,2 +1,3 @@
-@this-is-not-allowed
-Feature: Some feature
+Feature: Foobar
+    Scenario: This is a scenario
+        Then things will not be good

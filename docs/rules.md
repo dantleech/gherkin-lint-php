@@ -11,6 +11,7 @@ Rules
 - [no-background-with-single-scenario](#no-background-with-single-scenario): Backgrounds are only allowed when there is more than one scenario
 - [no-duplicated-feature-names](#no-duplicated-feature-names): Dissallow duplicated feature names
 - [no-duplicated-scenario-names](#no-duplicated-scenario-names): Dissallow duplicated scenarios within feature files
+- [no-empty-background](#no-empty-background): Disallow empty backgrounds
 
 no-duplicate-tags
 -----------------
@@ -381,5 +382,25 @@ Feature: Foobar
     Scenario: One
 
     Scenario: One
+```
+no-empty-background
+-------------------
+
+Disallow empty backgrounds
+
+**Good**: Non-empty background
+
+```gherkin
+# example.feature
+Feature: Foobar
+    Background:
+        Given something happened
+```
+**Bad**: Empty background
+
+```gherkin
+# example.feature
+Feature: Foobar
+    Background:
 ```
 

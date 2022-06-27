@@ -50,18 +50,18 @@ class NoEmptyBackgroundRule implements Rule
                     title: 'Non-empty background',
                     valid: true,
                     example: <<<'EOT'
-                    Feature: Foobar
-                        Background:
-                            Given something happened
-                    EOT
+                        Feature: Foobar
+                            Background:
+                                Given something happened
+                        EOT
                 ),
                 new RuleExample(
                     title: 'Empty background',
                     valid: false,
                     example: <<<'EOT'
-                    Feature: Foobar
-                        Background:
-                    EOT
+                        Feature: Foobar
+                            Background:
+                        EOT
                 )
             ]
         );
