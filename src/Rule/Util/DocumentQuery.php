@@ -7,7 +7,8 @@ use Cucumber\Messages\GherkinDocument;
 
 class DocumentQuery
 {
-    public static function countScenarios(GherkinDocument $document): int {
+    public static function countScenarios(GherkinDocument $document): int
+    {
         $count = 0;
         foreach ($document->feature?->children ?? [] as $featureChild) {
             if (!$featureChild instanceof FeatureChild) {
@@ -22,7 +23,8 @@ class DocumentQuery
         return $count;
     }
 
-    public static function countBackgrounds(GherkinDocument $document): int {
+    public static function countBackgrounds(GherkinDocument $document): int
+    {
         $count = 0;
         foreach ($document->feature?->children ?? [] as $featureChild) {
             if (!$featureChild instanceof FeatureChild) {

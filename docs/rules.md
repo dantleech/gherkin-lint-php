@@ -8,6 +8,7 @@ Rules
 - [indentation](#indentation): Ensure consistent indentation
 - [keyword-order](#keyword-order): Ensure that keywords are in the correct order
 - [scenarios-per-file](#scenarios-per-file): Set a maximum (and/or minimum) number of scenarios allowed per file
+- [no-background-with-single-scenario](#no-background-with-single-scenario): Backgrounds are only allowed when there is more than one scenario
 
 no-duplicate-tags
 -----------------
@@ -323,6 +324,32 @@ Feature: One
 ```gherkin
 # example.feature
 Feature: One
+    Scenario: One
+```
+no-background-with-single-scenario
+----------------------------------
+
+Backgrounds are only allowed when there is more than one scenario
+
+**Good**: Background with more than one scenario
+
+```gherkin
+# example.feature
+Feature: Foobar
+    Background:
+        Given I have stuff
+
+    Scenario: One
+    Scenario: Two
+```
+**Bad**: Background with one scenario
+
+```gherkin
+# example.feature
+Feature: Foobar
+    Background:
+        Given I have stuff
+
     Scenario: One
 ```
 

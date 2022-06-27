@@ -52,24 +52,24 @@ class NoBackgroundOnlyScenarioRule implements Rule
                     title: 'Background with more than one scenario',
                     valid: true,
                     example: <<<'EOT'
-                    Feature: Foobar
-                        Background:
-                            Given I have stuff
+                        Feature: Foobar
+                            Background:
+                                Given I have stuff
 
-                        Scenario: One
-                        Scenario: Two
-                    EOT
+                            Scenario: One
+                            Scenario: Two
+                        EOT
                 ),
                 new RuleExample(
                     title: 'Background with one scenario',
                     valid: false,
                     example: <<<'EOT'
-                    Feature: Foobar
-                        Background:
-                            Given I have stuff
+                        Feature: Foobar
+                            Background:
+                                Given I have stuff
 
-                        Scenario: One
-                    EOT
+                            Scenario: One
+                        EOT
                 ),
             ],
         );
