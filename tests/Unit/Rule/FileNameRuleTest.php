@@ -5,6 +5,7 @@ namespace DTL\GherkinLint\Tests\Unit\Rule;
 use DTL\GherkinLint\Model\FeatureDiagnostics;
 use DTL\GherkinLint\Model\Rule;
 use DTL\GherkinLint\Rule\FileNameRule;
+use DTL\GherkinLint\Tests\Util\TestFeature;
 use Generator;
 
 class FileNameRuleTest extends RuleTestCase
@@ -17,7 +18,10 @@ class FileNameRuleTest extends RuleTestCase
     public function provideTests(): Generator
     {
         yield 'pascal fail' => [
-            '/home/daniel/foo/foo.feature', '',
+            new TestFeature(
+                '/home/daniel/foo/foo.feature',
+                ''
+            ),
             function (FeatureDiagnostics $diagnostics): void {
                 self::assertCount(1, $diagnostics);
                 self::assertEquals('Filename "/home/daniel/foo/foo.feature" should be "PascalCase"', $diagnostics->first()->message);
@@ -27,7 +31,10 @@ class FileNameRuleTest extends RuleTestCase
             ]
         ];
         yield 'pascal 1' => [
-            'Foo.feature', '',
+            new TestFeature(
+                'Foo.feature',
+                ''
+            ),
             function (FeatureDiagnostics $diagnostics): void {
                 self::assertCount(0, $diagnostics);
             },
@@ -36,7 +43,10 @@ class FileNameRuleTest extends RuleTestCase
             ]
         ];
         yield 'pascal 2' => [
-            'FooBar.feature', '',
+            new TestFeature(
+                'FooBar.feature',
+                ''
+            ),
             function (FeatureDiagnostics $diagnostics): void {
                 self::assertCount(0, $diagnostics);
             },
@@ -45,7 +55,10 @@ class FileNameRuleTest extends RuleTestCase
             ]
         ];
         yield 'pascal 3' => [
-            'FooBar123.feature', '',
+            new TestFeature(
+                'FooBar123.feature',
+                ''
+            ),
             function (FeatureDiagnostics $diagnostics): void {
                 self::assertCount(0, $diagnostics);
             },
@@ -54,7 +67,10 @@ class FileNameRuleTest extends RuleTestCase
             ]
         ];
         yield 'pascal 4 fail' => [
-            'FooBar_123.feature', '',
+            new TestFeature(
+                'FooBar_123.feature',
+                ''
+            ),
             function (FeatureDiagnostics $diagnostics): void {
                 self::assertCount(1, $diagnostics);
             },
@@ -63,7 +79,10 @@ class FileNameRuleTest extends RuleTestCase
             ]
         ];
         yield 'pascal 7' => [
-            'FooBarBarBoo.feature', '',
+            new TestFeature(
+                'FooBarBarBoo.feature',
+                ''
+            ),
             function (FeatureDiagnostics $diagnostics): void {
                 self::assertCount(0, $diagnostics);
             },
@@ -72,7 +91,10 @@ class FileNameRuleTest extends RuleTestCase
             ]
         ];
         yield 'camel case fail' => [
-            'FooBar_123.feature', '',
+            new TestFeature(
+                'FooBar_123.feature',
+                ''
+            ),
             function (FeatureDiagnostics $diagnostics): void {
                 self::assertCount(1, $diagnostics);
             },
@@ -81,7 +103,10 @@ class FileNameRuleTest extends RuleTestCase
             ]
         ];
         yield 'camel case 1' => [
-            'foo.feature', '',
+            new TestFeature(
+                'foo.feature',
+                ''
+            ),
             function (FeatureDiagnostics $diagnostics): void {
                 self::assertCount(0, $diagnostics);
             },
@@ -90,7 +115,10 @@ class FileNameRuleTest extends RuleTestCase
             ]
         ];
         yield 'camel case 2' => [
-            'fooBar.feature', '',
+            new TestFeature(
+                'fooBar.feature',
+                ''
+            ),
             function (FeatureDiagnostics $diagnostics): void {
                 self::assertCount(0, $diagnostics);
             },
@@ -99,7 +127,10 @@ class FileNameRuleTest extends RuleTestCase
             ]
         ];
         yield 'camel case 3' => [
-            'fooBarBaz.feature', '',
+            new TestFeature(
+                'fooBarBaz.feature',
+                ''
+            ),
             function (FeatureDiagnostics $diagnostics): void {
                 self::assertCount(0, $diagnostics);
             },
@@ -108,7 +139,10 @@ class FileNameRuleTest extends RuleTestCase
             ]
         ];
         yield 'snake case fail' => [
-            'fooBarBaz.feature', '',
+            new TestFeature(
+                'fooBarBaz.feature',
+                ''
+            ),
             function (FeatureDiagnostics $diagnostics): void {
                 self::assertCount(1, $diagnostics);
             },
@@ -117,7 +151,10 @@ class FileNameRuleTest extends RuleTestCase
             ]
         ];
         yield 'snake case 1' => [
-            'foo_bar_baz.feature', '',
+            new TestFeature(
+                'foo_bar_baz.feature',
+                ''
+            ),
             function (FeatureDiagnostics $diagnostics): void {
                 self::assertCount(0, $diagnostics);
             },
@@ -126,7 +163,10 @@ class FileNameRuleTest extends RuleTestCase
             ]
         ];
         yield 'snake case 2' => [
-            'foo.feature', '',
+            new TestFeature(
+                'foo.feature',
+                ''
+            ),
             function (FeatureDiagnostics $diagnostics): void {
                 self::assertCount(0, $diagnostics);
             },
@@ -135,7 +175,10 @@ class FileNameRuleTest extends RuleTestCase
             ]
         ];
         yield 'kebab case fail' => [
-            'fooFoo.feature', '',
+            new TestFeature(
+                'fooFoo.feature',
+                ''
+            ),
             function (FeatureDiagnostics $diagnostics): void {
                 self::assertCount(1, $diagnostics);
             },
@@ -144,7 +187,10 @@ class FileNameRuleTest extends RuleTestCase
             ]
         ];
         yield 'kebab case 1' => [
-            'foo-boo.feature', '',
+            new TestFeature(
+                'foo-boo.feature',
+                ''
+            ),
             function (FeatureDiagnostics $diagnostics): void {
                 self::assertCount(0, $diagnostics);
             },
@@ -153,7 +199,10 @@ class FileNameRuleTest extends RuleTestCase
             ]
         ];
         yield 'kebab case 2' => [
-            'foo.feature', '',
+            new TestFeature(
+                'foo.feature',
+                ''
+            ),
             function (FeatureDiagnostics $diagnostics): void {
                 self::assertCount(0, $diagnostics);
             },

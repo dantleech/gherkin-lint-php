@@ -11,6 +11,7 @@ use DTL\GherkinLint\Model\FeatureDiagnostics;
 use DTL\GherkinLint\Model\FeatureFile;
 use DTL\GherkinLint\Model\Linter;
 use DTL\GherkinLint\Model\Rule;
+use DTL\GherkinLint\Tests\Util\TestFeature;
 use Generator;
 use PHPUnit\Framework\TestCase;
 
@@ -26,24 +27,30 @@ abstract class RuleTestCase extends TestCase
     /**
      * @dataProvider provideTests
      */
-    public function testRule(string $path, string $contents, Closure $assertion, array $config = []): void
+    public function testRule(TestFeature|array $features, Closure $assertion, array $config = []): void
     {
+        if ($features instanceof TestFeature) {
+            $features = [$features];
+        }
+
         $rule = $this->createRule();
-        $assertion(new FeatureDiagnostics(new FeatureFile('/foo', '/bar'), iterator_to_array((
-            new Linter(
-                new GherkinParser(
-                    includePickles: false,
-                    includeSource: false,
-                    includeGherkinDocument: true,
-                ),
-                [$rule],
-                new RuleConfigFactory(
-                    ConfigMapper::create(),
-                    [
-                        $rule->describe()->name => new ConfigRule(true, $config)
-                    ]
-                ),
-            )
-        )->lint($path, $contents))));
+        $linter = new Linter(
+            new GherkinParser(
+                includePickles: false,
+                includeSource: false,
+                includeGherkinDocument: true,
+            ),
+            [$rule],
+            new RuleConfigFactory(
+                ConfigMapper::create(),
+                [
+                    $rule->describe()->name => new ConfigRule(true, $config)
+                ]
+            ),
+        );
+        foreach ($features as $feature) {
+            $diagnostics = iterator_to_array($linter->lint($feature->path, $feature->content));
+        }
+        $assertion(new FeatureDiagnostics(new FeatureFile('/foo', '/bar'), $diagnostics));
     }
 }

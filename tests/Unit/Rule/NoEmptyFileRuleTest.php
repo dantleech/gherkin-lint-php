@@ -5,6 +5,7 @@ namespace DTL\GherkinLint\Tests\Unit\Rule;
 use DTL\GherkinLint\Model\FeatureDiagnostics;
 use DTL\GherkinLint\Model\Rule;
 use DTL\GherkinLint\Rule\NoEmptyFileRule;
+use DTL\GherkinLint\Tests\Util\TestFeature;
 use Generator;
 
 class NoEmptyFileRuleTest extends RuleTestCase
@@ -17,8 +18,10 @@ class NoEmptyFileRuleTest extends RuleTestCase
     public function provideTests(): Generator
     {
         yield 'empty file' => [
-            'foo.feature',
-            '',
+            new TestFeature(
+                'foo.feature',
+                ''
+            ),
             function (FeatureDiagnostics $diagnostics): void {
                 self::assertCount(1, $diagnostics);
                 self::assertEquals(
@@ -29,8 +32,10 @@ class NoEmptyFileRuleTest extends RuleTestCase
         ];
 
         yield 'non-empty file' => [
-            'foo.feature',
-            'Feature: Foobar',
+            new TestFeature(
+                'foo.feature',
+                'Feature: Foobar'
+            ),
             function (FeatureDiagnostics $diagnostics): void {
                 self::assertCount(0, $diagnostics);
             }
