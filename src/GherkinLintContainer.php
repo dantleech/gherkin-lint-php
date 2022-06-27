@@ -19,7 +19,7 @@ use DTL\GherkinLint\Rule\AllowedTagsRule;
 use DTL\GherkinLint\Rule\FileNameRule;
 use DTL\GherkinLint\Rule\IndentationRule;
 use DTL\GherkinLint\Rule\KeywordOrderRule;
-use DTL\GherkinLint\Rule\NoBackgroundOnlyScenarioRule;
+use DTL\GherkinLint\Rule\NoBackgroundWithSingleScenarioRule;
 use DTL\GherkinLint\Rule\NoDuplicateTags;
 use DTL\GherkinLint\Rule\NoEmptyFileRule;
 use DTL\GherkinLint\Rule\ScenariosPerFileRule;
@@ -68,7 +68,7 @@ final class GherkinLintContainer
             new IndentationRule(),
             new KeywordOrderRule(),
             new ScenariosPerFileRule(),
-            new NoBackgroundOnlyScenarioRule(),
+            new NoBackgroundWithSingleScenarioRule(),
         ]);
     }
 

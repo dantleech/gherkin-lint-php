@@ -14,7 +14,7 @@ use DTL\GherkinLint\Model\RuleExample;
 use DTL\GherkinLint\Rule\Util\DocumentQuery;
 use Generator;
 
-class NoBackgroundOnlyScenarioRule implements Rule
+class NoBackgroundWithSingleScenarioRule implements Rule
 {
     public function analyse(GherkinDocument $document, RuleConfig $config): Generator
     {
