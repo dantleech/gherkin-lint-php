@@ -21,6 +21,9 @@ use DTL\GherkinLint\Rule\IndentationRule;
 use DTL\GherkinLint\Rule\KeywordOrderRule;
 use DTL\GherkinLint\Rule\NoBackgroundWithSingleScenarioRule;
 use DTL\GherkinLint\Rule\NoDuplicateTags;
+use DTL\GherkinLint\Rule\NoDuplicatedFeatureNames;
+use DTL\GherkinLint\Rule\NoDuplicatedScenarioNames;
+use DTL\GherkinLint\Rule\NoEmptyBackgroundRule;
 use DTL\GherkinLint\Rule\NoEmptyFileRule;
 use DTL\GherkinLint\Rule\ScenariosPerFileRule;
 use Symfony\Component\Console\Application;
@@ -69,6 +72,9 @@ final class GherkinLintContainer
             new KeywordOrderRule(),
             new ScenariosPerFileRule(),
             new NoBackgroundWithSingleScenarioRule(),
+            new NoDuplicatedFeatureNames(),
+            new NoDuplicatedScenarioNames(),
+            new NoEmptyBackgroundRule(),
         ]);
     }
 

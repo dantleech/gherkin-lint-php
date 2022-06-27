@@ -1,6 +1,3 @@
 Feature: Foobar
-    Background:
-        Given I have stuff
-
-    Scenario: One
-    Scenario: Two
+    Scenario: This is a scenario
+        Then things will not be good
