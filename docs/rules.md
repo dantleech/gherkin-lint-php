@@ -7,6 +7,7 @@ Rules
 - [filename](#filename): Filenames must conform to the specified stype
 - [indentation](#indentation): Ensure consistent indentation
 - [keyword-order](#keyword-order): Ensure that keywords are in the correct order
+- [scenarios-per-file](#scenarios-per-file): Set a maximum (and/or minimum) number of scenarios allowed per file
 
 no-duplicate-tags
 -----------------
@@ -267,5 +268,59 @@ Feature: Foobar
         Given something
         Then an exception should be thrown
         When I do this
+```
+scenarios-per-file
+------------------
+
+Set a maximum (and/or minimum) number of scenarios allowed per file
+
+**Good**
+
+```json
+{
+    "scenarios-per-file": {
+        "min": 1,
+        "max": 3
+    }
+}
+```
+
+```gherkin
+# example.feature
+Feature: One
+    Scenario: One
+```
+**Bad**
+
+```json
+{
+    "scenarios-per-file": {
+        "min": 1,
+        "max": 1
+    }
+}
+```
+
+```gherkin
+# example.feature
+Feature: One
+    Scenario: One
+    Scenario: One
+```
+**Bad**
+
+```json
+{
+    "scenarios-per-file": {
+        "min": 5,
+        "max": 10
+    }
+}
+```
+
+```gherkin
+# example.feature
+Feature: One
+    Scenario: One
 ```
 

@@ -1,1 +1,1 @@
-{"rules":{"no-duplicate-tags":[]}}
+{"rules":{"scenarios-per-file":{"min":0,"max":1}}}

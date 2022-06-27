@@ -4,6 +4,8 @@ namespace DTL\GherkinLint\Rule;
 
 use Cucumber\Messages\GherkinDocument;
 use DTL\GherkinLint\Model\FeatureDiagnostic;
+use DTL\GherkinLint\Model\FeatureDiagnosticSeverity;
+use DTL\GherkinLint\Model\Range;
 use DTL\GherkinLint\Model\Rule;
 use DTL\GherkinLint\Model\RuleConfig;
 use DTL\GherkinLint\Model\RuleDescription;
@@ -16,6 +18,11 @@ class TestRule implements Rule
      */
     public function __construct(private string $name, private array $diagnostics = [])
     {
+        yield new FeatureDiagnostic(
+            Range::fromInts(0, 0, 0, 0),
+            FeatureDiagnosticSeverity::WARNING,
+            'Feature file is not allowed to be empty',
+        );
     }
 
     public function analyse(GherkinDocument $document, RuleConfig $config): Generator
