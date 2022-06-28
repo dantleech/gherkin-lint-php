@@ -1,7 +1,7 @@
 Gherkin Lint for PHP
 ====================
 
-This package provides a Gherkin liter for PHP heavily inspired by
+This package provides a Gherkin linter for PHP heavily inspired by
 [vsiakka/gherkin-lint](https://github.com/vsiakka/gherkin-lint) and using the
 [PHP Gherkin Parser](https://packagist.org/packages/cucumber/gherkin).
 
