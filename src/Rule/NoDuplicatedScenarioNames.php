@@ -3,7 +3,6 @@
 namespace DTL\GherkinLint\Rule;
 
 use Cucumber\Messages\FeatureChild;
-use Cucumber\Messages\GherkinDocument;
 use Cucumber\Messages\Scenario;
 use DTL\GherkinLint\Model\FeatureDiagnostic;
 use DTL\GherkinLint\Model\FeatureDiagnosticSeverity;

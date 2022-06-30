@@ -2,7 +2,6 @@
 
 namespace DTL\GherkinLint\Model;
 
-use Cucumber\Messages\GherkinDocument;
 use Generator;
 
 interface Rule

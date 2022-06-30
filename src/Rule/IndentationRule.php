@@ -4,7 +4,6 @@ namespace DTL\GherkinLint\Rule;
 
 use Cucumber\Messages\Examples;
 use Cucumber\Messages\FeatureChild;
-use Cucumber\Messages\GherkinDocument;
 use Cucumber\Messages\Location;
 use Cucumber\Messages\Scenario;
 use Cucumber\Messages\Step;

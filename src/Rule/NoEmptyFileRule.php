@@ -2,7 +2,6 @@
 
 namespace DTL\GherkinLint\Rule;
 
-use Cucumber\Messages\GherkinDocument;
 use DTL\GherkinLint\Model\FeatureDiagnostic;
 use DTL\GherkinLint\Model\FeatureDiagnosticSeverity;
 use DTL\GherkinLint\Model\ParsedFeature;

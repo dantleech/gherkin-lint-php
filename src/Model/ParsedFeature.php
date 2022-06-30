@@ -9,8 +9,7 @@ final class ParsedFeature
     public function __construct(
         private readonly GherkinDocument $document,
         private readonly string $source
-    )
-    {
+    ) {
     }
 
     public function document(): GherkinDocument
