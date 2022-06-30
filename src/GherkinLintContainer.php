@@ -66,19 +66,19 @@ final class GherkinLintContainer
     public function createRules(): RuleCollection
     {
         return new RuleCollection([
-            new NoDuplicateTags(),
-            new NoEmptyFileRule(),
             new AllowedTagsRule(),
             new FileNameRule(),
             new IndentationRule(),
             new KeywordOrderRule(),
-            new ScenariosPerFileRule(),
             new NoBackgroundWithSingleScenarioRule(),
+            new NoConsecutiveEmptyLinesRule(),
+            new NoDuplicateTags(),
             new NoDuplicatedFeatureNames(),
             new NoDuplicatedScenarioNames(),
             new NoEmptyBackgroundRule(),
+            new NoEmptyFileRule(),
             new NoHomogenousTagsRule(),
-            new NoConsecutiveEmptyLinesRule(),
+            new ScenariosPerFileRule(),
         ]);
     }
 
