@@ -10,7 +10,7 @@ interface Rule
     /**
      * @return Generator<mixed,FeatureDiagnostic,mixed,void>
      */
-    public function analyse(GherkinDocument $document, RuleConfig $config): Generator;
+    public function analyse(ParsedFeature $feature, RuleConfig $config): Generator;
 
     public function describe(): RuleDescription;
 }

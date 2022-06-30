@@ -8,6 +8,7 @@ use Cucumber\Messages\Scenario;
 use Cucumber\Messages\Tag;
 use DTL\GherkinLint\Model\FeatureDiagnostic;
 use DTL\GherkinLint\Model\FeatureDiagnosticSeverity;
+use DTL\GherkinLint\Model\ParsedFeature;
 use DTL\GherkinLint\Model\Range;
 use DTL\GherkinLint\Model\Rule;
 use DTL\GherkinLint\Model\RuleConfig;
@@ -17,8 +18,9 @@ use Generator;
 
 class AllowedTagsRule implements Rule
 {
-    public function analyse(GherkinDocument $document, RuleConfig $config): Generator
+    public function analyse(ParsedFeature $feature, RuleConfig $config): Generator
     {
+        $document = $feature->document();
         assert($config instanceof AllowedTagsConfig);
 
         if (null === $config->allow) {
