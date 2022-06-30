@@ -68,31 +68,31 @@ class NoHomogenousTagsRule implements Rule
                     valid: true,
                     title: 'No tags are present on all scenarios',
                     example: <<<'EOT'
-                    Feature: Good feature
-                        @one
-                        Scenario: One
-                        
-                        @two
-                        Scenario: Two
-                        
-                        @three
-                        Scenario: Three
-                    EOT
+                        Feature: Good feature
+                            @one
+                            Scenario: One
+                            
+                            @two
+                            Scenario: Two
+                            
+                            @three
+                            Scenario: Three
+                        EOT
                 ),
                 new RuleExample(
                     valid: false,
                     title: 'One tag is present in all scenarios',
                     example: <<<'EOT'
-                    Feature: Bad feature
-                        @one
-                        Scenario: One
-                        
-                        @two @one
-                        Scenario: Two
-                        
-                        @three @one
-                        Scenario: Three
-                    EOT
+                        Feature: Bad feature
+                            @one
+                            Scenario: One
+                            
+                            @two @one
+                            Scenario: Two
+                            
+                            @three @one
+                            Scenario: Three
+                        EOT
                 )
             ]
         );

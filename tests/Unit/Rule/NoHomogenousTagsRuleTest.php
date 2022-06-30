@@ -7,7 +7,6 @@ use DTL\GherkinLint\Model\Rule;
 use DTL\GherkinLint\Rule\NoHomogenousTagsRule;
 use DTL\GherkinLint\Tests\Util\TestFeature;
 use Generator;
-use PHPUnit\Framework\TestCase;
 
 class NoHomogenousTagsRuleTest extends RuleTestCase
 {
