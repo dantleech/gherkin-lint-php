@@ -6,7 +6,7 @@ Rules
 - [indentation](#indentation): Ensure consistent indentation
 - [keyword-order](#keyword-order): Ensure that keywords are in the correct order
 - [no-background-with-single-scenario](#no-background-with-single-scenario): Backgrounds are only allowed when there is more than one scenario
-- [no-consecutive-empty-lines](#no-consecutive-empty-lines): Do not permist multiple empty lines
+- [no-consecutive-empty-lines](#no-consecutive-empty-lines): Do not permit consecutive empty lines
 - [no-duplicate-tags](#no-duplicate-tags): Disallow duplicate tags
 - [no-duplicated-feature-names](#no-duplicated-feature-names): Dissallow duplicated feature names
 - [no-duplicated-scenario-names](#no-duplicated-scenario-names): Dissallow duplicated scenarios within feature files
@@ -268,7 +268,7 @@ Feature: Foobar
 no-consecutive-empty-lines
 --------------------------
 
-Do not permist multiple empty lines
+Do not permit consecutive empty lines
 
 **Good**: No consecutive empty lines
 
