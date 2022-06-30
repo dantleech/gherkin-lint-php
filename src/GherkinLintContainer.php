@@ -27,7 +27,6 @@ use DTL\GherkinLint\Rule\NoEmptyBackgroundRule;
 use DTL\GherkinLint\Rule\NoEmptyFileRule;
 use DTL\GherkinLint\Rule\NoHomogenousTagsRule;
 use DTL\GherkinLint\Rule\ScenariosPerFileRule;
-use PhpCsFixer\Fixer\Naming\NoHomoglyphNamesFixer;
 use Symfony\Component\Console\Application;
 use Symfony\Component\Console\Output\OutputInterface;
 
