@@ -70,7 +70,7 @@ class NoConsecutiveEmptyLinesRule implements Rule
     {
         return new RuleDescription(
             'no-consecutive-empty-lines',
-            'Do not permist multiple empty lines',
+            'Do not permit consecutive empty lines',
             null,
             [
                 new RuleExample(
