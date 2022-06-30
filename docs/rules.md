@@ -13,6 +13,7 @@ Rules
 - [no-duplicated-scenario-names](#no-duplicated-scenario-names): Dissallow duplicated scenarios within feature files
 - [no-empty-background](#no-empty-background): Disallow empty backgrounds
 - [no-homogenous-tags](#no-homogenous-tags): If a tag exists on each scenarion then it should be moved to the feature level
+- [no-consecutive-empty-lines](#no-consecutive-empty-lines): Do not permist multiple empty lines
 
 no-duplicate-tags
 -----------------
@@ -435,6 +436,37 @@ Feature: Bad feature
     Scenario: Two
     
     @three @one
+    Scenario: Three
+```
+no-consecutive-empty-lines
+--------------------------
+
+Do not permist multiple empty lines
+
+**Good**: No consecutive empty lines
+
+```gherkin
+# example.feature
+Feature: Foo
+
+    Scenario: One
+
+    Scenario: Two
+
+    Scenario: Three
+```
+**Bad**: Consecutive empty lines
+
+```gherkin
+# example.feature
+Feature: Foo
+
+
+    Scenario: One
+
+    Scenario: Two
+
+
     Scenario: Three
 ```
 

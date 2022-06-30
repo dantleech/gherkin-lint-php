@@ -2,7 +2,6 @@
 
 namespace DTL\GherkinLint\Rule;
 
-use Cucumber\Messages\GherkinDocument;
 use DTL\GherkinLint\Model\FeatureDiagnostic;
 use DTL\GherkinLint\Model\FeatureDiagnosticSeverity;
 use DTL\GherkinLint\Model\ParsedFeature;
@@ -10,10 +9,10 @@ use DTL\GherkinLint\Model\Range;
 use DTL\GherkinLint\Model\Rule;
 use DTL\GherkinLint\Model\RuleConfig;
 use DTL\GherkinLint\Model\RuleDescription;
+use DTL\GherkinLint\Model\RuleExample;
 use Generator;
-use function Symfony\Component\String\u;
 
-class NoMultipleEmptyLinesRule implements Rule
+class NoConsecutiveEmptyLinesRule implements Rule
 {
     public function analyse(ParsedFeature $feature, RuleConfig $config): Generator
     {
@@ -69,6 +68,40 @@ class NoMultipleEmptyLinesRule implements Rule
 
     public function describe(): RuleDescription
     {
-        return new RuleDescription('no-multiple-empty-lines', 'Do not permist multiple empty lines', null, []);
+        return new RuleDescription(
+            'no-consecutive-empty-lines',
+            'Do not permist multiple empty lines',
+            null,
+            [
+                new RuleExample(
+                    valid: true,
+                    title: 'No consecutive empty lines',
+                    example: <<<'EOT'
+                        Feature: Foo
+
+                            Scenario: One
+
+                            Scenario: Two
+
+                            Scenario: Three
+                        EOT
+                ),
+                new RuleExample(
+                    valid: false,
+                    title: 'Consecutive empty lines',
+                    example: <<<'EOT'
+                        Feature: Foo
+
+
+                            Scenario: One
+
+                            Scenario: Two
+
+
+                            Scenario: Three
+                        EOT
+                ),
+            ]
+        );
     }
 }

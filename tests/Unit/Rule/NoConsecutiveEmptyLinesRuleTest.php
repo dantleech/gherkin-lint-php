@@ -8,7 +8,7 @@ use DTL\GherkinLint\Rule\NoConsecutiveEmptyLinesRule;
 use DTL\GherkinLint\Tests\Util\TestFeature;
 use Generator;
 
-class NoMultipleEmptyLinesRuleTest extends RuleTestCase
+class NoConsecutiveEmptyLinesRuleTest extends RuleTestCase
 {
     public function createRule(): Rule
     {
@@ -37,11 +37,11 @@ class NoMultipleEmptyLinesRuleTest extends RuleTestCase
                 <<<'EOT'
                     Feature: Foo
 
-                        Scenario: One
+                        Scenario: Foo
 
-                        Scenario: Two
+                        Scenario: Foo
 
-                        Scenario: Three
+                        Scenario: Foo
 
                     EOT,
             ),
