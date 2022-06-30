@@ -26,6 +26,7 @@ use DTL\GherkinLint\Rule\NoDuplicatedScenarioNames;
 use DTL\GherkinLint\Rule\NoEmptyBackgroundRule;
 use DTL\GherkinLint\Rule\NoEmptyFileRule;
 use DTL\GherkinLint\Rule\NoHomogenousTagsRule;
+use DTL\GherkinLint\Rule\NoConsecutiveEmptyLinesRule;
 use DTL\GherkinLint\Rule\ScenariosPerFileRule;
 use Symfony\Component\Console\Application;
 use Symfony\Component\Console\Output\OutputInterface;
@@ -65,18 +66,19 @@ final class GherkinLintContainer
     public function createRules(): RuleCollection
     {
         return new RuleCollection([
-            new NoDuplicateTags(),
-            new NoEmptyFileRule(),
             new AllowedTagsRule(),
             new FileNameRule(),
             new IndentationRule(),
             new KeywordOrderRule(),
-            new ScenariosPerFileRule(),
             new NoBackgroundWithSingleScenarioRule(),
+            new NoConsecutiveEmptyLinesRule(),
+            new NoDuplicateTags(),
             new NoDuplicatedFeatureNames(),
             new NoDuplicatedScenarioNames(),
             new NoEmptyBackgroundRule(),
+            new NoEmptyFileRule(),
             new NoHomogenousTagsRule(),
+            new ScenariosPerFileRule(),
         ]);
     }
 
