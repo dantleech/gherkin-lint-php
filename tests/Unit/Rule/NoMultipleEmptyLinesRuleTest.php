@@ -23,13 +23,107 @@ class NoMultipleEmptyLinesRuleTest extends RuleTestCase
                 <<<'EOT'
                     Feature: Foo
 
+                        Scenario: Foo
+                    EOT,
+            ),
+            function (FeatureDiagnostics $diagnostics): void {
+                self::assertCount(0, $diagnostics);
+            }
+        ];
+
+        yield [
+            new TestFeature(
+                'foo.feature',
+                <<<'EOT'
+                    Feature: Foo
+
+                        Scenario: Foo
+
+                        Scenario: Foo
+
+                        Scenario: Foo
+
+                    EOT,
+            ),
+            function (FeatureDiagnostics $diagnostics): void {
+                self::assertCount(0, $diagnostics);
+            }
+        ];
+
+        yield [
+            new TestFeature(
+                'foo.feature',
+                <<<'EOT'
+                    Feature: Foo
+
 
                         Scenario: Foo
                     EOT,
             ),
             function (FeatureDiagnostics $diagnostics): void {
                 self::assertCount(1, $diagnostics);
-                self::assertEquals('Multiple empty lines are not allowed', $diagnostics->at(0)->message);
+                self::assertEquals('Consecutive empty lines are dissallowed', $diagnostics->at(0)->message);
+            }
+        ];
+
+        yield [
+            new TestFeature(
+                'foo.feature',
+                <<<'EOT'
+                    Feature: Foo
+
+
+
+
+                        Scenario: Foo
+                    EOT,
+            ),
+            function (FeatureDiagnostics $diagnostics): void {
+                self::assertCount(1, $diagnostics);
+                self::assertEquals('Consecutive empty lines are dissallowed', $diagnostics->at(0)->message);
+            }
+        ];
+
+        yield [
+            new TestFeature(
+                'foo.feature',
+                <<<'EOT'
+                    Feature: Foo
+
+
+
+
+                        Scenario: Foo
+
+
+                    EOT,
+            ),
+            function (FeatureDiagnostics $diagnostics): void {
+                self::assertCount(2, $diagnostics);
+                self::assertEquals('Consecutive empty lines are dissallowed', $diagnostics->at(0)->message);
+            }
+        ];
+
+        yield [
+            new TestFeature(
+                'foo.feature',
+                <<<'EOT'
+                    Feature: Foo
+
+
+
+
+                        Scenario: Foo
+
+
+                        Scenario: Baz
+
+
+                    EOT,
+            ),
+            function (FeatureDiagnostics $diagnostics): void {
+                self::assertCount(3, $diagnostics);
+                self::assertEquals('Consecutive empty lines are dissallowed', $diagnostics->at(0)->message);
             }
         ];
     }
