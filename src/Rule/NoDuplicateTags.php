@@ -3,11 +3,11 @@
 namespace DTL\GherkinLint\Rule;
 
 use Cucumber\Messages\FeatureChild;
-use Cucumber\Messages\GherkinDocument;
 use Cucumber\Messages\Scenario;
 use Cucumber\Messages\Tag;
 use DTL\GherkinLint\Model\FeatureDiagnostic;
 use DTL\GherkinLint\Model\FeatureDiagnosticSeverity;
+use DTL\GherkinLint\Model\ParsedFeature;
 use DTL\GherkinLint\Model\Range;
 use DTL\GherkinLint\Model\Rule;
 use DTL\GherkinLint\Model\RuleConfig;
@@ -17,8 +17,9 @@ use Generator;
 
 class NoDuplicateTags implements Rule
 {
-    public function analyse(GherkinDocument $document, RuleConfig $config): Generator
+    public function analyse(ParsedFeature $feature, RuleConfig $config): Generator
     {
+        $document = $feature->document();
         yield from $this->checkTags($document->feature?->tags);
 
         foreach ($document->feature->children ?? [] as $child) {

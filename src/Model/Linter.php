@@ -32,7 +32,7 @@ class Linter
                 }
 
                 yield from $rule->analyse(
-                    $document,
+                    new ParsedFeature($document, $contents),
                     $this->configFactory->for($description)
                 );
             }

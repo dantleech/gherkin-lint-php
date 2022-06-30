@@ -3,10 +3,10 @@
 namespace DTL\GherkinLint\Rule;
 
 use Cucumber\Messages\FeatureChild;
-use Cucumber\Messages\GherkinDocument;
 use Cucumber\Messages\Scenario;
 use DTL\GherkinLint\Model\FeatureDiagnostic;
 use DTL\GherkinLint\Model\FeatureDiagnosticSeverity;
+use DTL\GherkinLint\Model\ParsedFeature;
 use DTL\GherkinLint\Model\Range;
 use DTL\GherkinLint\Model\Rule;
 use DTL\GherkinLint\Model\RuleConfig;
@@ -21,8 +21,9 @@ class NoDuplicatedScenarioNames implements Rule
      */
     private array $seen = [];
 
-    public function analyse(GherkinDocument $document, RuleConfig $config): Generator
+    public function analyse(ParsedFeature $feature, RuleConfig $config): Generator
     {
+        $document = $feature->document();
         $scenarios = [];
         foreach ($document->feature->children ?? [] as $child) {
             if (!$child instanceof FeatureChild) {

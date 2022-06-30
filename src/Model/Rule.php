@@ -2,7 +2,6 @@
 
 namespace DTL\GherkinLint\Model;
 
-use Cucumber\Messages\GherkinDocument;
 use Generator;
 
 interface Rule
@@ -10,7 +9,7 @@ interface Rule
     /**
      * @return Generator<mixed,FeatureDiagnostic,mixed,void>
      */
-    public function analyse(GherkinDocument $document, RuleConfig $config): Generator;
+    public function analyse(ParsedFeature $feature, RuleConfig $config): Generator;
 
     public function describe(): RuleDescription;
 }
