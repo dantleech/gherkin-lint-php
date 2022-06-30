@@ -12,6 +12,7 @@ Rules
 - [no-duplicated-feature-names](#no-duplicated-feature-names): Dissallow duplicated feature names
 - [no-duplicated-scenario-names](#no-duplicated-scenario-names): Dissallow duplicated scenarios within feature files
 - [no-empty-background](#no-empty-background): Disallow empty backgrounds
+- [no-homogenous-tags](#no-homogenous-tags): If a tag exists on each scenarion then it should be moved to the feature level
 
 no-duplicate-tags
 -----------------
@@ -402,5 +403,38 @@ Feature: Foobar
 # example.feature
 Feature: Foobar
     Background:
+```
+no-homogenous-tags
+------------------
+
+If a tag exists on each scenarion then it should be moved to the feature level
+
+**Good**: No tags are present on all scenarios
+
+```gherkin
+# example.feature
+Feature: Good feature
+    @one
+    Scenario: One
+    
+    @two
+    Scenario: Two
+    
+    @three
+    Scenario: Three
+```
+**Bad**: One tag is present in all scenarios
+
+```gherkin
+# example.feature
+Feature: Bad feature
+    @one
+    Scenario: One
+    
+    @two @one
+    Scenario: Two
+    
+    @three @one
+    Scenario: Three
 ```
 
