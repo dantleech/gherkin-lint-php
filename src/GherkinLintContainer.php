@@ -20,6 +20,7 @@ use DTL\GherkinLint\Rule\FileNameRule;
 use DTL\GherkinLint\Rule\IndentationRule;
 use DTL\GherkinLint\Rule\KeywordOrderRule;
 use DTL\GherkinLint\Rule\NoBackgroundWithSingleScenarioRule;
+use DTL\GherkinLint\Rule\NoDisallowedPatternsRule;
 use DTL\GherkinLint\Rule\NoDuplicateTags;
 use DTL\GherkinLint\Rule\NoDuplicatedFeatureNames;
 use DTL\GherkinLint\Rule\NoDuplicatedScenarioNames;
@@ -72,6 +73,7 @@ final class GherkinLintContainer
             new KeywordOrderRule(),
             new NoBackgroundWithSingleScenarioRule(),
             new NoConsecutiveEmptyLinesRule(),
+            new NoDisallowedPatternsRule(),
             new NoDuplicateTags(),
             new NoDuplicatedFeatureNames(),
             new NoDuplicatedScenarioNames(),

@@ -29,4 +29,12 @@ class Range
             mb_strlen($name)
         );
     }
+
+    public static function fromByteOffsets(string $text, int $start, int $end): self
+    {
+        return new self(
+            Position::fromOffset($text, $start),
+            Position::fromOffset($text, $end)
+        );
+    }
 }

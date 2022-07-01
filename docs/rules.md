@@ -14,6 +14,7 @@ Rules
 - [no-empty-file](#no-empty-file): Disallow empty files
 - [no-homogenous-tags](#no-homogenous-tags): If a tag exists on each scenarion then it should be moved to the feature level
 - [scenarios-per-file](#scenarios-per-file): Set a maximum (and/or minimum) number of scenarios allowed per file
+- [no-restricted-patterns](#no-restricted-patterns): Dissallow text matching any of the given patterns
 
 allowed-tags
 ------------
@@ -468,5 +469,26 @@ Feature: One
 # example.feature
 Feature: One
     Scenario: One
+```
+no-restricted-patterns
+----------------------
+
+Dissallow text matching any of the given patterns
+
+**Bad**: Disallow the term "Client"
+
+```json
+{
+    "no-restricted-patterns": {
+        "patterns": [
+            "\/client\/i"
+        ]
+    }
+}
+```
+
+```gherkin
+# example.feature
+Feature: Client
 ```
 
