@@ -2,7 +2,6 @@
 
 namespace DTL\GherkinLint\Rule;
 
-use Cucumber\Messages\Location;
 use DTL\GherkinLint\Model\FeatureDiagnostic;
 use DTL\GherkinLint\Model\FeatureDiagnosticSeverity;
 use DTL\GherkinLint\Model\ParsedFeature;
@@ -44,8 +43,8 @@ class NoDisallowedPatternsRule implements Rule
                     valid: false,
                     title: 'Disallow the term "Client"',
                     example: <<<'EOT'
-                    Feature: Client
-                    EOT,
+                        Feature: Client
+                        EOT,
                     config: new NoDisallowedPatternsConfig([
                         '/client/i',
                     ]),

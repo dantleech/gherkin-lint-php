@@ -4,11 +4,9 @@ namespace DTL\GherkinLint\Tests\Unit\Rule;
 
 use DTL\GherkinLint\Model\FeatureDiagnostics;
 use DTL\GherkinLint\Model\Rule;
-use DTL\GherkinLint\Rule\NoDisallowedPatternsConfig;
 use DTL\GherkinLint\Rule\NoDisallowedPatternsRule;
 use DTL\GherkinLint\Tests\Util\TestFeature;
 use Generator;
-use PHPUnit\Framework\TestCase;
 
 class NoDisallowedPatternsRuleTest extends RuleTestCase
 {
@@ -23,14 +21,14 @@ class NoDisallowedPatternsRuleTest extends RuleTestCase
             new TestFeature(
                 'test.feature',
                 <<<'EOT'
-                Feature: Foobar
-                    Scenario: Barfoo
-                       Given this
-                       When I do that
-                       Then something should happen
-                EOT
+                    Feature: Foobar
+                        Scenario: Barfoo
+                           Given this
+                           When I do that
+                           Then something should happen
+                    EOT
             ),
-            function (FeatureDiagnostics $diagnostics) {
+            function (FeatureDiagnostics $diagnostics): void {
                 self::assertCount(0, $diagnostics);
             },
             [
@@ -44,14 +42,14 @@ class NoDisallowedPatternsRuleTest extends RuleTestCase
             new TestFeature(
                 'test.feature',
                 <<<'EOT'
-                Feature: Foobar
-                    Scenario: Barfoo
-                       Given this
-                       When I do that
-                       Then something should happen
-                EOT
+                    Feature: Foobar
+                        Scenario: Barfoo
+                           Given this
+                           When I do that
+                           Then something should happen
+                    EOT
             ),
-            function (FeatureDiagnostics $diagnostics) {
+            function (FeatureDiagnostics $diagnostics): void {
                 self::assertCount(1, $diagnostics);
                 self::assertEquals(5, $diagnostics->at(0)->range->start->lineNo);
                 self::assertEquals(12, $diagnostics->at(0)->range->start->colNo);
@@ -69,17 +67,17 @@ class NoDisallowedPatternsRuleTest extends RuleTestCase
             new TestFeature(
                 'test.feature',
                 <<<'EOT'
-                Feature: Foobar
-                    Scenario: Barfoo
-                       Given this
-                       When I do that
-                       Then something should pass
+                    Feature: Foobar
+                        Scenario: Barfoo
+                           Given this
+                           When I do that
+                           Then something should pass
 
-                    Scenario: Something is up
-                       Then something should happen
-                EOT
+                        Scenario: Something is up
+                           Then something should happen
+                    EOT
             ),
-            function (FeatureDiagnostics $diagnostics) {
+            function (FeatureDiagnostics $diagnostics): void {
                 self::assertCount(4, $diagnostics);
                 self::assertEquals(
                     'Text "something" is not allowed by pattern "/something/i"',

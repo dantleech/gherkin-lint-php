@@ -73,6 +73,7 @@ final class GherkinLintContainer
             new KeywordOrderRule(),
             new NoBackgroundWithSingleScenarioRule(),
             new NoConsecutiveEmptyLinesRule(),
+            new NoDisallowedPatternsRule(),
             new NoDuplicateTags(),
             new NoDuplicatedFeatureNames(),
             new NoDuplicatedScenarioNames(),
@@ -80,7 +81,6 @@ final class GherkinLintContainer
             new NoEmptyFileRule(),
             new NoHomogenousTagsRule(),
             new ScenariosPerFileRule(),
-            new NoDisallowedPatternsRule(),
         ]);
     }
 

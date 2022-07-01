@@ -47,7 +47,8 @@ class Position
 
         throw new RuntimeException(sprintf(
             'Offset (%d) was out of range of document (length: %d)',
-            $offset, $textOffset
+            $offset,
+            $textOffset
         ));
     }
 }
