@@ -9,6 +9,7 @@ use DTL\GherkinLint\Model\Range;
 use DTL\GherkinLint\Model\Rule;
 use DTL\GherkinLint\Model\RuleConfig;
 use DTL\GherkinLint\Model\RuleDescription;
+use DTL\GherkinLint\Model\RuleExample;
 use Generator;
 
 class NoDuplicatedFeatureNames implements Rule
@@ -48,6 +49,13 @@ class NoDuplicatedFeatureNames implements Rule
             'no-duplicated-feature-names',
             'Dissallow duplicated feature names',
             null,
+            [
+                new RuleExample(
+                    valid: true,
+                    title: 'Feature with unique title',
+                    example: 'Feature: this feature title is one of a kind',
+                )
+            ]
         );
     }
 }
