@@ -38,6 +38,7 @@ class NoDuplicatedFeatureNamesTest extends RuleTestCase
             [
             ]
         ];
+
         yield 'duplicated feature' => [
             [
                 new TestFeature(

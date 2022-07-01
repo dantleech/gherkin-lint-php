@@ -26,6 +26,7 @@ use DTL\GherkinLint\Rule\NoDuplicatedFeatureNames;
 use DTL\GherkinLint\Rule\NoDuplicatedScenarioNames;
 use DTL\GherkinLint\Rule\NoEmptyBackgroundRule;
 use DTL\GherkinLint\Rule\NoEmptyFileRule;
+use DTL\GherkinLint\Rule\NoEmptyScenariosRule;
 use DTL\GherkinLint\Rule\NoHomogenousTagsRule;
 use DTL\GherkinLint\Rule\NoConsecutiveEmptyLinesRule;
 use DTL\GherkinLint\Rule\ScenariosPerFileRule;
@@ -81,6 +82,7 @@ final class GherkinLintContainer
             new NoEmptyFileRule(),
             new NoHomogenousTagsRule(),
             new ScenariosPerFileRule(),
+            new NoEmptyScenariosRule(),
         ]);
     }
 
