@@ -7,6 +7,7 @@ Rules
 - [keyword-order](#keyword-order): Ensure that keywords are in the correct order
 - [no-background-with-single-scenario](#no-background-with-single-scenario): Backgrounds are only allowed when there is more than one scenario
 - [no-consecutive-empty-lines](#no-consecutive-empty-lines): Do not permit consecutive empty lines
+- [no-restricted-patterns](#no-restricted-patterns): Dissallow text matching any of the given patterns
 - [no-duplicate-tags](#no-duplicate-tags): Disallow duplicate tags
 - [no-duplicated-feature-names](#no-duplicated-feature-names): Dissallow duplicated feature names
 - [no-duplicated-scenario-names](#no-duplicated-scenario-names): Dissallow duplicated scenarios within feature files
@@ -14,7 +15,7 @@ Rules
 - [no-empty-file](#no-empty-file): Disallow empty files
 - [no-homogenous-tags](#no-homogenous-tags): If a tag exists on each scenarion then it should be moved to the feature level
 - [scenarios-per-file](#scenarios-per-file): Set a maximum (and/or minimum) number of scenarios allowed per file
-- [no-restricted-patterns](#no-restricted-patterns): Dissallow text matching any of the given patterns
+- [no-empty-scenarios](#no-empty-scenarios): Disallow empty scenarios
 
 allowed-tags
 ------------
@@ -297,6 +298,27 @@ Feature: Foo
 
     Scenario: Three
 ```
+no-restricted-patterns
+----------------------
+
+Dissallow text matching any of the given patterns
+
+**Bad**: Disallow the term "Client"
+
+```json
+{
+    "no-restricted-patterns": {
+        "patterns": [
+            "\/client\/i"
+        ]
+    }
+}
+```
+
+```gherkin
+# example.feature
+Feature: Client
+```
 no-duplicate-tags
 -----------------
 
@@ -321,6 +343,12 @@ no-duplicated-feature-names
 
 Dissallow duplicated feature names
 
+**Good**: Feature with unique title
+
+```gherkin
+# example.feature
+Feature: this feature title is one of a kind
+```
 no-duplicated-scenario-names
 ----------------------------
 
@@ -470,25 +498,30 @@ Feature: One
 Feature: One
     Scenario: One
 ```
-no-restricted-patterns
-----------------------
+no-empty-scenarios
+------------------
 
-Dissallow text matching any of the given patterns
+Disallow empty scenarios
 
-**Bad**: Disallow the term "Client"
-
-```json
-{
-    "no-restricted-patterns": {
-        "patterns": [
-            "\/client\/i"
-        ]
-    }
-}
-```
+**Bad**: Scenarios that are empty
 
 ```gherkin
 # example.feature
-Feature: Client
+Feature: Example
+    Scenario: One
+    Scenario: Two
+```
+**Good**: Scenarios that are not empty
+
+```gherkin
+# example.feature
+Feature: Example
+    Scenario: One
+        When I do this
+        Then this should happen
+
+    Scenario: Two
+        When I do this
+        Then this should happen
 ```
 
