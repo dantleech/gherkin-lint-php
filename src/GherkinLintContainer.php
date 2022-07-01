@@ -30,6 +30,7 @@ use DTL\GherkinLint\Rule\NoEmptyScenariosRule;
 use DTL\GherkinLint\Rule\NoHomogenousTagsRule;
 use DTL\GherkinLint\Rule\NoConsecutiveEmptyLinesRule;
 use DTL\GherkinLint\Rule\ScenariosPerFileRule;
+use DTL\GherkinLint\Tests\Unit\Rule\NoSuperfluousTagsRule;
 use Symfony\Component\Console\Application;
 use Symfony\Component\Console\Output\OutputInterface;
 
@@ -83,6 +84,7 @@ final class GherkinLintContainer
             new NoHomogenousTagsRule(),
             new ScenariosPerFileRule(),
             new NoEmptyScenariosRule(),
+            new NoSuperfluousTagsRule(),
         ]);
     }
 
