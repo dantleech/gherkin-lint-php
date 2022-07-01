@@ -11,7 +11,6 @@ use DTL\GherkinLint\Model\RuleConfig;
 use DTL\GherkinLint\Model\RuleDescription;
 use DTL\GherkinLint\Model\RuleExample;
 use Generator;
-use LanguageServerProtocol\DiagnosticSeverity;
 
 class NoEmptyScenariosRule implements Rule
 {
@@ -39,24 +38,24 @@ class NoEmptyScenariosRule implements Rule
                     title: 'Scenarios that are empty',
                     valid: false,
                     example: <<<'EOT'
-                    Feature: Example
-                        Scenario: One
-                        Scenario: Two
-                    EOT
+                        Feature: Example
+                            Scenario: One
+                            Scenario: Two
+                        EOT
                 ),
                 new RuleExample(
                     title: 'Scenarios that are not empty',
                     valid: true,
                     example: <<<'EOT'
-                    Feature: Example
-                        Scenario: One
-                            When I do this
-                            Then this should happen
+                        Feature: Example
+                            Scenario: One
+                                When I do this
+                                Then this should happen
 
-                        Scenario: Two
-                            When I do this
-                            Then this should happen
-                    EOT
+                            Scenario: Two
+                                When I do this
+                                Then this should happen
+                        EOT
                 ),
             ]
         );
