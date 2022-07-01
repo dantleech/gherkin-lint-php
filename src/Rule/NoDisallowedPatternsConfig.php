@@ -8,6 +8,6 @@ use DTL\GherkinLint\Model\RuleConfig;
 class NoDisallowedPatternsConfig implements RuleConfig
 {
     public function __construct(
-        public readonly array $patterns
+        public readonly array $patterns = []
     ) {}
 }
