@@ -13,9 +13,10 @@ Rules
 - [no-duplicated-scenario-names](#no-duplicated-scenario-names): Dissallow duplicated scenarios within feature files
 - [no-empty-background](#no-empty-background): Disallow empty backgrounds
 - [no-empty-file](#no-empty-file): Disallow empty files
-- [no-homogenous-tags](#no-homogenous-tags): If a tag exists on each scenarion then it should be moved to the feature level
-- [scenarios-per-file](#scenarios-per-file): Set a maximum (and/or minimum) number of scenarios allowed per file
 - [no-empty-scenarios](#no-empty-scenarios): Disallow empty scenarios
+- [no-homogenous-tags](#no-homogenous-tags): If a tag exists on each scenarion then it should be moved to the feature level
+- [no-superflous-tags](#no-superflous-tags): Do not repeat tags in scenarios that are already present at the feature level
+- [scenarios-per-file](#scenarios-per-file): Set a maximum (and/or minimum) number of scenarios allowed per file
 
 allowed-tags
 ------------
@@ -409,6 +410,32 @@ Feature: Foobar
 # example.feature
    
 ```
+no-empty-scenarios
+------------------
+
+Disallow empty scenarios
+
+**Bad**: Scenarios that are empty
+
+```gherkin
+# example.feature
+Feature: Example
+    Scenario: One
+    Scenario: Two
+```
+**Good**: Scenarios that are not empty
+
+```gherkin
+# example.feature
+Feature: Example
+    Scenario: One
+        When I do this
+        Then this should happen
+
+    Scenario: Two
+        When I do this
+        Then this should happen
+```
 no-homogenous-tags
 ------------------
 
@@ -441,6 +468,31 @@ Feature: Bad feature
     
     @three @one
     Scenario: Three
+```
+no-superflous-tags
+------------------
+
+Do not repeat tags in scenarios that are already present at the feature level
+
+**Good**: No superflous tags
+
+```gherkin
+# example.feature
+@important
+Feature: Foobar
+
+    @this-there @is @no-waste
+    Scenario: No waste
+```
+**Bad**: Tag that is repeated in the Feature
+
+```gherkin
+# example.feature
+@important
+Feature: Foobar
+
+    @this-there @is @no-waste @important
+    Scenario: No waste
 ```
 scenarios-per-file
 ------------------
@@ -497,31 +549,5 @@ Feature: One
 # example.feature
 Feature: One
     Scenario: One
-```
-no-empty-scenarios
-------------------
-
-Disallow empty scenarios
-
-**Bad**: Scenarios that are empty
-
-```gherkin
-# example.feature
-Feature: Example
-    Scenario: One
-    Scenario: Two
-```
-**Good**: Scenarios that are not empty
-
-```gherkin
-# example.feature
-Feature: Example
-    Scenario: One
-        When I do this
-        Then this should happen
-
-    Scenario: Two
-        When I do this
-        Then this should happen
 ```
 

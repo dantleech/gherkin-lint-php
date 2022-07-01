@@ -53,23 +53,23 @@ class NoSuperfluousTagsRule implements Rule
                     valid: true,
                     title: 'No superflous tags',
                     example: <<<'EOT'
-                    @important
-                    Feature: Foobar
+                        @important
+                        Feature: Foobar
 
-                        @this-there @is @no-waste
-                        Scenario: No waste
-                    EOT
+                            @this-there @is @no-waste
+                            Scenario: No waste
+                        EOT
                 ),
                 new RuleExample(
                     valid: false,
                     title: 'Tag that is repeated in the Feature',
                     example: <<<'EOT'
-                    @important
-                    Feature: Foobar
+                        @important
+                        Feature: Foobar
 
-                        @this-there @is @no-waste @important
-                        Scenario: No waste
-                    EOT
+                            @this-there @is @no-waste @important
+                            Scenario: No waste
+                        EOT
                 )
             ]
         );
