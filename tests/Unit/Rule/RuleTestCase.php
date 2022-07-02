@@ -3,7 +3,6 @@
 namespace DTL\GherkinLint\Tests\Unit\Rule;
 
 use Closure;
-use Cucumber\Gherkin\GherkinParser;
 use DTL\GherkinLint\Model\ConfigRule;
 use DTL\GherkinLint\Model\RuleConfigFactory;
 use DTL\GherkinLint\Model\ConfigMapper;

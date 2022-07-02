@@ -5,7 +5,6 @@ namespace DTL\GherkinLint\Model;
 use DTL\GherkinLint\Model\Annotation\DisableRulesAnnotation;
 use DTL\GherkinLint\Model\Exception\UnknownAnnotation;
 use Generator;
-use RuntimeException;
 
 final class AnnotationParser
 {
@@ -37,7 +36,8 @@ final class AnnotationParser
                 array_map('trim', explode(',', $args))
             ),
             default => throw new UnknownAnnotation(sprintf(
-                'Unknown annotation gherkinlint-%s', $command
+                'Unknown annotation gherkinlint-%s',
+                $command
             ))
         };
 

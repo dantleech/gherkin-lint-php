@@ -3,7 +3,6 @@
 namespace DTL\GherkinLint\Tests\Unit\Model;
 
 use Closure;
-use Cucumber\Gherkin\GherkinParser;
 use DTL\GherkinLint\Model\ConfigRule;
 use DTL\GherkinLint\Model\FeatureDiagnostics;
 use DTL\GherkinLint\Model\FeatureFile;

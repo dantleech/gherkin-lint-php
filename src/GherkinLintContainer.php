@@ -2,11 +2,9 @@
 
 namespace DTL\GherkinLint;
 
-use Cucumber\Gherkin\GherkinParser;
 use DTL\GherkinLint\Command\LintCommand;
 use DTL\GherkinLint\Command\RuleDocumentationCommand;
 use DTL\GherkinLint\Command\RulesCommand;
-use DTL\GherkinLint\Model\AnnotationParser;
 use DTL\GherkinLint\Model\Config;
 use DTL\GherkinLint\Model\ConfigMapper;
 use DTL\GherkinLint\Model\FeatureFinder;

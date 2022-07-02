@@ -12,7 +12,6 @@ use DTL\GherkinLint\Model\Rule;
 use Generator;
 use DTL\GherkinLint\Model\ConfigMapper;
 use DTL\GherkinLint\Model\RuleConfigFactory;
-use Cucumber\Gherkin\GherkinParser;
 
 use DTL\GherkinLint\Model\RuleExample;
 use PHPUnit\Framework\TestCase;

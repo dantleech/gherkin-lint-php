@@ -43,7 +43,6 @@ class Linter
             }
 
             foreach ($this->rules as $rule) {
-
                 if (in_array($rule->describe()->name, $disableRules)) {
                     continue;
                 }

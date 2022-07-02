@@ -9,5 +9,6 @@ final class DisableRulesAnnotation implements Annotation
     public function __construct(
         /** @var string[] */
         public readonly array $disabledRules
-    ) {}
+    ) {
+    }
 }
