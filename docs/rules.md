@@ -18,6 +18,7 @@ Rules
 - [no-superflous-tags](#no-superflous-tags): Do not repeat tags in scenarios that are already present at the feature level
 - [scenarios-per-file](#scenarios-per-file): Set a maximum (and/or minimum) number of scenarios allowed per file
 - [no-trailing-spaces](#no-trailing-spaces): Do not allow extra spaces at the end of lines
+- [no-unnamed-features](#no-unnamed-features): Do not allow Feature declarations with no name
 
 allowed-tags
 ------------
@@ -579,5 +580,22 @@ There are trailing spaces on this line
 Feature: Foobar
  
 There are trailing spaces above
+```
+no-unnamed-features
+-------------------
+
+Do not allow Feature declarations with no name
+
+**Good**: Feature with a name
+
+```gherkin
+# example.feature
+Feature: This feature has a name!
+```
+**Bad**: Feature with no name
+
+```gherkin
+# example.feature
+Feature:
 ```
 

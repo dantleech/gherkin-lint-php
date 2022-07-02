@@ -30,6 +30,7 @@ use DTL\GherkinLint\Rule\NoEmptyScenariosRule;
 use DTL\GherkinLint\Rule\NoHomogenousTagsRule;
 use DTL\GherkinLint\Rule\NoConsecutiveEmptyLinesRule;
 use DTL\GherkinLint\Rule\NoTrailingSpacesRule;
+use DTL\GherkinLint\Rule\NoUnnamedFeaturesRule;
 use DTL\GherkinLint\Rule\ScenariosPerFileRule;
 use DTL\GherkinLint\Tests\Unit\Rule\NoSuperfluousTagsRule;
 use Symfony\Component\Console\Application;
@@ -87,6 +88,7 @@ final class GherkinLintContainer
             new NoSuperfluousTagsRule(),
             new ScenariosPerFileRule(),
             new NoTrailingSpacesRule(),
+            new NoUnnamedFeaturesRule(),
         ]);
     }
 
