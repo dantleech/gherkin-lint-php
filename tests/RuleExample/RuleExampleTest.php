@@ -4,6 +4,8 @@ namespace DTL\GherkinLint\Tests\RuleExample;
 
 use DTL\GherkinLint\GherkinLintContainer;
 use DTL\GherkinLint\Model\Config;
+use DTL\GherkinLint\Model\FeatureDiagnostics;
+use DTL\GherkinLint\Model\FeatureFile;
 use DTL\GherkinLint\Model\Linter;
 use DTL\GherkinLint\Model\ConfigRule;
 use DTL\GherkinLint\Model\Rule;
@@ -39,9 +41,19 @@ class RuleExampleTest extends TestCase
                 ]
             ),
         );
-        $diagnostics = iterator_to_array($linter->lint($example->filename ?? 'test.feature', $example->example), false);
+        $diagnostics = new FeatureDiagnostics(new FeatureFile('file.feature', ''), iterator_to_array($linter->lint($example->filename ?? 'test.feature', $example->example), false));
+
         if ($example->valid && count($diagnostics) > 0) {
-            $this->fail(sprintf('Expected example "%s" of rule "%s" to be valid but it failed', $example->title, $rule->describe()->name));
+            $this->fail(sprintf(
+                'Expected example "%s" of rule "%s" to be valid but it failed at L%d:%d => L%d:%s: %s',
+                $example->title,
+                $rule->describe()->name,
+                $diagnostics->at(0)->range->start->lineNo,
+                $diagnostics->at(0)->range->start->colNo,
+                $diagnostics->at(0)->range->end->lineNo,
+                $diagnostics->at(0)->range->end->colNo,
+                $diagnostics->at(0)->message
+            ));
             return;
         }
 

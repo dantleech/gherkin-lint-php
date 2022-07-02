@@ -22,11 +22,12 @@ class Range
 
     public static function fromLocationAndName(Location $location, string $name): self
     {
+        $startCol = $location->column ?? 1;
         return self::fromInts(
             $location->line,
-            $location->column ?? 1,
+            $startCol,
             $location->line,
-            mb_strlen($name)
+            $startCol + mb_strlen($name)
         );
     }
 

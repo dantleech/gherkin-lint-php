@@ -16,6 +16,10 @@ Rules
 - [no-empty-scenarios](#no-empty-scenarios): Disallow empty scenarios
 - [no-homogenous-tags](#no-homogenous-tags): If a tag exists on each scenarion then it should be moved to the feature level
 - [no-superflous-tags](#no-superflous-tags): Do not repeat tags in scenarios that are already present at the feature level
+- [no-trailing-spaces](#no-trailing-spaces): Do not allow extra spaces at the end of lines
+- [no-unnamed-features](#no-unnamed-features): Do not allow Feature declarations with no name
+- [one-space-between-tags](#one-space-between-tags): Only allow one space between tags
+- [scenario-size](#scenario-size): Limit the number of steps in a scenario
 - [scenarios-per-file](#scenarios-per-file): Set a maximum (and/or minimum) number of scenarios allowed per file
 
 allowed-tags
@@ -493,6 +497,116 @@ Feature: Foobar
 
     @this-there @is @no-waste @important
     Scenario: No waste
+```
+no-trailing-spaces
+------------------
+
+Do not allow extra spaces at the end of lines
+
+**Good**: No trailing spaces
+
+```gherkin
+# example.feature
+Feature: Foobar
+
+There are no trailing spaces on this line
+```
+**Bad**: Trailing spaces
+
+```gherkin
+# example.feature
+Feature: Foobar
+
+There are trailing spaces on this line    
+```
+**Bad**: Trailing spaces
+
+```gherkin
+# example.feature
+Feature: Foobar
+ 
+There are trailing spaces above
+```
+no-unnamed-features
+-------------------
+
+Do not allow Feature declarations with no name
+
+**Good**: Feature with a name
+
+```gherkin
+# example.feature
+Feature: This feature has a name!
+```
+**Bad**: Feature with no name
+
+```gherkin
+# example.feature
+Feature:
+```
+one-space-between-tags
+----------------------
+
+Only allow one space between tags
+
+**Good**: Tags have one space between them
+
+```gherkin
+# example.feature
+@tag1 @tag2 @tag3
+Feature: Foobar
+    @tag4 @tag5
+    Scenario: Barfoo
+```
+**Bad**: Tags have more than one space between them
+
+```gherkin
+# example.feature
+@tag1   @tag2  @tag3
+Feature: Foobar
+```
+**Bad**: Tags have more than one space between them
+
+```gherkin
+# example.feature
+Feature: Foobar
+    @tag1    @tag2
+    Scenario: Barfoo
+```
+scenario-size
+-------------
+
+Limit the number of steps in a scenario
+
+**Good**: Valid number of steps
+
+```gherkin
+# example.feature
+Feature: This is feature
+    Scenario: This is scenario
+        Given I did this
+        When I do that
+        Then this should happen
+```
+**Bad**: Too many steps!
+
+```json
+{
+    "scenario-size": {
+        "maxSteps": 3
+    }
+}
+```
+
+```gherkin
+# example.feature
+Feature: This is feature
+    Scenario: This is scenario
+        Given I did this
+        And that
+        And something else
+        When I do that
+        Then this should happen
 ```
 scenarios-per-file
 ------------------

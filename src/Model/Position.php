@@ -2,6 +2,7 @@
 
 namespace DTL\GherkinLint\Model;
 
+use DTL\GherkinLint\Util\StringUtil;
 use RuntimeException;
 
 class Position
@@ -19,12 +20,7 @@ class Position
 
     public static function fromOffset(string $text, int $offset): self
     {
-        $lines = preg_split("{(\r\n|\n|\r)}", $text, -1, PREG_SPLIT_DELIM_CAPTURE);
-        if (false === $lines) {
-            throw new RuntimeException(
-                'Failed to preg-split text into lines'
-            );
-        }
+        $lines = StringUtil::linesAndDelimiters($text);
 
         $textOffset = 0;
         $lineNo = 1;
