@@ -3,6 +3,7 @@
 namespace DTL\GherkinLint\Model;
 
 use Cucumber\Gherkin\GherkinParser;
+use Cucumber\Messages\Comment;
 use Cucumber\Messages\GherkinDocument;
 use DTL\GherkinLint\Model\Annotation\DisableRulesAnnotation;
 use Generator;
@@ -35,7 +36,7 @@ class Linter
     {
         foreach ($this->gherkinDocuments($uri, $contents) as $document) {
             $disableRules = [];
-            foreach ($this->annotationParser->parseAll($document->comments) as $annotation) {
+            foreach ($this->annotationParser->parseAll(array_map(fn (Comment $comment) => $comment->text, $document->comments)) as $annotation) {
                 if ($annotation instanceof DisableRulesAnnotation) {
                     $disableRules = [...$disableRules, ...$annotation->disabledRules];
                 }
