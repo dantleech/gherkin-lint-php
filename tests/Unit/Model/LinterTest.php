@@ -61,7 +61,6 @@ class LinterTest extends TestCase
         yield 'disabled rule' => [
             <<<'EOT'
                 Feature: Foobar
-
                     Scenario: Foobar
                         Given this happened
                         When I do this
@@ -75,17 +74,34 @@ class LinterTest extends TestCase
                 self::assertCount(0, $diagnostics);
             }
         ];
+
+        yield 'disabled rule via comment' => [
+            <<<'EOT'
+                # @gherkinlint-disable-rule test1
+                Feature: Foobar
+                    Scenario: Foobar
+                        Given this happened
+                        When I do this
+                        Then that should happen
+                EOT
+            ,
+            [
+                'test1' =>  new ConfigRule(true, [])
+            ],
+            function (FeatureDiagnostics $diagnostics): void {
+                self::assertCount(0, $diagnostics);
+            }
+        ];
     }
 
     private function diagnostics(Rule $rule, array $config, string $content): FeatureDiagnostics
     {
         return new FeatureDiagnostics(new FeatureFile('fone', 'ftwo'), iterator_to_array((
-            new Linter(
-                new GherkinParser(includeSource: false),
+            Linter::create(
+                new RuleConfigFactory(ConfigMapper::create(), $config),
                 [
                     $rule
                 ],
-                new RuleConfigFactory(ConfigMapper::create(), $config),
             )
         )->lint('/path', $content)));
     }

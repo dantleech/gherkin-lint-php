@@ -6,6 +6,7 @@ use Cucumber\Gherkin\GherkinParser;
 use DTL\GherkinLint\Command\LintCommand;
 use DTL\GherkinLint\Command\RuleDocumentationCommand;
 use DTL\GherkinLint\Command\RulesCommand;
+use DTL\GherkinLint\Model\AnnotationParser;
 use DTL\GherkinLint\Model\Config;
 use DTL\GherkinLint\Model\ConfigMapper;
 use DTL\GherkinLint\Model\FeatureFinder;
@@ -103,12 +104,9 @@ final class GherkinLintContainer
 
     private function createLinter(): Linter
     {
-        return new Linter(
-            new GherkinParser(
-                includeSource: false,
-            ),
-            $this->createRules()->rules(),
+        return Linter::create(
             $this->createConfigFactory(),
+            $this->createRules()->rules()
         );
     }
 

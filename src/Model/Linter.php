@@ -4,18 +4,28 @@ namespace DTL\GherkinLint\Model;
 
 use Cucumber\Gherkin\GherkinParser;
 use Cucumber\Messages\GherkinDocument;
+use DTL\GherkinLint\Model\Annotation\DisableRulesAnnotation;
 use Generator;
 
 class Linter
 {
-    public function __construct(
+    private function __construct(
         private GherkinParser $parser,
         /**
          * @var Rule[]
          */
         private array $rules,
-        private RuleConfigFactory $configFactory
+        private RuleConfigFactory $configFactory,
+        private AnnotationParser $annotationParser,
     ) {
+    }
+
+    /**
+     * @param Rule[] $rules
+     */
+    public static function create(RuleConfigFactory $configFactory, array $rules): self
+    {
+        return new self(new GherkinParser(), $rules, $configFactory, new AnnotationParser());
     }
 
     /**
@@ -24,7 +34,19 @@ class Linter
     public function lint(string $uri, string $contents): Generator
     {
         foreach ($this->gherkinDocuments($uri, $contents) as $document) {
+            $disableRules = [];
+            foreach ($this->annotationParser->parseAll($document->comments) as $annotation) {
+                if ($annotation instanceof DisableRulesAnnotation) {
+                    $disableRules = [...$disableRules, ...$annotation->disabledRules];
+                }
+            }
+
             foreach ($this->rules as $rule) {
+
+                if (in_array($rule->describe()->name, $disableRules)) {
+                    continue;
+                }
+
                 $description = $rule->describe();
 
                 if (false === $this->configFactory->isEnabled($description->name)) {
