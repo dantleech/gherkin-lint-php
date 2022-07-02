@@ -12,7 +12,6 @@ use DTL\GherkinLint\Model\Rule;
 use Generator;
 use DTL\GherkinLint\Model\ConfigMapper;
 use DTL\GherkinLint\Model\RuleConfigFactory;
-use Cucumber\Gherkin\GherkinParser;
 
 use DTL\GherkinLint\Model\RuleExample;
 use PHPUnit\Framework\TestCase;
@@ -25,11 +24,7 @@ class RuleExampleTest extends TestCase
      */
     public function testExamples(Rule $rule, RuleExample $example): void
     {
-        $linter = new Linter(
-            new GherkinParser(),
-            [
-                $rule
-            ],
+        $linter = Linter::create(
             new RuleConfigFactory(
                 ConfigMapper::create(),
                 [
@@ -40,6 +35,9 @@ class RuleExampleTest extends TestCase
                     )
                 ]
             ),
+            [
+                $rule
+            ],
         );
         $diagnostics = new FeatureDiagnostics(new FeatureFile('file.feature', ''), iterator_to_array($linter->lint($example->filename ?? 'test.feature', $example->example), false));
 

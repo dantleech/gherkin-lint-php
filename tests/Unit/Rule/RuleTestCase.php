@@ -3,7 +3,6 @@
 namespace DTL\GherkinLint\Tests\Unit\Rule;
 
 use Closure;
-use Cucumber\Gherkin\GherkinParser;
 use DTL\GherkinLint\Model\ConfigRule;
 use DTL\GherkinLint\Model\RuleConfigFactory;
 use DTL\GherkinLint\Model\ConfigMapper;
@@ -34,15 +33,14 @@ abstract class RuleTestCase extends TestCase
         }
 
         $rule = $this->createRule();
-        $linter = new Linter(
-            new GherkinParser(),
-            [$rule],
+        $linter = Linter::create(
             new RuleConfigFactory(
                 ConfigMapper::create(),
                 [
                     $rule->describe()->name => new ConfigRule(true, $config)
                 ]
             ),
+            [$rule],
         );
         foreach ($features as $feature) {
             $diagnostics = iterator_to_array($linter->lint($feature->path, $feature->content));

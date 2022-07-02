@@ -11,6 +11,7 @@ Contents
 - [Usage](#usage)
 - [Configuration](#configuration)
 - [Rules](docs/rules.md)
+- [Disabling Rules](#disabling-rules)
 
 Usage
 -----
@@ -58,6 +59,23 @@ a config file `gherkinlint.json`:
 ```
 
 Use the `rules` command to see which rules are enabled.
+
+Disabling Rules
+---------------
+
+Rules can be disabled by adding a comment before the Feature declaration:
+
+```gherkin
+# @gherkinlint-disable-rule keyword-order
+Feature: My feature with strange keyword orders
+```
+
+Disable multiple rules with comma separation:
+
+```gherkin
+# @gherkinlint-disable-rule keyword-order, someother-rule
+Feature: My feature with strange keyword orders
+```
 
 Contributing
 ------------
