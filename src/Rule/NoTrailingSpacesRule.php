@@ -12,7 +12,6 @@ use DTL\GherkinLint\Model\RuleDescription;
 use DTL\GherkinLint\Model\RuleExample;
 use DTL\GherkinLint\Util\StringUtil;
 use Generator;
-use LanguageServerProtocol\Diagnostic;
 
 class NoTrailingSpacesRule implements Rule
 {
@@ -43,28 +42,28 @@ class NoTrailingSpacesRule implements Rule
                     valid: true,
                     title: 'No trailing spaces',
                     example: <<<'EOT'
-                    Feature: Foobar
+                        Feature: Foobar
 
-                    There are no trailing spaces on this line
-                    EOT
+                        There are no trailing spaces on this line
+                        EOT
                 ),
                 new RuleExample(
                     valid: false,
                     title: 'Trailing spaces',
                     example: <<<'EOT'
-                    Feature: Foobar
+                        Feature: Foobar
 
-                    There are trailing spaces on this line    
-                    EOT
+                        There are trailing spaces on this line    
+                        EOT
                 ),
                 new RuleExample(
                     valid: false,
                     title: 'Trailing spaces',
                     example: <<<'EOT'
-                    Feature: Foobar
-                     
-                    There are trailing spaces above
-                    EOT
+                        Feature: Foobar
+                         
+                        There are trailing spaces above
+                        EOT
                 )
             ]
         );

@@ -46,7 +46,7 @@ final class ParsedFeature
         }
     }
 
-    public function lines()
+    public function lines(): void
     {
     }
 }

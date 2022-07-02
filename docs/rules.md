@@ -17,6 +17,7 @@ Rules
 - [no-homogenous-tags](#no-homogenous-tags): If a tag exists on each scenarion then it should be moved to the feature level
 - [no-superflous-tags](#no-superflous-tags): Do not repeat tags in scenarios that are already present at the feature level
 - [scenarios-per-file](#scenarios-per-file): Set a maximum (and/or minimum) number of scenarios allowed per file
+- [no-trailing-spaces](#no-trailing-spaces): Do not allow extra spaces at the end of lines
 
 allowed-tags
 ------------
@@ -549,5 +550,34 @@ Feature: One
 # example.feature
 Feature: One
     Scenario: One
+```
+no-trailing-spaces
+------------------
+
+Do not allow extra spaces at the end of lines
+
+**Good**: No trailing spaces
+
+```gherkin
+# example.feature
+Feature: Foobar
+
+There are no trailing spaces on this line
+```
+**Bad**: Trailing spaces
+
+```gherkin
+# example.feature
+Feature: Foobar
+
+There are trailing spaces on this line    
+```
+**Bad**: Trailing spaces
+
+```gherkin
+# example.feature
+Feature: Foobar
+ 
+There are trailing spaces above
 ```
 

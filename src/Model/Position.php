@@ -21,11 +21,6 @@ class Position
     public static function fromOffset(string $text, int $offset): self
     {
         $lines = StringUtil::linesAndDelimiters($text);
-        if (false === $lines) {
-            throw new RuntimeException(
-                'Failed to preg-split text into lines'
-            );
-        }
 
         $textOffset = 0;
         $lineNo = 1;
@@ -43,7 +38,7 @@ class Position
             if (null === $newLine) {
                 break;
             }
-            $textOffpet += strlen($newLine);
+            $textOffset += strlen($newLine);
         }
 
         throw new RuntimeException(sprintf(
