@@ -558,6 +558,15 @@ Feature: Foobar
     @tag4 @tag5
     Scenario: Barfoo
 ```
+**Good**: Tags have one space between them
+
+```gherkin
+# example.feature
+@tag1
+@tag2
+@tag3
+Feature: Foobar
+```
 **Bad**: Tags have more than one space between them
 
 ```gherkin

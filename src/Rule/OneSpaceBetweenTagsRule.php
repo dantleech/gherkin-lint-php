@@ -94,13 +94,19 @@ class OneSpaceBetweenTagsRule implements Rule
     private function checkTags(array $tags): Generator
     {
         $lastEnd = null;
+        $currentLine = null;
         foreach ($tags as $tag) {
             if (null === $tag->location->column) {
                 continue;
             }
 
-            if ($lastEnd === null) {
+            if ($currentLine !== $tag->location->line) {
+                $currentLine = null;
+            }
+
+            if ($lastEnd === null || $currentLine === null) {
                 $lastEnd = $tag->location->column + mb_strlen($tag->name);
+                $currentLine = $tag->location->line;
                 continue;
             }
 
@@ -117,6 +123,7 @@ class OneSpaceBetweenTagsRule implements Rule
                     ),
                 );
             }
+
             $lastEnd = $tag->location->column + mb_strlen($tag->name);
         }
     }
