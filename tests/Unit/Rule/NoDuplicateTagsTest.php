@@ -43,7 +43,7 @@ class NoDuplicateTagsTest extends RuleTestCase
                 self::assertEquals(1, $diagnostics->first()->range->start->lineNo);
                 self::assertEquals(6, $diagnostics->first()->range->start->colNo);
                 self::assertEquals(1, $diagnostics->first()->range->end->lineNo);
-                self::assertEquals(4, $diagnostics->first()->range->end->colNo);
+                self::assertEquals(10, $diagnostics->first()->range->end->colNo);
                 self::assertEquals('Tag "@foo" is a duplicate', $diagnostics->first()->message);
             }
         ];

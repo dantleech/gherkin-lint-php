@@ -50,28 +50,28 @@ class OneSpaceBetweenTagsRule implements Rule
                     valid: true,
                     title: 'Tags have one space between them',
                     example: <<<'EOT'
-                    @tag1 @tag2 @tag3
-                    Feature: Foobar
-                        @tag4 @tag5
-                        Scenario: Barfoo
-                    EOT
+                        @tag1 @tag2 @tag3
+                        Feature: Foobar
+                            @tag4 @tag5
+                            Scenario: Barfoo
+                        EOT
                 ),
                 new RuleExample(
                     valid: false,
                     title: 'Tags have more than one space between them',
                     example: <<<'EOT'
-                    @tag1   @tag2  @tag3
-                    Feature: Foobar
-                    EOT
+                        @tag1   @tag2  @tag3
+                        Feature: Foobar
+                        EOT
                 ),
                 new RuleExample(
                     valid: false,
                     title: 'Tags have more than one space between them',
                     example: <<<'EOT'
-                    Feature: Foobar
-                        @tag1    @tag2
-                        Scenario: Barfoo
-                    EOT
+                        Feature: Foobar
+                            @tag1    @tag2
+                            Scenario: Barfoo
+                        EOT
                 ),
             ]
         );
