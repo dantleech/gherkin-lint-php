@@ -2,7 +2,9 @@
 
 namespace DTL\GherkinLint\Model\Annotation;
 
-final class DisableRulesAnnotation
+use DTL\GherkinLint\Model\Annotation;
+
+final class DisableRulesAnnotation implements Annotation
 {
     public function __construct(
         /** @var string[] */

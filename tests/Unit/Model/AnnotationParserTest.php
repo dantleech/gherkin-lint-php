@@ -32,6 +32,14 @@ class AnnotationParserTest extends TestCase
             '# @gherkinlint-disable-rule foobar',
             [new DisableRulesAnnotation(['foobar'])],
         ];
+        yield 'disable rules' => [
+            '# @gherkinlint-disable-rule foobar,barfoo',
+            [new DisableRulesAnnotation(['foobar', 'barfoo'])],
+        ];
+        yield 'disable rules with spaces' => [
+            '# @gherkinlint-disable-rule foobar,barfoo,  barfog',
+            [new DisableRulesAnnotation(['foobar', 'barfoo', 'barfog'])],
+        ];
     }
 
     public function testParseUnknownAnnotation(): void
