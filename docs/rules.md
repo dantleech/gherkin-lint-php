@@ -16,11 +16,11 @@ Rules
 - [no-empty-scenarios](#no-empty-scenarios): Disallow empty scenarios
 - [no-homogenous-tags](#no-homogenous-tags): If a tag exists on each scenarion then it should be moved to the feature level
 - [no-superflous-tags](#no-superflous-tags): Do not repeat tags in scenarios that are already present at the feature level
-- [scenarios-per-file](#scenarios-per-file): Set a maximum (and/or minimum) number of scenarios allowed per file
 - [no-trailing-spaces](#no-trailing-spaces): Do not allow extra spaces at the end of lines
 - [no-unnamed-features](#no-unnamed-features): Do not allow Feature declarations with no name
 - [one-space-between-tags](#one-space-between-tags): Only allow one space between tags
 - [scenario-size](#scenario-size): Limit the number of steps in a scenario
+- [scenarios-per-file](#scenarios-per-file): Set a maximum (and/or minimum) number of scenarios allowed per file
 
 allowed-tags
 ------------
@@ -498,62 +498,6 @@ Feature: Foobar
     @this-there @is @no-waste @important
     Scenario: No waste
 ```
-scenarios-per-file
-------------------
-
-Set a maximum (and/or minimum) number of scenarios allowed per file
-
-**Good**: Valid quantity of scenarios
-
-```json
-{
-    "scenarios-per-file": {
-        "min": 1,
-        "max": 3
-    }
-}
-```
-
-```gherkin
-# example.feature
-Feature: One
-    Scenario: One
-    Scenario: Two
-    Scenario: Three
-```
-**Bad**: Too many scenarios
-
-```json
-{
-    "scenarios-per-file": {
-        "min": 0,
-        "max": 1
-    }
-}
-```
-
-```gherkin
-# example.feature
-Feature: One
-    Scenario: First scenario
-    Scenario: Two
-```
-**Bad**: Not enough scenarios
-
-```json
-{
-    "scenarios-per-file": {
-        "min": 5,
-        "max": 10
-    }
-}
-```
-
-```gherkin
-# example.feature
-Feature: One
-    Scenario: One
-```
 no-trailing-spaces
 ------------------
 
@@ -663,5 +607,61 @@ Feature: This is feature
         And something else
         When I do that
         Then this should happen
+```
+scenarios-per-file
+------------------
+
+Set a maximum (and/or minimum) number of scenarios allowed per file
+
+**Good**: Valid quantity of scenarios
+
+```json
+{
+    "scenarios-per-file": {
+        "min": 1,
+        "max": 3
+    }
+}
+```
+
+```gherkin
+# example.feature
+Feature: One
+    Scenario: One
+    Scenario: Two
+    Scenario: Three
+```
+**Bad**: Too many scenarios
+
+```json
+{
+    "scenarios-per-file": {
+        "min": 0,
+        "max": 1
+    }
+}
+```
+
+```gherkin
+# example.feature
+Feature: One
+    Scenario: First scenario
+    Scenario: Two
+```
+**Bad**: Not enough scenarios
+
+```json
+{
+    "scenarios-per-file": {
+        "min": 5,
+        "max": 10
+    }
+}
+```
+
+```gherkin
+# example.feature
+Feature: One
+    Scenario: One
 ```
 

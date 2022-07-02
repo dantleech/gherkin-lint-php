@@ -88,11 +88,11 @@ final class GherkinLintContainer
             new NoEmptyScenariosRule(),
             new NoHomogenousTagsRule(),
             new NoSuperfluousTagsRule(),
-            new ScenariosPerFileRule(),
             new NoTrailingSpacesRule(),
             new NoUnnamedFeaturesRule(),
             new OneSpaceBetweenTagsRule(),
             new ScenarioSizeRule(),
+            new ScenariosPerFileRule(),
         ]);
     }
 
