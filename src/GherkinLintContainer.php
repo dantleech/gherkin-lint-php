@@ -45,7 +45,7 @@ final class GherkinLintContainer
 
     public function application(): Application
     {
-        $app = new Application('behatlint');
+        $app = new Application('gherkinlint');
         $app->addCommands([
             new LintCommand(
                 $this->createFinder((string)getcwd()),
