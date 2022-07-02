@@ -45,8 +45,4 @@ final class ParsedFeature
             yield $child->scenario;
         }
     }
-
-    public function lines(): void
-    {
-    }
 }

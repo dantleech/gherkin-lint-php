@@ -57,6 +57,16 @@ class OneSpaceBetweenTagsRule implements Rule
                         EOT
                 ),
                 new RuleExample(
+                    valid: true,
+                    title: 'Tags have one space between them',
+                    example: <<<'EOT'
+                        @tag1
+                        @tag2
+                        @tag3
+                        Feature: Foobar
+                        EOT
+                ),
+                new RuleExample(
                     valid: false,
                     title: 'Tags have more than one space between them',
                     example: <<<'EOT'
