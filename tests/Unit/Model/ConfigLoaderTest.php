@@ -2,11 +2,10 @@
 
 namespace DTL\GherkinLint\Tests\Unit\Model;
 
-use DTL\GherkinLint\Mapper\Mapper;
 use DTL\GherkinLint\Model\Config;
 use DTL\GherkinLint\Model\ConfigLoader;
+use DTL\GherkinLint\Model\ConfigRule;
 use DTL\GherkinLint\Tests\LintTestCase;
-use PHPUnit\Framework\TestCase;
 use Symfony\Component\Console\Output\BufferedOutput;
 
 class ConfigLoaderTest extends LintTestCase
@@ -23,16 +22,13 @@ class ConfigLoaderTest extends LintTestCase
 
         self::assertEquals(
             new Config(
-                rules: [
-                    'one' => [
-                        'enabled' => true,
-                        'config' => [
-                            'foo' => 'bar',
-                        ],
-                    ]
-                ]
+                rules: ['one' => new ConfigRule(true, ['foo' => 'bar'])],
             ),
             $config
+        );
+        self::assertEquals(
+            new ConfigRule(true, ['foo' => 'bar']),
+            $config->rules['one'],
         );
     }
 
@@ -50,12 +46,7 @@ class ConfigLoaderTest extends LintTestCase
         self::assertEquals(
             new Config(
                 rules: [
-                    'one' => [
-                        'enabled' => false,
-                        'config' => [
-                            'foo' => 'bar',
-                        ],
-                    ]
+                    'one' => new ConfigRule(false, ['foo' => 'bar'])
                 ]
             ),
             $config

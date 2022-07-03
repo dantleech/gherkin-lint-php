@@ -2,14 +2,27 @@
 
 namespace DTL\GherkinLint\Model;
 
+use DTL\Invoke\Invoke;
+
 class Config
 {
-    public function __construct(
-        /**
-         * @var array<string,ConfigRule>
-         */
-        public array $rules = []
-    ) {
+    /**
+     * @var array<string,ConfigRule>
+     */
+    public array $rules;
+
+    /**
+     * @param array<string,ConfigRule|array<string,mixed>> $rules
+     */
+    public function __construct(array $rules = [])
+    {
+        $this->rules = array_map(
+            fn (ConfigRule|array $configRule) => $configRule instanceof ConfigRule ? $configRule : Invoke::new(
+                ConfigRule::class,
+                $configRule
+            ),
+            $rules
+        );
     }
 
     /**

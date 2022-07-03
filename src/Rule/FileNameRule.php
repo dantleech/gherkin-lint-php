@@ -26,7 +26,7 @@ class FileNameRule implements Rule
         if (null === $fullPath) {
             return;
         }
-        $path = new UnicodeString(Path::getFilenameWithoutExtension($fullPath));
+        $path = new UnicodeString((string)Path::getFilenameWithoutExtension($fullPath));
 
         $converted = match ($config->style) {
             FileNameConfig::PASCAL_CASE => ucfirst($path->camel()->__toString()),

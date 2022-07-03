@@ -43,7 +43,7 @@ class RulesCommand extends Command
                 $this->configFactory->isEnabled($description->name) ? '<bg=green;fg=black> YES </>' : '<bg=red;fg=white> NO  </>',
                 $description->description,
                 $description->configClass ? json_encode(
-                    $description->newConfigClass(),
+                    $this->configFactory->for($description),
                     JSON_PRETTY_PRINT
                 ) : '{}',
             ]);
