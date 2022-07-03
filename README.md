@@ -16,6 +16,8 @@ Contents
 Usage
 -----
 
+> **NOTE**: Gherkin Lint requires PHP 8.1
+
 Install with Composer:
 
 ```
