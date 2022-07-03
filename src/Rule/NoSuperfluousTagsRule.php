@@ -1,6 +1,6 @@
 <?php
 
-namespace DTL\GherkinLint\Tests\Unit\Rule;
+namespace DTL\GherkinLint\Rule;
 
 use Cucumber\Messages\Tag;
 use DTL\GherkinLint\Model\FeatureDiagnostic;
@@ -21,7 +21,7 @@ class NoSuperfluousTagsRule implements Rule
         if (null === $featureNode) {
             return;
         }
-        $featureTags = (array)array_combine(array_map(fn (Tag $tag) => $tag->name, $featureNode->tags), $featureNode->tags);
+        $featureTags = array_combine(array_map(fn (Tag $tag) => $tag->name, $featureNode->tags), $featureNode->tags);
 
         foreach ($feature->scenarios() as $scenario) {
             foreach ($scenario->tags as $tag) {
