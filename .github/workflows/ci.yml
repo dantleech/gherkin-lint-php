@@ -41,6 +41,38 @@ jobs:
             -
                 name: "Run PHPUnit"
                 run: "php -dzend.assertions=1 vendor/bin/phpunit"
+    phpunit-lowest:
+        name: "PHPUnit (${{ matrix.php-version }})"
+
+        runs-on: "ubuntu-latest"
+
+        strategy:
+            matrix:
+                php-version:
+                    - '8.1'
+
+        steps:
+            -
+                name: "Checkout code"
+                uses: "actions/checkout@v2"
+            -
+                name: "Install PHP"
+                uses: "shivammathur/setup-php@v2"
+                with:
+                    coverage: "none"
+                    extensions: "${{ env.REQUIRED_PHP_EXTENSIONS }}"
+                    php-version: "${{ matrix.php-version }}"
+                    tools: composer:v2
+
+            -
+                name: "Composer install"
+                uses: "ramsey/composer-install@v1"
+                with:
+                    composer-options: "--no-scripts"
+                    dependency-versions: "lowest"
+            -
+                name: "Run PHPUnit"
+                run: "php -dzend.assertions=1 vendor/bin/phpunit"
     psalm:
         name: "Psalm (${{ matrix.php-version }})"
 
