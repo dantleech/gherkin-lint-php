@@ -2,17 +2,17 @@
 
 namespace DTL\GherkinLint\Tests\Command;
 
-use PHPUnit\Framework\TestCase;
+use DTL\GherkinLint\Tests\LintTestCase;
 use Symfony\Component\Process\Process;
 
-class CommandTestCase extends TestCase
+class CommandTestCase extends LintTestCase
 {
     protected function lint(array $command): Process
     {
         $process = new Process([
-            'bin/gherkinlint',
+            __DIR__ . '/../../bin/gherkinlint',
             ... $command
-        ], __DIR__ . '/../..');
+        ], $this->workspace()->path('/'));
         $process->run();
         return $process;
     }

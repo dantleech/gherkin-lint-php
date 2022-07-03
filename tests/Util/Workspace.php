@@ -32,5 +32,6 @@ class Workspace
     {
         $fs = new Filesystem();
         $fs->remove($this->path);
+        $fs->mkdir($this->path, 0777);
     }
 }
