@@ -3,7 +3,6 @@
 namespace DTL\GherkinLint\Tests\Command;
 
 use DTL\GherkinLint\Tests\LintTestCase;
-use PHPUnit\Framework\TestCase;
 use Symfony\Component\Process\Process;
 
 class CommandTestCase extends LintTestCase
