@@ -41,7 +41,7 @@ class LintCommand extends Command
         foreach ($this->finder->find($path) as $featureFile) {
             $featureDiagnosticsList[] = new FeatureDiagnostics(
                 $featureFile,
-                iterator_to_array($this->linter->lint($featureFile->path, $featureFile->contents()))
+                iterator_to_array($this->linter->lint($featureFile->path, $featureFile->contents()), false)
             );
         }
 
