@@ -7,12 +7,12 @@
     ],
     "require": {
         "php": "^8.1",
-        "symfony/console": "^5.0",
-        "symfony/finder": "^5.0",
-        "symfony/filesystem": "^5.0",
+        "symfony/console": "^5.0|^6.0",
+        "symfony/finder": "^5.0|^6.0",
+        "symfony/filesystem": "^5.0|^6.0",
         "cucumber/gherkin": "^24.0",
         "cucumber/messages": "^19.0",
-        "symfony/string": "^5.1",
+        "symfony/string": "^5.1|^6.0",
         "dantleech/invoke": "^2.0"
     },
     "license": "MIT",
