@@ -66,7 +66,7 @@ class AllowedTagsRule implements Rule
                         @this-is-not-allowed
                         Feature: Some feature
                         EOT
-                ,
+                    ,
                     config: new AllowedTagsConfig(['@baz']),
                 ),
             ]
