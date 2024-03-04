@@ -15,7 +15,7 @@ class NoHomogenousTagsRuleTest extends RuleTestCase
         return new NoHomogenousTagsRule();
     }
 
-    public function provideTests(): Generator
+    public static function provideTests(): Generator
     {
         yield [
             new TestFeature(

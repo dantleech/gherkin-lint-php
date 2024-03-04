@@ -15,7 +15,7 @@ class NoDisallowedPatternsRuleTest extends RuleTestCase
         return new NoDisallowedPatternsRule();
     }
 
-    public function provideTests(): Generator
+    public static function provideTests(): Generator
     {
         yield [
             new TestFeature(

@@ -15,7 +15,7 @@ class NoMultipleEmptyLinesRuleTest extends RuleTestCase
         return new NoConsecutiveEmptyLinesRule();
     }
 
-    public function provideTests(): Generator
+    public static function provideTests(): Generator
     {
         yield [
             new TestFeature(

@@ -21,7 +21,7 @@ abstract class RuleTestCase extends TestCase
     /**
      * @return Generator<string,Closure(list<FeatureDiagnostic>):void>
      */
-    abstract public function provideTests(): Generator;
+    abstract public static function provideTests(): Generator;
 
     /**
      * @dataProvider provideTests

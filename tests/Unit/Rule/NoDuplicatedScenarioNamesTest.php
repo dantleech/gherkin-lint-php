@@ -15,7 +15,7 @@ class NoDuplicatedScenarioNamesTest extends RuleTestCase
         return new NoDuplicatedScenarioNames();
     }
 
-    public function provideTests(): Generator
+    public static function provideTests(): Generator
     {
         yield 'duplicated scenario' => [
             new TestFeature(

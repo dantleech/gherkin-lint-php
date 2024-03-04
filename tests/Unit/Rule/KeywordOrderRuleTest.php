@@ -15,7 +15,7 @@ class KeywordOrderRuleTest extends RuleTestCase
         return new KeywordOrderRule();
     }
 
-    public function provideTests(): Generator
+    public static function provideTests(): Generator
     {
         yield 'correct order' => [
             new TestFeature(

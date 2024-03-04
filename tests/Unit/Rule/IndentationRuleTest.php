@@ -15,7 +15,7 @@ class IndentationRuleTest extends RuleTestCase
         return new IndentationRule();
     }
 
-    public function provideTests(): Generator
+    public static function provideTests(): Generator
     {
         yield 'feature at correct level' => [
             new TestFeature(

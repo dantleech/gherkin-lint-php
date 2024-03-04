@@ -15,7 +15,7 @@ class NoEmptyFileRuleTest extends RuleTestCase
         return new NoEmptyFileRule();
     }
 
-    public function provideTests(): Generator
+    public static function provideTests(): Generator
     {
         yield 'empty file' => [
             new TestFeature(

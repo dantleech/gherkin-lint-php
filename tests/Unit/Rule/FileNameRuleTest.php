@@ -15,7 +15,7 @@ class FileNameRuleTest extends RuleTestCase
         return new FileNameRule();
     }
 
-    public function provideTests(): Generator
+    public static function provideTests(): Generator
     {
         yield 'pascal fail' => [
             new TestFeature(

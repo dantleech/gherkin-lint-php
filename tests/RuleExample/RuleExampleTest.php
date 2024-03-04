@@ -66,7 +66,7 @@ class RuleExampleTest extends TestCase
     /**
      * @return Generator<RuleExample>
      */
-    public function provideExamples(): Generator
+    public static function provideExamples(): Generator
     {
         $container = new GherkinLintContainer(new BufferedOutput(), new Config([]));
 
