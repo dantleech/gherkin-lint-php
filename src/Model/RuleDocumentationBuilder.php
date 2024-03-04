@@ -33,6 +33,7 @@ class RuleDocumentationBuilder
 
     /**
      * @param list<string> $out
+     * @param-out list<string> $out
      */
     private function ruleDocumentation(RuleDescription $description, array &$out): void
     {
@@ -50,7 +51,7 @@ class RuleDocumentationBuilder
                     [
                         $description->name => $example->config,
                     ],
-                    JSON_PRETTY_PRINT
+                    JSON_PRETTY_PRINT | JSON_THROW_ON_ERROR
                 );
                 $out[] = '```json';
                 $out[] = $configString;

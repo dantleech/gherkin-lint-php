@@ -37,7 +37,7 @@ class NoBackgroundWithSingleScenarioRule implements Rule
             yield new FeatureDiagnostic(
                 Range::fromLocationAndName($background->location, $background->name),
                 FeatureDiagnosticSeverity::WARNING,
-                sprintf('Background is only permitted if there is more than one scenario')
+                'Background is only permitted if there is more than one scenario'
             );
         }
     }

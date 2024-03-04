@@ -57,7 +57,7 @@ class NoConsecutiveEmptyLinesRule implements Rule
             $prev = $lineNo;
         }
 
-        if ($start && $lineNo && $prev) {
+        if ($start && $prev) {
             yield new FeatureDiagnostic(
                 Range::fromInts($start, 1, $prev, 1),
                 FeatureDiagnosticSeverity::WARNING,
