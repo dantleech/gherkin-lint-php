@@ -37,7 +37,7 @@ class FeatureFinderTest extends TestCase
     /**
      * @return Generator<array{string,array<int,string>}>
      */
-    public function provideFindFeatures(): Generator
+    public static function provideFindFeatures(): Generator
     {
         yield 'relative' => [
             'feature-finder/relative',

@@ -15,7 +15,7 @@ class NoDuplicatedFeatureNamesTest extends RuleTestCase
         return new NoDuplicatedFeatureNames();
     }
 
-    public function provideTests(): Generator
+    public static function provideTests(): Generator
     {
         yield 'no duplicated feature' => [
             [

@@ -37,7 +37,7 @@ class LinterTest extends TestCase
     /**
      * @return Generator<array{string}>
      */
-    public function provideLint(): Generator
+    public static function provideLint(): Generator
     {
         yield [
             <<<'EOT'

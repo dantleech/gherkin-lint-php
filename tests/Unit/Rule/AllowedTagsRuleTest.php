@@ -15,7 +15,7 @@ class AllowedTagsRuleTest extends RuleTestCase
         return new AllowedTagsRule();
     }
 
-    public function provideTests(): Generator
+    public static function provideTests(): Generator
     {
         yield 'allowed feature tags' => [
             new TestFeature(

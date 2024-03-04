@@ -22,7 +22,7 @@ class AnnotationParserTest extends TestCase
     /**
      * @return Generator<string,array<int,DTL\GherkinLint\Model\Annotation\DisableRulesAnnotation>>
      */
-    public function provideParseAnnotation(): Generator
+    public static function provideParseAnnotation(): Generator
     {
         yield 'regular comment' => [
             '# just some comment',

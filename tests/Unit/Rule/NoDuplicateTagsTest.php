@@ -15,7 +15,7 @@ class NoDuplicateTagsTest extends RuleTestCase
         return new NoDuplicateTags();
     }
 
-    public function provideTests(): Generator
+    public static function provideTests(): Generator
     {
         yield 'feature with no duplicate tags' => [
             new TestFeature(
