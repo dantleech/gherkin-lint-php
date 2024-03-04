@@ -11,7 +11,6 @@ use DTL\GherkinLint\Model\RuleConfig;
 use DTL\GherkinLint\Model\RuleDescription;
 use DTL\GherkinLint\Model\RuleExample;
 use Generator;
-use RuntimeException;
 use Symfony\Component\Filesystem\Path;
 use Symfony\Component\String\UnicodeString;
 
@@ -33,10 +32,6 @@ class FileNameRule implements Rule
             FileNameConfig::CAMEL_CASE => $path->camel()->__toString(),
             FileNameConfig::SNAKE_CASE => $path->snake()->__toString(),
             FileNameConfig::KEBAB_CASE => $path->snake()->replace('_', '-')->__toString(),
-            default => throw new RuntimeException(sprintf(
-                'Invalid filename style "%s"',
-                $config->style
-            )),
         };
 
         if ($converted === $path->__toString()) {
@@ -107,10 +102,5 @@ class FileNameRule implements Rule
                 )
             ]
         );
-    }
-
-    private function match(string $pattern, string $filename): bool
-    {
-        return (bool)preg_match($pattern, $filename);
     }
 }

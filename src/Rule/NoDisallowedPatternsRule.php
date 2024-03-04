@@ -18,7 +18,7 @@ class NoDisallowedPatternsRule implements Rule
     {
         assert($config instanceof NoDisallowedPatternsConfig);
         foreach ($config->patterns as $pattern) {
-            if (!preg_match_all($pattern, $feature->source(), $matches, PREG_OFFSET_CAPTURE)) {
+            if (preg_match_all($pattern, $feature->source(), $matches, PREG_OFFSET_CAPTURE) === false) {
                 continue;
             }
 

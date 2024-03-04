@@ -100,7 +100,7 @@ class IndentationRule implements Rule
 
         $column = $location->column;
 
-        if (!$column) {
+        if ($column === null) {
             return;
         }
 
