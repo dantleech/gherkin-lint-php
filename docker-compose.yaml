@@ -1,0 +1,13 @@
+services:
+    php:
+        image: php:8.2-alpine
+        working_dir: /srv/bundle
+        volumes:
+            - .:/srv/bundle:delegated
+
+    composer:
+        image: composer:2.7
+        working_dir: /srv/bundle
+        volumes:
+            - .:/srv/bundle:delegated
+            - ~/.composer:/root/.composer:delegated
