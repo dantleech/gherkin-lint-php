@@ -7,10 +7,10 @@
     ],
     "require": {
         "php": "^8.1",
-        "symfony/console": "^5.0|^6.0|^7.0",
-        "symfony/finder": "^5.0|^6.0|^7.0",
-        "symfony/filesystem": "^5.0|^6.0|^7.0",
-        "symfony/string": "^5.1|^6.0|^7.0",
+        "symfony/console": "^5.0|^6.0|^7.0|^8.0",
+        "symfony/finder": "^5.0|^6.0|^7.0|^8.0",
+        "symfony/filesystem": "^5.0|^6.0|^7.0|^8.0",
+        "symfony/string": "^5.1|^6.0|^7.0|^8.0",
         "cucumber/gherkin": "^24.0",
         "cucumber/messages": "^19.0",
         "dantleech/invoke": "^2.0"
@@ -34,10 +34,10 @@
     ],
     "minimum-stability": "stable",
     "require-dev": {
-        "symfony/var-dumper": "^6.0",
-        "symfony/process": "^6.0",
+        "symfony/var-dumper": "^6.0|^7.0|^8.0",
+        "symfony/process": "^6.0|^7.0|^8.0",
         "phpunit/phpunit": "^10.5",
-        "vimeo/psalm": "^5.22",
+        "vimeo/psalm": "^6.0",
         "friendsofphp/php-cs-fixer": "^3.8"
     },
     "scripts": {

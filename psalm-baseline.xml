@@ -1,0 +1,400 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<files psalm-version="6.16.1@f1f5de594dc76faf8784e02d3dc4716c91c6f6ac">
+  <file src="src/Command/LintCommand.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[LintCommand]]></code>
+    </ClassMustBeFinal>
+    <MissingOverrideAttribute>
+      <code><![CDATA[protected function configure(): void]]></code>
+      <code><![CDATA[protected function execute(InputInterface $input, OutputInterface $output): int]]></code>
+    </MissingOverrideAttribute>
+  </file>
+  <file src="src/Command/RuleDocumentationCommand.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[RuleDocumentationCommand]]></code>
+    </ClassMustBeFinal>
+    <MissingOverrideAttribute>
+      <code><![CDATA[protected function configure(): void]]></code>
+      <code><![CDATA[protected function execute(InputInterface $input, OutputInterface $output): int]]></code>
+    </MissingOverrideAttribute>
+  </file>
+  <file src="src/Command/RulesCommand.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[RulesCommand]]></code>
+    </ClassMustBeFinal>
+    <MissingOverrideAttribute>
+      <code><![CDATA[protected function configure(): void]]></code>
+      <code><![CDATA[protected function execute(InputInterface $input, OutputInterface $output): int]]></code>
+    </MissingOverrideAttribute>
+  </file>
+  <file src="src/GherkinLintContainer.php">
+    <UnusedClass>
+      <code><![CDATA[GherkinLintContainer]]></code>
+    </UnusedClass>
+  </file>
+  <file src="src/Model/Config.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[Config]]></code>
+    </ClassMustBeFinal>
+    <PossiblyUnusedMethod>
+      <code><![CDATA[__construct]]></code>
+      <code><![CDATA[enabledRules]]></code>
+    </PossiblyUnusedMethod>
+  </file>
+  <file src="src/Model/ConfigLoader.php">
+    <PossiblyFalseArgument>
+      <code><![CDATA[$contents]]></code>
+    </PossiblyFalseArgument>
+    <PossiblyUnusedMethod>
+      <code><![CDATA[create]]></code>
+      <code><![CDATA[load]]></code>
+    </PossiblyUnusedMethod>
+  </file>
+  <file src="src/Model/ConfigMapper.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[ConfigMapper]]></code>
+    </ClassMustBeFinal>
+  </file>
+  <file src="src/Model/ConfigRule.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[ConfigRule]]></code>
+    </ClassMustBeFinal>
+    <PossiblyUnusedMethod>
+      <code><![CDATA[__construct]]></code>
+    </PossiblyUnusedMethod>
+  </file>
+  <file src="src/Model/Exception/UnknownAnnotation.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[UnknownAnnotation]]></code>
+    </ClassMustBeFinal>
+  </file>
+  <file src="src/Model/FeatureDiagnostic.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[FeatureDiagnostic]]></code>
+    </ClassMustBeFinal>
+  </file>
+  <file src="src/Model/FeatureDiagnostics.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[FeatureDiagnostics]]></code>
+    </ClassMustBeFinal>
+    <MissingOverrideAttribute>
+      <code><![CDATA[public function count(): int]]></code>
+      <code><![CDATA[public function getIterator(): Traversable]]></code>
+    </MissingOverrideAttribute>
+    <PossiblyUnusedMethod>
+      <code><![CDATA[at]]></code>
+      <code><![CDATA[count]]></code>
+      <code><![CDATA[first]]></code>
+    </PossiblyUnusedMethod>
+  </file>
+  <file src="src/Model/LintReport.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[LintReport]]></code>
+    </ClassMustBeFinal>
+    <MissingOverrideAttribute>
+      <code><![CDATA[public function count(): int]]></code>
+      <code><![CDATA[public function getIterator(): Traversable]]></code>
+    </MissingOverrideAttribute>
+    <PossiblyUnusedMethod>
+      <code><![CDATA[count]]></code>
+    </PossiblyUnusedMethod>
+  </file>
+  <file src="src/Model/Linter.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[Linter]]></code>
+    </ClassMustBeFinal>
+  </file>
+  <file src="src/Model/NullRuleConfig.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[NullRuleConfig]]></code>
+    </ClassMustBeFinal>
+  </file>
+  <file src="src/Model/ParsedFeature.php">
+    <PossiblyUnusedMethod>
+      <code><![CDATA[lines]]></code>
+    </PossiblyUnusedMethod>
+  </file>
+  <file src="src/Model/Position.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[Position]]></code>
+    </ClassMustBeFinal>
+  </file>
+  <file src="src/Model/Range.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[Range]]></code>
+    </ClassMustBeFinal>
+  </file>
+  <file src="src/Model/RuleCollection.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[RuleCollection]]></code>
+    </ClassMustBeFinal>
+  </file>
+  <file src="src/Model/RuleDescription.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[RuleDescription]]></code>
+    </ClassMustBeFinal>
+    <PossiblyUnusedMethod>
+      <code><![CDATA[newConfigClass]]></code>
+    </PossiblyUnusedMethod>
+  </file>
+  <file src="src/Model/RuleDocumentationBuilder.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[RuleDocumentationBuilder]]></code>
+    </ClassMustBeFinal>
+  </file>
+  <file src="src/Model/RuleExample.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[RuleExample]]></code>
+    </ClassMustBeFinal>
+  </file>
+  <file src="src/Report/TableReport.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[TableReport]]></code>
+    </ClassMustBeFinal>
+    <PossiblyUnusedMethod>
+      <code><![CDATA[render]]></code>
+    </PossiblyUnusedMethod>
+  </file>
+  <file src="src/Rule/AllowedTagsConfig.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[AllowedTagsConfig]]></code>
+    </ClassMustBeFinal>
+  </file>
+  <file src="src/Rule/AllowedTagsRule.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[AllowedTagsRule]]></code>
+    </ClassMustBeFinal>
+    <MissingOverrideAttribute>
+      <code><![CDATA[public function analyse(ParsedFeature $feature, RuleConfig $config): Generator]]></code>
+      <code><![CDATA[public function describe(): RuleDescription]]></code>
+    </MissingOverrideAttribute>
+  </file>
+  <file src="src/Rule/FileNameConfig.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[FileNameConfig]]></code>
+    </ClassMustBeFinal>
+  </file>
+  <file src="src/Rule/FileNameRule.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[FileNameRule]]></code>
+    </ClassMustBeFinal>
+    <MissingOverrideAttribute>
+      <code><![CDATA[public function analyse(ParsedFeature $feature, RuleConfig $config): Generator]]></code>
+      <code><![CDATA[public function describe(): RuleDescription]]></code>
+    </MissingOverrideAttribute>
+  </file>
+  <file src="src/Rule/IndentationConfig.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[IndentationConfig]]></code>
+    </ClassMustBeFinal>
+    <PossiblyUnusedProperty>
+      <code><![CDATA[$examples]]></code>
+      <code><![CDATA[$scenario]]></code>
+    </PossiblyUnusedProperty>
+  </file>
+  <file src="src/Rule/IndentationRule.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[IndentationRule]]></code>
+    </ClassMustBeFinal>
+    <MissingOverrideAttribute>
+      <code><![CDATA[public function analyse(ParsedFeature $feature, RuleConfig $config): Generator]]></code>
+      <code><![CDATA[public function describe(): RuleDescription]]></code>
+    </MissingOverrideAttribute>
+  </file>
+  <file src="src/Rule/KeywordOrderConfig.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[KeywordOrderConfig]]></code>
+    </ClassMustBeFinal>
+  </file>
+  <file src="src/Rule/KeywordOrderRule.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[KeywordOrderRule]]></code>
+    </ClassMustBeFinal>
+    <MissingOverrideAttribute>
+      <code><![CDATA[public function analyse(ParsedFeature $feature, RuleConfig $config): Generator]]></code>
+      <code><![CDATA[public function describe(): RuleDescription]]></code>
+    </MissingOverrideAttribute>
+  </file>
+  <file src="src/Rule/NoBackgroundWithSingleScenarioRule.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[NoBackgroundWithSingleScenarioRule]]></code>
+    </ClassMustBeFinal>
+    <MissingOverrideAttribute>
+      <code><![CDATA[public function analyse(ParsedFeature $feature, RuleConfig $config): Generator]]></code>
+      <code><![CDATA[public function describe(): RuleDescription]]></code>
+    </MissingOverrideAttribute>
+  </file>
+  <file src="src/Rule/NoConsecutiveEmptyLinesRule.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[NoConsecutiveEmptyLinesRule]]></code>
+    </ClassMustBeFinal>
+    <MissingOverrideAttribute>
+      <code><![CDATA[public function analyse(ParsedFeature $feature, RuleConfig $config): Generator]]></code>
+      <code><![CDATA[public function describe(): RuleDescription]]></code>
+    </MissingOverrideAttribute>
+  </file>
+  <file src="src/Rule/NoDisallowedPatternsConfig.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[NoDisallowedPatternsConfig]]></code>
+    </ClassMustBeFinal>
+  </file>
+  <file src="src/Rule/NoDisallowedPatternsRule.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[NoDisallowedPatternsRule]]></code>
+    </ClassMustBeFinal>
+    <MissingOverrideAttribute>
+      <code><![CDATA[public function analyse(ParsedFeature $feature, RuleConfig $config): Generator]]></code>
+      <code><![CDATA[public function describe(): RuleDescription]]></code>
+    </MissingOverrideAttribute>
+  </file>
+  <file src="src/Rule/NoDuplicateTags.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[NoDuplicateTags]]></code>
+    </ClassMustBeFinal>
+    <MissingOverrideAttribute>
+      <code><![CDATA[public function analyse(ParsedFeature $feature, RuleConfig $config): Generator]]></code>
+      <code><![CDATA[public function describe(): RuleDescription]]></code>
+    </MissingOverrideAttribute>
+  </file>
+  <file src="src/Rule/NoDuplicatedFeatureNames.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[NoDuplicatedFeatureNames]]></code>
+    </ClassMustBeFinal>
+    <MissingOverrideAttribute>
+      <code><![CDATA[public function analyse(ParsedFeature $feature, RuleConfig $config): Generator]]></code>
+      <code><![CDATA[public function describe(): RuleDescription]]></code>
+    </MissingOverrideAttribute>
+  </file>
+  <file src="src/Rule/NoDuplicatedScenarioNames.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[NoDuplicatedScenarioNames]]></code>
+    </ClassMustBeFinal>
+    <MissingOverrideAttribute>
+      <code><![CDATA[public function analyse(ParsedFeature $feature, RuleConfig $config): Generator]]></code>
+      <code><![CDATA[public function describe(): RuleDescription]]></code>
+    </MissingOverrideAttribute>
+    <UnusedProperty>
+      <code><![CDATA[$seen]]></code>
+    </UnusedProperty>
+  </file>
+  <file src="src/Rule/NoEmptyBackgroundRule.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[NoEmptyBackgroundRule]]></code>
+    </ClassMustBeFinal>
+    <MissingOverrideAttribute>
+      <code><![CDATA[public function analyse(ParsedFeature $feature, RuleConfig $config): Generator]]></code>
+      <code><![CDATA[public function describe(): RuleDescription]]></code>
+    </MissingOverrideAttribute>
+  </file>
+  <file src="src/Rule/NoEmptyFileRule.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[NoEmptyFileRule]]></code>
+    </ClassMustBeFinal>
+    <MissingOverrideAttribute>
+      <code><![CDATA[public function analyse(ParsedFeature $feature, RuleConfig $config): Generator]]></code>
+      <code><![CDATA[public function describe(): RuleDescription]]></code>
+    </MissingOverrideAttribute>
+  </file>
+  <file src="src/Rule/NoEmptyScenariosRule.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[NoEmptyScenariosRule]]></code>
+    </ClassMustBeFinal>
+    <MissingOverrideAttribute>
+      <code><![CDATA[public function analyse(ParsedFeature $feature, RuleConfig $config): Generator]]></code>
+      <code><![CDATA[public function describe(): RuleDescription]]></code>
+    </MissingOverrideAttribute>
+  </file>
+  <file src="src/Rule/NoHomogenousTagsRule.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[NoHomogenousTagsRule]]></code>
+    </ClassMustBeFinal>
+    <MissingOverrideAttribute>
+      <code><![CDATA[public function analyse(ParsedFeature $feature, RuleConfig $config): Generator]]></code>
+      <code><![CDATA[public function describe(): RuleDescription]]></code>
+    </MissingOverrideAttribute>
+  </file>
+  <file src="src/Rule/NoSuperfluousTagsRule.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[NoSuperfluousTagsRule]]></code>
+    </ClassMustBeFinal>
+    <MissingOverrideAttribute>
+      <code><![CDATA[public function analyse(ParsedFeature $feature, RuleConfig $config): Generator]]></code>
+      <code><![CDATA[public function describe(): RuleDescription]]></code>
+    </MissingOverrideAttribute>
+  </file>
+  <file src="src/Rule/NoTrailingSpacesRule.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[NoTrailingSpacesRule]]></code>
+    </ClassMustBeFinal>
+    <MissingOverrideAttribute>
+      <code><![CDATA[public function analyse(ParsedFeature $feature, RuleConfig $config): Generator]]></code>
+      <code><![CDATA[public function describe(): RuleDescription]]></code>
+    </MissingOverrideAttribute>
+  </file>
+  <file src="src/Rule/NoUnnamedFeaturesRule.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[NoUnnamedFeaturesRule]]></code>
+    </ClassMustBeFinal>
+    <MissingOverrideAttribute>
+      <code><![CDATA[public function analyse(ParsedFeature $feature, RuleConfig $config): Generator]]></code>
+      <code><![CDATA[public function describe(): RuleDescription]]></code>
+    </MissingOverrideAttribute>
+  </file>
+  <file src="src/Rule/OneSpaceBetweenTagsRule.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[OneSpaceBetweenTagsRule]]></code>
+    </ClassMustBeFinal>
+    <MissingOverrideAttribute>
+      <code><![CDATA[public function analyse(ParsedFeature $feature, RuleConfig $config): Generator]]></code>
+      <code><![CDATA[public function describe(): RuleDescription]]></code>
+    </MissingOverrideAttribute>
+  </file>
+  <file src="src/Rule/ScenarioSizeConfig.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[ScenarioSizeConfig]]></code>
+    </ClassMustBeFinal>
+  </file>
+  <file src="src/Rule/ScenarioSizeRule.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[ScenarioSizeRule]]></code>
+    </ClassMustBeFinal>
+    <MissingOverrideAttribute>
+      <code><![CDATA[public function analyse(ParsedFeature $feature, RuleConfig $config): Generator]]></code>
+      <code><![CDATA[public function describe(): RuleDescription]]></code>
+    </MissingOverrideAttribute>
+  </file>
+  <file src="src/Rule/ScenariosPerFileConfig.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[ScenariosPerFileConfig]]></code>
+    </ClassMustBeFinal>
+  </file>
+  <file src="src/Rule/ScenariosPerFileRule.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[ScenariosPerFileRule]]></code>
+    </ClassMustBeFinal>
+    <MissingOverrideAttribute>
+      <code><![CDATA[public function analyse(ParsedFeature $feature, RuleConfig $config): Generator]]></code>
+      <code><![CDATA[public function describe(): RuleDescription]]></code>
+    </MissingOverrideAttribute>
+  </file>
+  <file src="src/Rule/TestRule.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[TestRule]]></code>
+    </ClassMustBeFinal>
+    <MissingOverrideAttribute>
+      <code><![CDATA[public function analyse(ParsedFeature $feature, RuleConfig $config): Generator]]></code>
+      <code><![CDATA[public function describe(): RuleDescription]]></code>
+    </MissingOverrideAttribute>
+    <UnusedClass>
+      <code><![CDATA[TestRule]]></code>
+    </UnusedClass>
+  </file>
+  <file src="src/Rule/Util/DocumentQuery.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[DocumentQuery]]></code>
+    </ClassMustBeFinal>
+    <PossiblyUnusedMethod>
+      <code><![CDATA[countBackgrounds]]></code>
+    </PossiblyUnusedMethod>
+  </file>
+</files>
