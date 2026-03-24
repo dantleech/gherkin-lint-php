@@ -59,7 +59,7 @@ final class GherkinLintContainer
         ]);
 
         if ($this->dev) {
-            $app->add(
+            $app->addCommand(
                 new RuleDocumentationCommand(
                     new RuleDocumentationBuilder($this->createRules()),
                 )
