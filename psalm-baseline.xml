@@ -28,9 +28,6 @@
     </MissingOverrideAttribute>
   </file>
   <file src="src/GherkinLintContainer.php">
-    <UndefinedMethod>
-      <code><![CDATA[add]]></code>
-    </UndefinedMethod>
     <UnusedClass>
       <code><![CDATA[GherkinLintContainer]]></code>
     </UnusedClass>
